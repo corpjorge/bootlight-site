@@ -22,7 +22,7 @@
 					 <!-- Add the bg color to the header using any of the bg-* classes -->
 					 <div class="widget-user-header bg-green">
 						 <?php  $url = Storage::url($clasificado->imagen)?>
-						  <img src="{{$url}}" width="400px">
+						  <img src="{{ url($url)}}" width="400px">
 					 </div>
 					 <div class="box-footer no-padding">
 						 <ul class="nav nav-stacked">

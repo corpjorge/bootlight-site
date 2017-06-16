@@ -18,8 +18,9 @@ class CreateSimuladorTasasTable extends Migration
             $table->integer('simulador_linea_id')->unsigned();
             $table->foreign('simulador_linea_id')->references('id')->on('simulador_lineas');
             $table->string('valor');
+            $table->string('anual');
             $table->integer('plazo_inicial');
-            $table->integer('plazo_final');  
+            $table->integer('plazo_final');
             $table->timestamps();
         });
     }

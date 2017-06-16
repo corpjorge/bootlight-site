@@ -42,7 +42,7 @@ class SimuladorController extends Controller
 
     $monto=str_replace(',','',$request->monto1);
     $anual = $tasa->valor/100;
-    $mes = round(($anual/12), 6);
+    $mes = round(($anual/1), 6);
 
     if($request->meses == 0){
       $cuota = $request->monto1;

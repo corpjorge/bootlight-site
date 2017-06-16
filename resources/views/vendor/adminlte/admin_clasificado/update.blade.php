@@ -55,7 +55,7 @@
 							 </div>
 							 <?php  $url = Storage::url($clasificado->imagen)?>
 							 <div class="form-group">
-							  	<img src="{{$url}}" width="400px">
+							  	<img src="{{ url($url)}}" width="400px">
 							 </div>
 
 							 <div class="form-group">

@@ -84,7 +84,7 @@ footer p {
         <div class="row"  >
           <div class="card">
             <?php  $url = Storage::url($clasificado->imagen)?>
-            <img src="{{$url}}" alt="" style="width: 100%;">
+            <img src="{{ url($url)}}" alt="" style="width: 100%;">
 					</div>
 					<div class="card">
 

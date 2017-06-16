@@ -24,7 +24,7 @@
 		                 </ol>
 		                 <div class="carousel-inner">
 		                   <div class="item active">
-		                     <img src="http://fonsodi.com/portal/public/img/Imagen.png" alt="First slide" style="width: 900; ">
+		                     <img src="http://fonsodi.com/images/creditos/img_creditos.jpg" alt="First slide" style="width: 900; ">
 
 		                     <div class="carousel-caption">
 		                       Fonsodi
