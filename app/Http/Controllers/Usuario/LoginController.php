@@ -26,7 +26,7 @@ class LoginController extends Controller
       ]);
 
 
-      $url = "http://50.63.15.92:420/WebServices/WSlogin.asmx/Logeo?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pClave=".$request->password."&pTipoUsuario=2";
+      $url = "https://fonsodi.com.co/WebServices/WSlogin.asmx/Logeo?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pClave=".$request->password."&pTipoUsuario=2";
       $response_xml_data = file_get_contents($url);
       $xml = simplexml_load_string($response_xml_data);
 
@@ -37,7 +37,7 @@ class LoginController extends Controller
         $usuario_cedula = Users_detalle::where('cedula',$request->cedula)->first();
 
         if (empty($usuario_cedula)) {
-          $url_datos = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+          $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
           $response_xml_datos = file_get_contents($url_datos);
           $xml_datos = simplexml_load_string($response_xml_datos);
 
@@ -101,7 +101,7 @@ class LoginController extends Controller
 
 
     $usuario = Users_detalle::where('user_id',Auth::user()->id)->first();
-    $url_datos = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$usuario->cedula."&pTipo=Identificacion";
+    $url_datos = "https://fonsodi.com.co//WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$usuario->cedula."&pTipo=Identificacion";
     $response_xml_datos = file_get_contents($url_datos);
     $xml_datos = simplexml_load_string($response_xml_datos);
 
@@ -131,7 +131,7 @@ class LoginController extends Controller
 
     <div style="position: absolute; top: 42%; left: 44%;" class="loader"></div>
 
-    <form name="formulario" action="http://50.63.15.92:420/atencion/Default.aspx" method="post">
+    <form name="formulario" action="https://fonsodi.com.co/atencion/Default.aspx" method="post">
         <input type="hidden" id="pIdentificacion" name="pIdentificacion" value="<?php echo $usuario->cedula ?>"/>
         <input type="hidden" id="pClave" name="pClave" value="<?php echo $xml_datos->clavesinencriptar; ?>"/>
     </form>

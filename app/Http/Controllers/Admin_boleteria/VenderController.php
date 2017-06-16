@@ -50,7 +50,7 @@ class VenderController extends Controller
 
        if (!$usuario) {
 
-         $url_datos = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+         $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
          $response_xml_datos = file_get_contents($url_datos);
          $xml_datos = simplexml_load_string($response_xml_datos);
 

@@ -31,7 +31,7 @@
 		                     </div>
 		                   </div>
 		                   <div class="item">
-		                     <img src="http://fonsodi.com/images/somos/img_fonsodi.jpg" alt="Second slide">
+		                     <img src="http://fonsodi.com/images/somos/img_fonsodi1.jpg" alt="Second slide">
 
 		                     <div class="carousel-caption">
 		                       Fonsodi

@@ -29,11 +29,11 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        $url_lineas = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineascredito&pColumnas=cod_linea_credito,nombre&pCondicion=estado=1&pOrden=cod_linea_credito";
+        $url_lineas = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineascredito&pColumnas=cod_linea_credito,nombre&pCondicion=estado=1&pOrden=cod_linea_credito";
         $response_lineas = file_get_contents($url_lineas);
         $lineasWS = simplexml_load_string($response_lineas);
 
-        $url_proveedor = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=destinacion&pColumnas=cod_destino,descripcion&pCondicion=&pOrden=cod_destino";
+        $url_proveedor = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=destinacion&pColumnas=cod_destino,descripcion&pCondicion=&pOrden=cod_destino";
         $response_proveedor = file_get_contents($url_proveedor);
         $proveedorWS = simplexml_load_string($response_proveedor);
 
@@ -54,7 +54,7 @@ class ProveedorController extends Controller
             'codigo' => 'required|unique:lineas',
         ]);
 
-        $url_lineas ="http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineascredito&pColumnas=cod_linea_credito,nombre&pCondicion=cod_linea_credito=".$request->codigo."&pOrden=cod_linea_credito";
+        $url_lineas ="https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineascredito&pColumnas=cod_linea_credito,nombre&pCondicion=cod_linea_credito=".$request->codigo."&pOrden=cod_linea_credito";
         $response_lineas = file_get_contents($url_lineas);
         $lineasWS = simplexml_load_string($response_lineas);
 
@@ -83,7 +83,7 @@ class ProveedorController extends Controller
 
         ]);
 
-        $url_proveedor = "http://50.63.15.92:420/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=destinacion&pColumnas=cod_destino,descripcion&pCondicion=cod_destino=".$request->codigo."&pOrden=cod_destino";
+        $url_proveedor = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=destinacion&pColumnas=cod_destino,descripcion&pCondicion=cod_destino=".$request->codigo."&pOrden=cod_destino";
         $response_proveedor = file_get_contents($url_proveedor);
         $proveedorWS = simplexml_load_string($response_proveedor);
 
