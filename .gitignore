@@ -7,4 +7,4 @@ Homestead.json
 Homestead.yaml
 .env
 index.html
-/app/Handler.php
+/app/Exceptions/Handler.php
