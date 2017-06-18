@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 index.html
 /app/Exceptions/Handler.php
+.user.ini
