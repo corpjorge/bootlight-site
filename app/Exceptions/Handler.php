@@ -1,4 +1,3 @@
-<<<<<<< current
 <?php
 
 namespace App\Exceptions;
@@ -132,4 +131,3 @@ class Handler extends ExceptionHandler
         return redirect()->guest('login');
     }
 }
->>>>>>> before discard
