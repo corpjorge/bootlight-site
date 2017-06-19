@@ -31,11 +31,6 @@ class LoginController extends Controller
         return view('adminlte::admin-auth.login');
     }
 
-    public function login(Request $request)
-    {
-         
-    }
-
     /**
      * Where to redirect users after login.
      *
