@@ -6,8 +6,23 @@
 
 
 @section('main-content')
+<section class="content-header">
+    <h1>Eventos
+    <small>Inscríbete al evento que deseas asistir</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="{{ url('/inscripcion')}}">Eventos</a></li>
+
+    </ol>
+</section>
+<br>
+
 	<div class="container-fluid spark-screen">
 		<div class="row">
+
+			<br>
+			<h2 style="right: 22px;position: absolute;" >Estés pendiente a los próximos eventos disponibles</h2>
 
 			@if(session()->has('message'))
 			 <div class="alert alert-success alert-dismissible">

@@ -30,16 +30,20 @@ class LoginController extends Controller
       $response_xml_data = file_get_contents($url);
       $xml = simplexml_load_string($response_xml_data);
 
-      // echo $xml->clavesinencriptar;
-
       if($xml == 'true'){
 
         $usuario_cedula = Users_detalle::where('cedula',$request->cedula)->first();
 
         if (empty($usuario_cedula)) {
+
           $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
           $response_xml_datos = file_get_contents($url_datos);
           $xml_datos = simplexml_load_string($response_xml_datos);
+
+          if ($xml_datos->estado != 'A') {
+            session()->flash('message', 'Datos inválidos');
+            return redirect('login');
+          }
 
           $user = new User;
           $user->name    = $xml_datos->primer_nombre.' '.$xml_datos->segundo_nombre.' '.$xml_datos->primer_apellido.' '.$xml_datos->segundo_apellido;
@@ -63,7 +67,6 @@ class LoginController extends Controller
           $users_detalle->direccion = $xml_datos->direccion;
           $users_detalle->estado_vinculacion = $xml_datos->estado;
           $users_detalle->estado_civil_id = $xml_datos->codestadocivil;
-          $users_detalle->hobby = '';
           $users_detalle->save();
 
           $telefono = new Telefono;
@@ -78,7 +81,38 @@ class LoginController extends Controller
 
         }
         else{
+
+          $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+          $response_xml_datos = file_get_contents($url_datos);
+          $xml_datos = simplexml_load_string($response_xml_datos);
+
+          if ($xml_datos->estado != 'A') {
+            session()->flash('message', 'Datos inválidos');
+            return redirect('login');
+          }
+
           $usuario = User::where('id',$usuario_cedula->usuario->id)->first();
+          $usuario->name    = $xml_datos->primer_nombre.' '.$xml_datos->segundo_nombre.' '.$xml_datos->primer_apellido.' '.$xml_datos->segundo_apellido;
+          $usuario->email   = $xml_datos->email;
+          $usuario->social_name   = '';
+          $usuario->social_id   = '';
+          $usuario->avatar   = '';
+          $usuario->password= bcrypt($xml_datos->clavesinencriptar);
+          $usuario->role_id = 10;
+          $usuario->save();
+
+          $usuario_cedula->user_id = $usuario_cedula->usuario->id;
+          $usuario_cedula->cedula  = $xml_datos->identificacion;
+          $usuario_cedula->cod_persona = $xml_datos->cod_persona;
+          $usuario_cedula->fecha_nacimiento = $xml_datos->fecha_nacimiento;
+          $usuario_cedula->almacen = '';
+          $usuario_cedula->cuidad = $xml_datos->nomciudadresidencia;
+          $usuario_cedula->genero = $xml_datos->genero;
+          $usuario_cedula->direccion = $xml_datos->direccion;
+          $usuario_cedula->estado_vinculacion = $xml_datos->estado;
+          $usuario_cedula->estado_civil_id = $xml_datos->codestadocivil;
+          $usuario_cedula->save();
+
           auth()->login($usuario);
           return redirect()->To('home');
         }
@@ -106,6 +140,9 @@ class LoginController extends Controller
     $xml_datos = simplexml_load_string($response_xml_datos);
 
     ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <style>
     .loader {
       border: 16px solid #f3f3f3;
@@ -129,7 +166,40 @@ class LoginController extends Controller
     </style>
 
 
-    <div style="position: absolute; top: 42%; left: 44%;" class="loader"></div>
+    <div class="card text-center">
+      <div class="card-header">
+        INGRESANDO AL ESTADO DE CUENTA
+      </div>
+      <div class="card-block">
+        <center>
+      <div style=" top: 42%; left: 44%;" class="loader"></div>
+    </center>
+    <br>
+        <p class="card-text">Estamos direccionándolo al estado de cuenta.</p>
+        <br>
+        <a href="home" class="btn btn-danger">Cancelar</a>
+      </div>
+      <div class="card-footer text-muted">
+        Cargando
+        <div class="progress">
+          <div  id="bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var progreso = 0;
+      var idIterval = setInterval(function(){
+        // Aumento en 10 el progeso
+        progreso +=10;
+        $('#bar').css('width', progreso + '%');
+
+      //Si llegó a 100 elimino el interval
+        if(progreso == 100){
+       clearInterval(idIterval);
+      }
+      },1000);
+    </script>
 
     <form name="formulario" action="https://fonsodi.com.co/atencion/Default.aspx" method="post">
         <input type="hidden" id="pIdentificacion" name="pIdentificacion" value="<?php echo $usuario->cedula ?>"/>
@@ -138,6 +208,7 @@ class LoginController extends Controller
     <script type="text/javascript">
     	document.formulario.submit();
     </script>
+
     <?php
 
 

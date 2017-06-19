@@ -104,6 +104,19 @@
 			</div>
 		</div>
 
+		<div class="col-lg-3 col-xs-6 pull-right">
+			<div class="small-box bg-gray">
+				<div class="inner">
+					<h4>TRASFERENCIA </h4>
+					<p>SOLIDARIA</p>
+				</div>
+				<div class="icon">
+					<i class="fa fa-file-text-o"></i>
+				</div>
+				<a href="{{ url('transferencia') }}"class="small-box-footer">Descargar <i class="fa fa-arrow-circle-down"></i></a>
+			</div>
+		</div>
+
 
 
 

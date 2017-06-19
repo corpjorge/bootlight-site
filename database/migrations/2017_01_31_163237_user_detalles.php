@@ -19,15 +19,14 @@ class UserDetalles extends Migration
               $table->foreign('user_id')->references('id')->on('users');
               $table->string('cedula')->unique();
               $table->string('cod_persona');
-              $table->date('fecha_nacimiento');              
+              $table->date('fecha_nacimiento');
               $table->string('almacen');
               $table->string('cuidad');
               $table->string('genero');
               $table->string('direccion');
               $table->string('estado_vinculacion');
               $table->integer('estado_civil_id')->unsigned();
-              $table->foreign('estado_civil_id')->references('id')->on('estado_civil');
-              $table->string('hobby');
+              $table->foreign('estado_civil_id')->references('id')->on('estado_civil');            
               $table->timestamps();
           });
     }

@@ -6,6 +6,18 @@
 
 
 @section('main-content')
+<section class="content-header">
+    <h1>
+        Perfil
+    <small>@yield('contentheader_description')</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+				<li><a href="{{ url('/home')}}">Inicio</a></li>
+        <li class="active"><a href="#">Perfil</a></li>
+    </ol>
+</section>
+
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
@@ -28,15 +40,8 @@
 			<h5 class="widget-user-desc" style="text-transform: capitalize;">{{$users_detalle->usuario->usuario_rol->name}}</h5>
 		</div>
 		<div class="widget-user-image">
-			@if(Auth::user()->avatar == '')
-			 @if($users_detalle->genero == 'M')
-				<img class="img-circle" src="{{ asset('/img/avatar5.png') }}" alt="User Avatar">
-			 @else
-			  <img class="img-circle" src="{{ asset('/img/avatar2.png') }}" alt="User Avatar">
-			 @endif
-			@else
-			<img class="img-circle" src="{{ Auth::user()->avatar }}" alt="User Avatar">
-			@endif
+
+
 		</div>
 		<div class="box-footer">
 			<div class="row">
@@ -75,8 +80,8 @@
 							<p class="text-muted"><b>Ciudad: </b> {{$users_detalle->cuidad}}</p>
 
               <hr>
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Hobby </strong>
-              <p>{{$users_detalle->hobby}}</p>
+              <strong><i class="fa fa-at margin-r-5"></i> Correo </strong>
+              <p>{{$users_detalle->usuario->email}}</p>
 
 							</div>
             <!-- /.box-body -->

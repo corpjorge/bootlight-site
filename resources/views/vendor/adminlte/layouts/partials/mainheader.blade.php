@@ -20,11 +20,11 @@
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
-                    <!-- Menu toggle button -->
+                    <!-- Menu toggle button
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
                         <span class="label label-success">1</span>
-                    </a>
+                    </a>-->
                     <ul class="dropdown-menu">
                         <li class="header">{{ trans('adminlte_lang::message.tabmessages') }}</li>
                         <li>
@@ -54,11 +54,11 @@
 
                 <!-- Notifications Menu -->
                 <li class="dropdown notifications-menu">
-                    <!-- Menu toggle button -->
+                    <!-- Menu toggle button
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         <span class="label label-warning">1</span>
-                    </a>
+                    </a>-->
                     <ul class="dropdown-menu">
                         <li class="header">Tiene 1 notificación</li>
                         <li>

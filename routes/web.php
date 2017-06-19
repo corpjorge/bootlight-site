@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::group(['middleware' => 'asociado'], function () {
 
+    Route::get('transferencia', 'Usuario\Users_detalleController@transferencia');
+
     Route::get('servicios', 'Servicio\ServicioController@index');
     Route::get('clasificados/add', 'Servicio\ClasificadoController@create');
     Route::post('clasificados/add', 'Servicio\ClasificadoController@store');

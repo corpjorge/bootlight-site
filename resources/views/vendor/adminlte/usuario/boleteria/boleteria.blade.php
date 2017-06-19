@@ -6,6 +6,16 @@
 
 
 @section('main-content')
+<section class="content-header">
+    <h1>Boletería
+    <small>Resumen de tus boletas adquiridas</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+				<li><a href="{{ url('/boleteria')}}">Boletería</a></li>
+    </ol>
+</section>
+<br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 

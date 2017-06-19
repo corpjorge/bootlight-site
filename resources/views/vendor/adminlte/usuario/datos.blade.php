@@ -41,13 +41,8 @@
 			<!-- /.row -->
 		</div>
 	</div>
-
-
-
       <div class="row">
         <div class="col-md-12">
-
-
           <!-- /.box -->
 
           <!-- About Me Box -->
@@ -73,7 +68,7 @@
 							<p class="text-muted"><b>Ciudad: {{$users_detalles->usuario_ciudad->name}}</b>  </p>
 
               <hr>
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Hobby </strong>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i>Correo: </strong>
               <p> </p>
 
 							</div>
