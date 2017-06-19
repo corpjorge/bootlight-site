@@ -63,7 +63,7 @@
 
 
 
-        <a href="http://fonsodi.com.co:420/atencion/Pages/Account/RestablecerPasswordEmail.aspx">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
+        <a href="https://fonsodi.com.co/atencion/Pages/Account/RestablecerPasswordEmail.aspx">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
 
 
     </div><!-- /.login-box-body -->
