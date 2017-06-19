@@ -36,7 +36,7 @@ class MenuusersTableSeeder extends Seeder
         $user->area_id="3";
         $user->icono="fa-shield";
         $user->ruta="seguros";
-        $user->estado_id="1";
+        $user->estado_id="2";
         $user->estilo="bg-yellow";
         $user->save();
 
@@ -72,7 +72,7 @@ class MenuusersTableSeeder extends Seeder
         $user->area_id="7";
         $user->icono="fa-copyright";
         $user->ruta="claro";
-        $user->estado_id="1";
+        $user->estado_id="2";
         $user->estilo="bg-red";
         $user->save();
 

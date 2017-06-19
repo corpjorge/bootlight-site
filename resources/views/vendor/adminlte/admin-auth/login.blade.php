@@ -51,8 +51,7 @@
 
         @include('adminlte::admin-auth.partials.social_login')
 
-        <a href="{{ url('/admin_password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
-        <a href="{{ url('/admin_register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
+        <a href="{{ url('/admin_password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>       
 
     </div><!-- /.login-box-body -->
 

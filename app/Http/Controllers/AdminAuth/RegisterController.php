@@ -26,14 +26,15 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+
     /**
      * Show the application registration form.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm1()
     {
-        return view('adminlte::admin-auth.register');
+        //return view('adminlte::admin-auth.register');
     }
 
     /**
@@ -41,7 +42,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin_home';
+    protected $redirectTo = 'admin_home';
 
     /**
      * Create a new controller instance.
@@ -64,7 +65,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',             
+            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -74,14 +75,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create1(array $data)
     {
+      /*
         return AdminUser::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role_id' => $data['role_id'],
         ]);
+
+        */
     }
 
     /**

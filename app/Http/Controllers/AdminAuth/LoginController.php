@@ -36,7 +36,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin_home';
+    protected $redirectTo = 'admin_home';
 
     public function logout(Request $request)
     {
@@ -46,7 +46,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/admin_login');
+        return redirect('admin_login');
     }
 
     /**
