@@ -28,7 +28,8 @@
 			<th>VALOR TOTAL A PAGAR</th>
 			<th>INTERES</th>
 			<th>LÍNEA DE CRÉDITO</th>
-			<th>TASA DE INTERÉS</th>
+			<th>TASA NOMINAL MES</th>
+			<th>TASA EFECTIVA ANUAL</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,6 +39,7 @@
 			<td><?php echo number_format($interes);?> </td>
 			<td><?php echo $nombretasa;  ?> </td>
 			<td><?php echo $valortasa;  ?>% </td>
+			<td><?php echo $valortasaanual;  ?>% </td>
 		</tr>
 	</tbody>
 </table>
@@ -49,7 +51,8 @@
 			<th>VALOR TOTAL A PAGAR</th>
 			<th>VALOR TOTAL INTERÉS</th>
 			<th>LÍNEA DE CRÉDITO</th>
-			<th>TASA DE INTERÉS</th>
+			<th>TASA NOMINAL MES</th>
+			<th>TASA EFECTIVA ANUAL</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -59,6 +62,8 @@
 			<td><?php echo number_format($interesT);  ?> </td>
 			<td><?php echo $nombretasa;  ?> </td>
 			<td><?php echo $valortasa;  ?>% </td>
+			<td><?php echo $valortasaanual;  ?>% </td>
+
 		</tr>
 	</tbody>
 </table>

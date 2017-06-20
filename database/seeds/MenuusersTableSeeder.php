@@ -27,7 +27,7 @@ class MenuusersTableSeeder extends Seeder
         $user->area_id="2";
         $user->icono="fa-ticket";
         $user->ruta="boleteria";
-        $user->estado_id="1";
+        $user->estado_id="2";
         $user->estilo="bg-aqua";
         $user->save();
 

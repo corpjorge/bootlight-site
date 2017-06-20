@@ -63,13 +63,14 @@ class SimuladorController extends Controller
       $nombretasa = $tasa->simuladortasa_linea->name;
       $idline = $tasa->simuladortasa_linea->id;
       $valortasa = $tasa->valor;
+      $valortasaanual = $tasa->anual;
       $meses = $request->meses;
 
       return view('adminlte::usuario.simulador.simulador_resultado',
       [ 'monto' => $monto, 'total' => $total,
         'interesT' => $interesT, 'meses' => $meses, 'final' => $final,
         'mes' => $mes, 'cuota' => $cuota, 'mesa' => $mesa, 'nombretasa' => $nombretasa,
-        'valortasa' => $valortasa, 'idline' => $idline,
+        'valortasa' => $valortasa, 'idline' => $idline, 'valortasaanual' => $valortasaanual
       ]);
 
     }
@@ -83,7 +84,7 @@ class SimuladorController extends Controller
 
        $monto=str_replace(',','',$request->monto1);
        $anual = $tasa->valor/100;
-       $mes = round(($anual/12), 6);
+       $mes = round(($anual/1), 6);
        if($request->meses == 0){
 
         $cuota = $request->monto1;
@@ -105,12 +106,13 @@ class SimuladorController extends Controller
          $nombretasa = $tasa->simuladortasa_linea->name;
          $idline = $tasa->simuladortasa_linea->id;
          $valortasa = $tasa->valor;
+         $valortasaanual = $tasa->anual;
          $meses = $request->meses;
 
         $view =  \View::make('adminlte::usuario.simulador.simulador_resultado_pdf', [ 'monto' => $monto, 'total' => $total,
           'interesT' => $interesT, 'meses' => $meses, 'final' => $final,
           'mes' => $mes, 'cuota' => $cuota, 'mesa' => $mesa, 'nombretasa' => $nombretasa,
-          'valortasa' => $valortasa, 'idline' => $idline,
+          'valortasa' => $valortasa, 'idline' => $idline, 'valortasaanual' => $valortasaanual
         ]);
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
