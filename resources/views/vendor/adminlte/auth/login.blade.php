@@ -64,6 +64,8 @@
 
 
         <a href="https://fonsodi.com.co/atencion/Pages/Account/RestablecerPasswordEmail.aspx">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
+        <a href="https://fonsodi.com.co/atencion/Pages/Afiliacion/afiliacion.aspx">¿No eres asociado? Afíliate aquí</a><br>
+        <a href="https://fonsodi.com.co/atencion/Pages/Account/Registro.aspx">¿Eres asociado y no tienes cuenta? Solicítala Aquí</a><br>
 
 
     </div><!-- /.login-box-body -->

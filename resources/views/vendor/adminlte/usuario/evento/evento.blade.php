@@ -22,7 +22,7 @@
 		<div class="row">
 
 			<br>
-			<h2 style="right: 22px;position: absolute;" >Estés pendiente a los próximos eventos disponibles</h2>
+			<h2 style="right: 22px;position: absolute;" >En este momento no se encuentran eventos disponibles</h2>
 
 			@if(session()->has('message'))
 			 <div class="alert alert-success alert-dismissible">

@@ -107,7 +107,7 @@
 		<div class="col-lg-3 col-xs-6 pull-right">
 			<div class="small-box bg-gray">
 				<div class="inner">
-					<h4>TRASFERENCIA </h4>
+					<h4>TRANSFERENCIA </h4>
 					<p>SOLIDARIA</p>
 				</div>
 				<div class="icon">
