@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::get('perfil', 'Usuario\Users_detalleController@index');
   Route::get('noasicado', 'Usuario\NoasociadoController@index');
+  Route::get('error404', 'Usuario\NoasociadoController@error');
   Route::get('help', 'Usuario\Users_detalleController@help');
   Route::get('atencion', 'Usuario\LoginController@loginAtencion');
 
@@ -84,6 +85,9 @@ Route::group(['middleware' => 'adminuser'], function () {
   Route::get('admin/{id}', 'Admin\Users_detalleController@datos');
   Route::get('admin_help', 'Admin\AdminController@help');
 
+
+Route::group(['middleware' => 'coordinador'], function () {
+
   Route::get('admin_evento', 'Evento\EventoController@indexadmin');
   Route::get('admin_evento/add', 'Evento\EventoController@create');
   Route::post('admin_evento/add', 'Evento\EventoController@store');
@@ -100,13 +104,14 @@ Route::group(['middleware' => 'adminuser'], function () {
   Route::get('admin_servicios/pqrs/descarga/{id}', 'Servicio\PqrsController@descarga');
   Route::put('admin_servicios/pqrs/{id}', 'Servicio\PqrsController@update');
 
+});
+
   Route::group(['namespace' => 'Admin_boleteria'], function () {
 
-
+Route::group(['middleware' => 'gerente'], function () {
     Route::get('admin_boleteria/inventario', 'InformeController@inventario');
     Route::get('admin_boleteria/inventario/excel/seriales', 'InformeController@serialesexcel');
     Route::get('admin_boleteria/inventario/excel/ventas', 'InformeController@ventasesexcel');
-
 
     Route::get('admin_boleteria/proveedores', 'ProveedorController@index');
     Route::get('admin_boleteria/proveedores/add', 'ProveedorController@create');
@@ -137,7 +142,8 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::post('admin_boleteria/asignacion/add', 'AsignarController@store');
     Route::get('admin_boleteria/asignacion/ver/{id}', 'AsignarController@show');
     Route::get('admin_boleteria/asignacion/ver/{id}/edit', 'AsignarController@edit');
-
+});
+Route::group(['middleware' => 'coordinador'], function () {
     Route::get('admin_boleteria/coordinador', 'CoordinadorController@index');
     Route::put('admin_boleteria/coordinador/aprobar/{id}', 'CoordinadorController@aprobar');
     Route::put('admin_boleteria/coordinador/negar/{id}', 'CoordinadorController@negar');
@@ -148,13 +154,97 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::post('admin_boleteria/vender/add', 'VenderController@store');
     Route::get('admin_boleteria/vender/ver/{id}', 'VenderController@show');
     Route::get('admin_boleteria/vender/ver/pdf/{id}', 'VenderController@pdfadmin');
-
+});
     Route::get('admin_boleteria', 'InformeController@index');
     Route::post('admin_boleteria/buscar/cedula', 'InformeController@cedula');
     Route::post('admin_boleteria/buscar/referencia', 'InformeController@referencia');
     Route::post('admin_boleteria/buscar/serial', 'InformeController@serial');
 
   });
+
+Route::group(['middleware' => 'subgerente'], function () {
+
+  Route::get('admin_config/user', 'Admin\ConfigUserController@index');
+  Route::get('admin_config/user/add', 'Admin\ConfigUserController@create');
+  Route::post('admin_config/user/add', 'Admin\ConfigUserController@store');
+  Route::get('admin_config/user/ver/{id}', 'Admin\ConfigUserController@show');
+  Route::get('admin_config/user/ver/{id}/edit', 'Admin\ConfigUserController@edit');
+  Route::put('admin_config/user/{id}', 'Admin\ConfigUserController@update');
+
+
+  Route::get('admin_config/permisos', 'Admin\ConfigPermisosController@index');
+  Route::get('admin_config/permisos/add', 'Admin\ConfigPermisosController@create');
+  Route::post('admin_config/permisos/add', 'Admin\ConfigPermisosController@store');
+  Route::get('admin_config/permisos/ver/{id}', 'Admin\ConfigPermisosController@show');
+  Route::get('admin_config/permisos/ver/{id}/edit', 'Admin\ConfigPermisosController@edit');
+  Route::put('admin_config/permisos/{id}', 'Admin\ConfigPermisosController@update');
+
+
+  Route::get('admin_config/areas', 'Admin\ConfigAreasController@index');
+  Route::get('admin_config/areas/add', 'Admin\ConfigAreasController@create');
+  Route::post('admin_config/areas/add', 'Admin\ConfigAreasController@store');
+  Route::get('admin_config/areas/ver/{id}', 'Admin\ConfigAreasController@show');
+  Route::get('admin_config/areas/ver/{id}/edit', 'Admin\ConfigAreasController@edit');
+  Route::put('admin_config/areas/{id}', 'Admin\ConfigAreasController@update');
+
+
+  Route::get('admin_config/areas_items', 'Admin\ConfigAreasItemsController@index');
+  Route::get('admin_config/areas_items/add', 'Admin\ConfigAreasItemsController@create');
+  Route::post('admin_config/areas_items/add', 'Admin\ConfigAreasItemsController@store');
+  Route::get('admin_config/areas_items/ver/{id}', 'Admin\ConfigAreasItemsController@show');
+  Route::get('admin_config/areas_items/ver/{id}/edit', 'Admin\ConfigAreasItemsController@edit');
+  Route::put('admin_config/areas_items/{id}', 'Admin\ConfigAreasItemsController@update');
+
+
+  Route::get('admin_config/areas_admin', 'Admin\ConfigAreasAdminController@index');
+  Route::get('admin_config/areas_admin/add', 'Admin\ConfigAreasAdminController@create');
+  Route::post('admin_config/areas_admin/add', 'Admin\ConfigAreasAdminController@store');
+  Route::get('admin_config/areas_admin/ver/{id}', 'Admin\ConfigAreasAdminController@show');
+  Route::get('admin_config/areas_admin/ver/{id}/edit', 'Admin\ConfigAreasAdminController@edit');
+  Route::put('admin_config/areas_admin/{id}', 'Admin\ConfigAreasAdminController@update');
+
+
+  Route::get('admin_config/areas_admin_items', 'Admin\ConfigAreasAdminAdminController@index');
+  Route::get('admin_config/areas_admin_items/add', 'Admin\ConfigAreasAdminAdminController@create');
+  Route::post('admin_config/areas_admin_items/add', 'Admin\ConfigAreasAdminAdminController@store');
+  Route::get('admin_config/areas_admin_items/ver/{id}', 'Admin\ConfigAreasAdminAdminController@show');
+  Route::get('admin_config/areas_admin_items/ver/{id}/edit', 'Admin\ConfigAreasAdminAdminController@edit');
+  Route::put('admin_config/areas_admin_items/{id}', 'Admin\ConfigAreasAdminAdminController@update');
+
+
+  Route::get('admin_config/menu', 'Admin\ConfigMenuController@index');
+  Route::get('admin_config/menu/add', 'Admin\ConfigMenuController@create');
+  Route::post('admin_config/menu/add', 'Admin\ConfigMenuController@store');
+  Route::get('admin_config/menu/ver/{id}', 'Admin\ConfigMenuController@show');
+  Route::get('admin_config/menu/ver/{id}/edit', 'Admin\ConfigMenuController@edit');
+  Route::put('admin_config/menu/{id}', 'Admin\ConfigMenuController@update');
+
+
+  Route::get('admin_config/sub_menu', 'Admin\ConfigSubMenuController@index');
+  Route::get('admin_config/sub_menu/add', 'Admin\ConfigSubMenuController@create');
+  Route::post('admin_config/sub_menu/add', 'Admin\ConfigSubMenuController@store');
+  Route::get('admin_config/sub_menu/ver/{id}', 'Admin\ConfigSubMenuController@show');
+  Route::get('admin_config/sub_menu/ver/{id}/edit', 'Admin\ConfigSubMenuController@edit');
+  Route::put('admin_config/sub_menu/{id}', 'Admin\ConfigSubMenuController@update');
+
+
+  Route::get('admin_config/menu_admin', 'Admin\ConfigMenuAdminController@index');
+  Route::get('admin_config/menu_admin/add', 'Admin\ConfigMenuAdminController@create');
+  Route::post('admin_config/menu_admin/add', 'Admin\ConfigMenuAdminController@store');
+  Route::get('admin_config/menu_admin/ver/{id}', 'Admin\ConfigMenuAdminController@show');
+  Route::get('admin_config/menu_admin/ver/{id}/edit', 'Admin\ConfigMenuAdminController@edit');
+  Route::put('admin_config/menu_admin/{id}', 'Admin\ConfigMenuAdminController@update');
+
+
+  Route::get('admin_config/sub_menu_admin', 'Admin\ConfigSubMenuAdminController@index');
+  Route::get('admin_config/sub_menu_admin/add', 'Admin\ConfigSubMenuAdminController@create');
+  Route::post('admin_config/sub_menu_admin/add', 'Admin\ConfigSubMenuAdminController@store');
+  Route::get('admin_config/sub_menu_admin/ver/{id}', 'Admin\ConfigSubMenuAdminController@show');
+  Route::get('admin_config/sub_menu_admin/ver/{id}/edit', 'Admin\ConfigSubMenuAdminController@edit');
+  Route::put('admin_config/sub_menu_admin/{id}', 'Admin\ConfigSubMenuAdminController@update');
+
+
+});
 
 });
 

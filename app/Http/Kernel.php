@@ -58,6 +58,16 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'adminuser' => \App\Http\Middleware\DeniedIfNotAdmin::class,
         'adminauth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'gerente' => \App\Http\Middleware\Gerente::class,
+        'subgerente' => \App\Http\Middleware\Subgerente::class,
+        'director' => \App\Http\Middleware\Director::class,
+        'jefe' => \App\Http\Middleware\Jefe::class,
+        'coordinador' => \App\Http\Middleware\Coordinador::class,
+        'auxiliar' => \App\Http\Middleware\Auxiliar::class,
+        'asistente' => \App\Http\Middleware\Asistente::class,
         'asociado' => \App\Http\Middleware\Asociado::class,
+        'colaborador' => \App\Http\Middleware\Colaborador::class,
+        'publico' => \App\Http\Middleware\Publico::class,
+
     ];
 }

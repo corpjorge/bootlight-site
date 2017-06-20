@@ -101,5 +101,59 @@ class AreasitemsadminTableSeeder extends Seeder
         $user->descripcion="Usuarios";
         $user->save();
 
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Permisos";
+        $user->descripcion="Permisos Usuarios";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Areas";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Areas items";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Areas admin";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Areas admin items";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Menu";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Sub Menu";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Menu Admin";
+        $user->descripcion="";
+        $user->save();
+
+        $user = new Area_item_admin();
+        $user->area_admin_id="7";
+        $user->name="Sub Menu Admin";
+        $user->descripcion="";
+        $user->save();
+
     }
 }

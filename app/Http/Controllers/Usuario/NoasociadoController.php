@@ -16,4 +16,14 @@ class NoasociadoController extends Controller
    {
        return view('adminlte::usuario.noasociado');
    }
+
+   /**
+    * Show the application dashboard.
+    *
+    * @return Response
+    */
+    public function error()
+    {
+        return view('adminlte::errors.404');
+    }
 }

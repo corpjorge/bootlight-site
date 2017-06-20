@@ -42,7 +42,7 @@ class AreasadminsTableSeeder extends Seeder
       $user->save();
 
       $user = new Area_admin();
-      $user->name="CONFIGURACIÓN";
+      $user->name="CONFIGURACION";
       $user->descripcion="Configuración";
       $user->save();
 

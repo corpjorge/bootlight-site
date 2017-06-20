@@ -77,8 +77,7 @@ class VenderController extends Controller
            $users_detalle->genero = $xml_datos->genero;
            $users_detalle->direccion = $xml_datos->direccion;
            $users_detalle->estado_vinculacion = $xml_datos->estado;
-           $users_detalle->estado_civil_id = $xml_datos->codestadocivil;
-           $users_detalle->hobby = '';
+           $users_detalle->estado_civil_id = $xml_datos->codestadocivil;          
            $users_detalle->save();
 
            $telefono = new Telefono;

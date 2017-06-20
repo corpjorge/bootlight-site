@@ -5,6 +5,20 @@
 @endsection
 
 @section('main-content')
+
+<section class="content-header">
+    <h1>Asignar
+    <small>Asignar seriales</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="{{ url('/admin_boleteria')}}">Boletería</a></li>
+        <li><a href="{{ url('admin_boleteria/asignacion')}}">Asignacion</a></li>
+				<li class="active"><a href="#">Añadir</a></li>
+    </ol>
+</section>
+<br>
+
 	<div class="container-fluid spark-screen">
 		<div class="row">
 

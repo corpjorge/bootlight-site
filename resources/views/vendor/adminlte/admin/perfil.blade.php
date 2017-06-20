@@ -6,16 +6,22 @@
 
 
 @section('main-content')
+<section class="content-header">
+    <h1>Perfil
+    <small>Detalle</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="{{ url('/admin_home')}}">Inicio</a></li>
+        <li class="active"><a href="#">Perfil</a></li>
+    </ol>
+</section>
+<br>
+
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
-			<div class="row">
-			  <a href="javascript:history.back()" >
-			     <div class="col-md-1">
-			         <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-left"></i></span>
-			     </div>
-			  </a>
-			</div><br>
+
 
 <section class="content">
 

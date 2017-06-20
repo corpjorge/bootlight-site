@@ -12,7 +12,7 @@ class Permiso extends Model
    * @var array
    */
   protected $fillable = [
-       'area_admin_id', 'admin_users_id',
+       'area_admin_id', 'admin_user_id',
   ];
 
 
@@ -23,7 +23,7 @@ class Permiso extends Model
 
    public function permiso_admin_user()
     {
-        return $this->belongsTo('App\Model\Sistema\Estado', 'admin_users_id');
+        return $this->belongsTo('App\AdminUser', 'admin_user_id');
     }
 
 

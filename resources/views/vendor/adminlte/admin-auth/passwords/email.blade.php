@@ -52,8 +52,7 @@
             </form>
 
             <a href="{{ url('/admin_login') }}">Iniciar sesión</a><br>
-            <a href="{{ url('/admin_register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
-
+             
         </div><!-- /.login-box-body -->
 
     </div><!-- /.login-box -->

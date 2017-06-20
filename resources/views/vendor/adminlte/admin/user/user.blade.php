@@ -6,19 +6,27 @@
 
 @section('main-content')
 <section class="content-header">
-    <h1>PQRS
-    <small>Tabla</small>
+    <h1>Usuarios
+    <small>Configuracion de usuarios</small>
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
-			  <li><a href="{{ url ('admin_servicios/pqrs')}}">Servicios</a></li>
-        <li class="active"><a href="#">PQRS</a></li>
+		<li><a href="{{ url('/admin_config/user')}}">Configuracion</a></li>
+        <li class="active"><a href="#">Usuarios</a></li>
     </ol>
 </section>
 <br>
+
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
+			<div class="row">
+				<a href="{{ url('/admin_config/user/add') }}" >
+					 <div class="col-md-1">
+							 <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
+					 </div>
+				</a>
+			</div><br>
 
 		@if(session()->has('message'))
 		 <div class="alert alert-success alert-dismissible">
@@ -30,34 +38,41 @@
 
 		<div class="box">
              <div class="box-header">
-               <h3 class="box-title">PQRS</h3>
+               <h3 class="box-title">Usuarios</h3>
              </div>
              <!-- /.box-header -->
              <div class="box-body">
                <table id="example" class="table table-bordered table-striped">
                  <thead>
                  <tr>
-									 <th>titulo</th>
-                   <th>Estado</th>
-                   <th>observacion</th>
+									 <th>ID</th>
+                   <th>Nombre</th>
+									 <th>Correo</th>
+                   <th>Rol</th>
+									 <th>Editar</th>
 									 <th>Fecha</th>
                  </tr>
                  </thead>
                  <tbody>
-									 @foreach($pqrs as $pqr)
-	                 <tr>
-											 <td><a href="{{url('admin_servicios/pqrs/ver/'.$pqr->id)}}">{{$pqr->tipo}}</a></td>
-											 <td><span class="label label-{{$pqr->pqrs_estado->estilo}}">{{$pqr->pqrs_estado->tipo}}</span></td>
-											 <td>{{$pqr->observacion}}</td>
-											 <td>{{$pqr->created_at->diffForHumans()}}</td>
-									 </tr>
-									 @endforeach
-                 </tbody>
+								 @foreach ($adminUsers as $adminUser)
+                 <tr>
+	                   <td>{{$adminUser->id}}</td>
+										 <td><a href="{{url('admin_config/user/ver/'.$adminUser->id)}}" >{{$adminUser->name}}</a></td>
+										 <td>{{$adminUser->email}}</td>
+										 <td>{{$adminUser->rol->name}}</td>
+										 <td><a href="{{url('admin_config/user/ver/'.$adminUser->id.'/edit')}}" >
+											  <i class="fa fa-fw fa-edit"></i>Editar</a>
+										 </td>
+										 <td>{{$adminUser->created_at->diffForHumans()}}</td>
+
+								 </tr>
+								 @endforeach
+
+                 </tfoot>
                </table>
              </div>
              <!-- /.box-body -->
            </div>
-
 
 
 		</div>

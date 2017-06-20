@@ -5,6 +5,17 @@
 @endsection
 
 @section('main-content')
+<section class="content-header">
+    <h1>Seriales
+    <small>Ingreso de seriales</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="{{ url('/admin_boleteria')}}">Boletería</a></li>
+        <li class="active"><a href="#">Seriales</a></li>
+    </ol>
+</section>
+<br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
@@ -52,7 +63,7 @@
                  <tr>
 								 	 <th>Serial</th>
                    <th>Producto</th>
-									 <th>Fecha de Caducidad</th>								
+									 <th>Fecha de Caducidad</th>
 									 <th>Editar</th>
 									 <th>Creado</th>
                  </tr>

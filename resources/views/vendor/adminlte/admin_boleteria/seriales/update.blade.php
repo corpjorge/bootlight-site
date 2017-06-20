@@ -5,6 +5,18 @@
 @endsection
 
 @section('main-content')
+<section class="content-header">
+    <h1>Serial Editar
+    <small>Editar Serial</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="{{ url('/admin_boleteria')}}">Boletería</a></li>
+			  <li><a href="{{ url ('admin_boleteria/productos')}}">Serial</a></li>
+        <li class="active"><a href="#">Editar</a></li>
+    </ol>
+</section>
+<br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 

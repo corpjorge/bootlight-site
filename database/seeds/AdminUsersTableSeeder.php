@@ -19,11 +19,12 @@ class AdminUsersTableSeeder extends Seeder
       $user->save();
 
       $user = new AdminUser();
-      $user->name = "peralta";
+      $user->name = "jorge";
       $user->email="jorge.peralta@fyclsingenieria.com";
       $user->password= crypt("111111","");
-      $user->role_id=1;
+      $user->role_id=2;
       $user->save();
+
 
     }
 }

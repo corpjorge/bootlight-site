@@ -6,13 +6,13 @@
 
 @section('main-content')
 <section class="content-header">
-    <h1>Proveedores Editar
-    <small>Editar Proveedor</small>
+    <h1>Permisos Editar
+    <small>Editar Permiso</small>
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
-		<li><a href="{{ url('/admin_boleteria')}}">Boletería</a></li>
-			  <li><a href="{{ url ('admin_boleteria/productos')}}">Proveedores</a></li>
+		<li><a href="{{ url('admin_config/permisos')}}">Configuracion</a></li>
+			  <li><a href="{{ url ('admin_config/permisos')}}">Permiso</a></li>
         <li class="active"><a href="#">Editar</a></li>
     </ol>
 </section>
@@ -20,24 +20,20 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
-		<div class="row">
-			<a href="{{url('admin_boleteria/proveedores')}}" >
-         <div class="col-md-1">
-             <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-left"></i></span>
-         </div>
-			</a>
-    </div><br>
+
+			@include('adminlte::admin.permisos.atras')
+
 
 
 		<div class="">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Actualizar proveedor</h3>
+              <h3 class="box-title">Actualizar de permiso</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin_boleteria/proveedores/'.$proveedor->id)}}" method="post">
+            <form role="form" action="{{ url('admin_config/permisos/'.$permiso->id)}}" method="post">
 							@if (count($errors) > 0)
 			            <div class="alert alert-danger">
 			                <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -60,24 +56,29 @@
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							{{method_field('PUT')}}
               <div class="box-body">
+
+
 								<div class="form-group">
-								 <label>Tipo Documento</label>
-									 <select style="color:#555555" name="linea" class="form-control">
-										 	<option style="color:#555555" value="{{$proveedor->proverdor_linea->id}}">{{$proveedor->proverdor_linea->name}}</option>
-										 @foreach ($lineas as $linea)
-								 		 	<option style="color:#555555" value="{{$linea->id}}">{{$linea->name}}</option>
+								 <label>Usuario</label>
+									 <select style="color:#555555" name="usuario" class="form-control">
+										 	<option value="{{$permiso->permiso_admin_user->id}}">{{$permiso->permiso_admin_user->name}}</option>
+										 @foreach ($adminUsers as $adminUser)
+								 		 	<option style="color:#555555" value="{{$adminUser->id}}">{{$adminUser->name}}</option>
 								 		 @endforeach
 									 </select>
 							 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Codigo</label>
-                  <input style="color:#555555" type="number" class="form-control" id="exampleInputPassword1" name="codigo" value="{{$proveedor->codigo}}" placeholder="Documento">
-                </div>
 
-								<div class="form-group">
-                  <label for="exampleInputPassword1">Nombre</label>
-                  <input style="color:#555555" type="text" class="form-control" id="exampleInputPassword1" name="nombre" value="{{$proveedor->name}}" placeholder="Nombre">
-                </div>
+							 <div class="form-group">
+								<label>Rol</label>
+									<select style="color:#555555" name="area" class="form-control">
+										 <option value="{{$permiso->permiso_area_admin->id}}">{{$permiso->permiso_area_admin->name}}</option>
+										@foreach ($area_admins as $area_admin)
+										 <option style="color:#555555" value="{{$area_admin->id}}">{{$area_admin->name}}</option>
+										@endforeach
+									</select>
+							</div>
+
+
               </div>
               <!-- /.box-body -->
 

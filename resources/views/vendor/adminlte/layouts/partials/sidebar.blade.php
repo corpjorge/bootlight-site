@@ -74,7 +74,7 @@ function current_page($url = '/'){
                     <ul class="treeview-menu" >
                       @foreach ($menu_admin_subs as $menu_admin_sub)
                         @if ($menu_admin_sub->estado->id == '1' )
-                        @if ($menu_admin_sub->role_id > Auth::guard('admin_user')->user()->role_id )
+                        @if ($menu_admin_sub->role_id >= Auth::guard('admin_user')->user()->role_id )
                           @if ($menu_admin_sub->menu_admin_id == $menu_admin->area_admin_id)
                             <li class="{{ current_page($menu_admin_sub->ruta) ? 'active': '' }}"><a href="{{ url($menu_admin_sub->ruta) }}">{{$menu_admin_sub->areas_item_admin->name}}</a></li>
                           @endif
