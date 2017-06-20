@@ -44,17 +44,21 @@ class PqrsController extends Controller
         $this->Validate($request,[
             'tipo' => 'required|',
             'descripcion' => 'required|',
-            'file' => 'required|mimes:pdf',
+            'file' => 'mimes:pdf',
             'terminos' => 'required|',
         ]);
 
         $file = $request->file('file');
         $nombre = str_random(40);
-        $fileType=$file->guessExtension();
-        \Storage::disk('local')->put($nombre,  \File::get($file));
-         $ubicacion = 'subidas/pqrs/'.$nombre.'.'.$fileType;
-        \Storage::move($nombre, $ubicacion);
-
+        if (!empty($file)) {
+          $fileType=$file->guessExtension();
+          \Storage::disk('local')->put($nombre,  \File::get($file));
+           $ubicacion = 'subidas/pqrs/'.$nombre.'.'.$fileType;
+          \Storage::move($nombre, $ubicacion);
+        }
+        else {
+          $ubicacion = '';
+        }
         $pqr = new Pqr;
         $pqr->user_id = Auth::user()->id;
         $pqr->tipo  = $request->tipo;
@@ -85,17 +89,23 @@ class PqrsController extends Controller
 
       $pqrs = Pqr::find($id);
 
-      $public_path = storage_path();
-
-      $url = $public_path.'/app/'.$pqrs->archivo;
-
-      $exists = \Storage::disk('local')->has($url);
-
-      //verificamos si el archivo existe y lo retornamos
-      if ($exists = \Storage::disk('local')->has($pqrs->archivo))
-      {
-        return response()->download($url, $pqrs->tipo.'.pdf');
+      if ($pqrs->archivo == '') {
+        session()->flash('message', 'No se adjuntó ningún archivo');
+        return redirect('admin_servicios/pqrs/ver/'.$id);
       }
+      else{
+        $public_path = storage_path();
+        $url = $public_path.'/app/'.$pqrs->archivo;
+        $exists = \Storage::disk('local')->has($url);
+        //verificamos si el archivo existe y lo retornamos
+        if ($exists = \Storage::disk('local')->has($pqrs->archivo))
+        {
+          return response()->download($url, $pqrs->tipo.'.pdf');
+        }
+
+      }
+
+
 
     }
 

@@ -9,7 +9,7 @@
 		<div class="row">
 
 		<div class="row">
-			<a href="javascript:history.back()" >
+			<a href="{{ url ('admin_servicios/pqrs')}}" >
          <div class="col-md-1">
              <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-left"></i></span>
          </div>
@@ -36,8 +36,15 @@
 					 <div class="box-footer no-padding">
 						 <ul class="nav nav-stacked">
 							 <li><a>Descripción: {{$pqrs->descripcion}}</a></li>
+
 							 <li><a>Archivo:  </a>
 							 <a href="{{url('admin_servicios/pqrs/descarga/'.$pqrs->id)}}" ><i class="fa fa-download" aria-hidden="true"> Archivo</i></a><br>
+							 @if(session()->has('message'))
+							<div class="alert alert-danger alert-dismissible">
+												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+												{{session()->get('message')}}
+											</div>
+						 @endif
 							 </li>
 						 </ul>
 					 </div>
