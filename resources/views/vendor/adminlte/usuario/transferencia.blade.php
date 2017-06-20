@@ -17,8 +17,6 @@
     </ol>
 </section>
 
-
-
 <br>
 
 <div class="row">
@@ -27,9 +25,22 @@
          <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-left"></i></span>
      </div>
   </a>
-</div><br>
+	<a href="{{$url_doc}}" >
+     <div class="col-md-1">
+         <span class="info-box-icon bg-blue"><i class="fa fa-download"></i></span>
+     </div>
+  </a>
+	<div class="col-md-8">
+			<b style="color: blue" > Si no puede visualizar el archivo haga clic en el botón azul para descargar</b>
+	</div>
 
-<iframe src="http://fonsodi.com/images/oficina_virtual/2017/PDF1701175027.pdf" width="100%" height="400px"></iframe>
+
+</div>
+<br>
+
+
+
+<iframe src="{{$url_doc}}" width="100%" height="400px"></iframe>
 
 
 @endsection
