@@ -51,7 +51,7 @@ class MenuaadminsTableSeeder extends Seeder
       $user->orden="5";
       $user->area_admin_id="5";
       $user->icono="fa-heart-o";
-      $user->ruta="admin_servicios";
+      $user->ruta="admin_servicios/clasificados";
       $user->estado_id="1";
       $user->estilo="bg-teal";
       $user->save();
@@ -69,7 +69,7 @@ class MenuaadminsTableSeeder extends Seeder
       $user->orden="999";
       $user->area_admin_id="7";
       $user->icono="fa-gears";
-      $user->ruta="admin_config";
+      $user->ruta="admin_config/user";
       $user->estado_id="1";
       $user->estilo="bg-navy";
       $user->save();
