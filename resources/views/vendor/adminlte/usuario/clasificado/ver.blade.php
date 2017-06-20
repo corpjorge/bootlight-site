@@ -73,7 +73,7 @@ footer p {
   <body>
       <div class="container">
         <p><br>
-          <a href="http://portal.fonsodi.com/" target="_blank" class="btn btn-primary">Publica tu clasificado</a>
+          <a href="http://portal.fonsodi.com/public/" target="_blank" class="btn btn-primary">Publica tu clasificado</a>
         </p>
       </div>
 
