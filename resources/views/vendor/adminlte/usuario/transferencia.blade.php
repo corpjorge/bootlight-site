@@ -18,19 +18,23 @@
 </section>
 
 <br>
+<style>
 
+
+</style>
 <div class="row">
   <a href="{{url('home')}}" >
      <div class="col-md-1">
          <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-left"></i></span>
      </div>
   </a>
-	<a href="{{$url_doc}}" >
+	<a style="position: absolute;" href="{{$url_doc}}" target="_blank" >
      <div class="col-md-1">
          <span class="info-box-icon bg-blue"><i class="fa fa-download"></i></span>
      </div>
   </a>
-	<div class="col-md-8">
+	<br><br><br><br><br>
+	<div class="col-md-12">
 			<b style="color: blue" > Si no puede visualizar el archivo haga clic en el botón azul para descargar</b>
 	</div>
 
