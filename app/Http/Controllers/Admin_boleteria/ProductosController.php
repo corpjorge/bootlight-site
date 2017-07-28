@@ -104,5 +104,5 @@ class ProductosController extends Controller
         return redirect('admin_boleteria/productos/ver/'.$id.'/edit');
     }
 
-   
+
 }

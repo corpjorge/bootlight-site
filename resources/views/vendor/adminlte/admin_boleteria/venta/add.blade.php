@@ -74,7 +74,7 @@ function marcar(obj,chk) {
 
 						 <div class="form-group">
 							 <label for="nombre">Numero de cuotas</label>
-							 <input style="color:#555555; width: 165px;" type="number" class="form-control" id="cuotas" name="cuotas" placeholder="cuotas">
+							 <input style="color:#555555; width: 165px;" type="number" class="form-control" id="cuotas" name="cuotas" placeholder="cuotas" min="1" max="6">
 						 </div>
 
 						@foreach ($productos as $producto)

@@ -50,7 +50,7 @@ class VenderController extends Controller
 
        if (!$usuario) {
 
-         $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+         $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
          $response_xml_datos = file_get_contents($url_datos);
          $xml_datos = simplexml_load_string($response_xml_datos);
 
@@ -77,7 +77,7 @@ class VenderController extends Controller
            $users_detalle->genero = $xml_datos->genero;
            $users_detalle->direccion = $xml_datos->direccion;
            $users_detalle->estado_vinculacion = $xml_datos->estado;
-           $users_detalle->estado_civil_id = $xml_datos->codestadocivil;          
+           $users_detalle->estado_civil_id = $xml_datos->codestadocivil;
            $users_detalle->save();
 
            $telefono = new Telefono;
@@ -115,7 +115,7 @@ class VenderController extends Controller
     {
 
       $this->Validate($request,[
-          'cuotas' => 'required|numeric',
+          'cuotas' => 'required|numeric|min:1|max:6',
           'serial' => 'required|',
           'usuario' => 'required|numeric',
           'cedula' => 'required|numeric',

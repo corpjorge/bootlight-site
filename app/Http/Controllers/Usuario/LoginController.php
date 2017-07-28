@@ -26,7 +26,7 @@ class LoginController extends Controller
       ]);
 
 
-      $url = "https://fonsodi.com.co/WebServices/WSlogin.asmx/Logeo?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pClave=".$request->password."&pTipoUsuario=2";
+      $url = "http://190.145.4.62/WebServices/WSlogin.asmx/Logeo?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pClave=".$request->password."&pTipoUsuario=2";
       $response_xml_data = file_get_contents($url);
       $xml = simplexml_load_string($response_xml_data);
 
@@ -36,7 +36,7 @@ class LoginController extends Controller
 
         if (empty($usuario_cedula)) {
 
-          $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+          $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
           $response_xml_datos = file_get_contents($url_datos);
           $xml_datos = simplexml_load_string($response_xml_datos);
 
@@ -82,7 +82,7 @@ class LoginController extends Controller
         }
         else{
 
-          $url_datos = "https://fonsodi.com.co/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+          $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
           $response_xml_datos = file_get_contents($url_datos);
           $xml_datos = simplexml_load_string($response_xml_datos);
 
@@ -135,7 +135,7 @@ class LoginController extends Controller
 
 
     $usuario = Users_detalle::where('user_id',Auth::user()->id)->first();
-    $url_datos = "https://fonsodi.com.co//WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$usuario->cedula."&pTipo=Identificacion";
+    $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$usuario->cedula."&pTipo=Identificacion";
     $response_xml_datos = file_get_contents($url_datos);
     $xml_datos = simplexml_load_string($response_xml_datos);
 

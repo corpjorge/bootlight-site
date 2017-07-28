@@ -21,8 +21,8 @@ class AsignarController extends Controller
      */
     public function index()
     {
-      $seriales  = Serial::all()->where('estado_actual_id','!=',1)->where('admin_user_id','!=','')->where('estado_actual_id','!=',5);
-      return view('adminlte::admin_boleteria.asignacion.asignacion',['seriales' => $seriales]);
+        $seriales  = Serial::all()->where('estado_actual_id', '!=', 1)->where('admin_user_id', '!=', '')->where('estado_actual_id', '!=', 5);
+        return view('adminlte::admin_boleteria.asignacion.asignacion', ['seriales' => $seriales]);
     }
 
     /**
@@ -32,10 +32,10 @@ class AsignarController extends Controller
      */
     public function create()
     {
-      $seriales  = Serial::all()->where('admin_user_id','=','')->where('estado_actual_id','!=',1)->where('estado_actual_id','!=',5);
-      $productos  = Producto::all();
-      $admin_usuarios  = AdminUser::all();
-      return view('adminlte::admin_boleteria.asignacion.add',[ 'seriales' => $seriales, 'productos' => $productos, 'admin_usuarios' => $admin_usuarios]);
+        $seriales  = Serial::all()->where('admin_user_id', '=', '')->where('estado_actual_id', '!=', 1)->where('estado_actual_id', '!=', 5);
+        $productos  = Producto::all();
+        $admin_usuarios  = AdminUser::all();
+        return view('adminlte::admin_boleteria.asignacion.add', [ 'seriales' => $seriales, 'productos' => $productos, 'admin_usuarios' => $admin_usuarios]);
     }
 
     /**
@@ -46,22 +46,21 @@ class AsignarController extends Controller
      */
     public function store(Request $request)
     {
-      $signacion = new Asignacion;
-      $serial_update = new Serial;
+        $signacion = new Asignacion;
+        $serial_update = new Serial;
 
-      $seriales=$request->serial;
+        $seriales=$request->serial;
 
-      $this->Validate($request,[
+        $this->Validate($request, [
           'usuario' => 'required|',
           'venta' => 'required|numeric',
           'serial' => 'required|',
       ]);
 
-      $fecha_created_at = Carbon::now();
+        $fecha_created_at = Carbon::now();
 
-      foreach ($seriales as $serials) {
-
-        DB::table('asignaciones')->insert(
+        foreach ($seriales as $serials) {
+            DB::table('asignaciones')->insert(
             [
               'admin_user_id' => $request->usuario,
               'serial_id' =>  $serials,
@@ -70,7 +69,7 @@ class AsignarController extends Controller
             ]
         );
 
-        DB::table('seriales')->where('id', $serials)->update(
+            DB::table('seriales')->where('id', $serials)->update(
             [
               'admin_user_id' => $request->usuario,
               'precio_venta' => $request->venta,
@@ -78,12 +77,10 @@ class AsignarController extends Controller
               'updated_at'    => $fecha_created_at,
             ]
         );
+        }
 
-      }
-
-      session()->flash('message', 'Guardado correctamente');
-      return redirect('admin_boleteria/asignacion');
-
+        session()->flash('message', 'Guardado correctamente');
+        return redirect('admin_boleteria/asignacion');
     }
 
     /**
@@ -94,8 +91,8 @@ class AsignarController extends Controller
      */
     public function show($id)
     {
-      $asignacion  = Asignaciones::find($id);
-      return view('adminlte::admin_boleteria.asignacion.add',[ 'asignacion' => $asignacion]);
+        $asignacion  = Asignaciones::find($id);
+        return view('adminlte::admin_boleteria.asignacion.add', [ 'asignacion' => $asignacion]);
     }
 
     /**
@@ -107,11 +104,9 @@ class AsignarController extends Controller
     public function edit($id)
     {
         $serial = Serial::find($id);
-        $serial->admin_user_id = NULL;
+        $serial->admin_user_id = null;
         $serial->save();
         session()->flash('message', 'Serial revertido');
         return redirect('admin_boleteria/asignacion');
     }
-
-
 }

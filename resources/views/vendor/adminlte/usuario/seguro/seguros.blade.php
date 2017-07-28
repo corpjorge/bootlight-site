@@ -6,6 +6,16 @@
 
 
 @section('main-content')
+<section class="content-header">
+    <h1>Seguros
+    <small>Solicite su seguro</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
+		<li><a href="#">Seguros</a></li>
+    </ol>
+</section>
+<br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
@@ -40,7 +50,7 @@
           </div>
           <!-- /.info-box -->
         </div>@endif
-        <!-- /.col 
+        <!-- /.col
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>

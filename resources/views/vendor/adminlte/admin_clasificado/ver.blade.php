@@ -17,6 +17,19 @@
     </div><br>
 
 		<div class="col-lg-offset-2 col-lg-8">
+
+
+
+				<div class="box box-widget widget-user-2"><h3>Usuario</h3>
+
+					<div class="box-footer no-padding">
+						<ul class="nav nav-stacked">
+							<li><a>Nombre: {{$clasificado->clasificado_usuario->name}}</a></li>
+							<li><a>cedula: {{($clasificado->clasificado_usuario->usuario_detalle[0]->cedula)}}</a></li>
+							<li><a>cod Persona: {{($clasificado->clasificado_usuario->usuario_detalle[0]->cod_persona)}}</a></li>
+						</ul>
+					</div>
+				</div>
 				 <!-- Widget: user widget style 1 -->
 				 <div class="box box-widget widget-user-2"><h3>{{$clasificado->titulo}}</h3>
 					 <!-- Add the bg color to the header using any of the bg-* classes -->

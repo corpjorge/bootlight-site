@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin_seguro;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Sistema\Area_admin;
+use App\Model\Seguro\Seguro;
 
-class ConfigAreasAdminController extends Controller
+class SeguroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ConfigAreasAdminController extends Controller
      */
     public function index()
     {
-      $area_admins  = Area_admin::all();
-      return view('adminlte::admin.areas_admin.areas', [ 'area_admins' => $area_admins]);
+      $seriales  = Serial::all()->where('admin_user_id', '=' ,'');
+      return view('adminlte::admin_boleteria.seriales.seriales',[ 'seriales' => $seriales]);
     }
 
     /**
@@ -26,7 +26,7 @@ class ConfigAreasAdminController extends Controller
      */
     public function create()
     {
-      return view('adminlte::admin.areas_admin.add');
+        //
     }
 
     /**

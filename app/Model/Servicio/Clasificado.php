@@ -16,7 +16,7 @@ class Clasificado extends Model
 
       ];
 
-      public function clasificado_usario()
+      public function clasificado_usuario()
        {
            return $this->belongsTo('App\User', 'user_id' );
        }

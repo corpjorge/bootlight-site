@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-
 /**
  * Class AdminHomeController
  * @package App\Http\Controllers
@@ -25,7 +24,6 @@ class AdminHomeController extends Controller
     public function __construct()
     {
         $this->middleware('adminuser');
-
     }
 
     /**
@@ -37,6 +35,4 @@ class AdminHomeController extends Controller
     {
         return view('adminlte::admin_home');
     }
-
-
 }
