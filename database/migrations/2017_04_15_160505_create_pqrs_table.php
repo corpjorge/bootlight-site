@@ -18,7 +18,7 @@ class CreatePqrsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('tipo');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('archivo');
             $table->integer('estado_id')->unsigned();
             $table->foreign('estado_id')->references('id')->on('estados_aprobaciones');
