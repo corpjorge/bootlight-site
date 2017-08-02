@@ -11,6 +11,7 @@ use App\Model\Boleteria\Producto;
 use App\User;
 use App\Model\Sistema\Correo_notication;
 use App\Mail\Boleteria\Boleteria as Correoboleteria;
+use App\AdminUser;
 
 Use Auth;
 use Mail;
@@ -80,8 +81,18 @@ class BoleteriaController extends Controller
        */
       public function create()
       {
-          $productos  = Producto::all();
-          return view('adminlte::usuario.boleteria.add', ['productos' => $productos]);
+        /*
+         $user = User::find(Auth::user()->id);
+         $usuario = Users_detalle::where('user_id',$user)->first();
+         $usuario->cuidad;
+
+         $user = AdminUser::where('ciudad_id',$usuario->cuidad);
+
+
+
+
+          /*$productos  = Producto::all();
+          return view('adminlte::usuario.boleteria.add', ['productos' => $productos]);*/
       }
 
       public function store(Request $request)

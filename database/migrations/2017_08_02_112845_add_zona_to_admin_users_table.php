@@ -13,9 +13,8 @@ class AddZonaToAdminUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('admin_users', function (Blueprint $table) {
-          $table->integer('ciudad_id')->unsigned()->nullable()->after('password');
-          $table->foreign('ciudad_id')->references('id')->on('ciudades');
+        Schema::table('admin_users', function (Blueprint $table) {          
+          $table->string('ciudad')->after('password');
         });
     }
 
