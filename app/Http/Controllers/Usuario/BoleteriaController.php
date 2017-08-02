@@ -8,6 +8,7 @@ use App\Model\Boleteria\Venta;
 use App\Model\Boleteria\Venta_detalle;
 use App\Model\Usuario\Users_detalle;
 use App\Model\Boleteria\Producto;
+use App\Model\Boleteria\Serial;
 use App\User;
 use App\Model\Sistema\Correo_notication;
 use App\Mail\Boleteria\Boleteria as Correoboleteria;
@@ -74,51 +75,35 @@ class BoleteriaController extends Controller
   }
 
 
-      /**
-       * Show the form for creating a new resource.
-       *
-       * @return \Illuminate\Http\Response
-       */
-      public function create()
-      {
-        /*
-         $user = User::find(Auth::user()->id);
-         $usuario = Users_detalle::where('user_id',$user)->first();
-         $usuario->cuidad;
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+       $productos = Serial::boletasDisponibles();
+       return view('adminlte::usuario.boleteria.add', ['productos' => $productos]);
+    }
 
-         $user = AdminUser::where('ciudad_id',$usuario->cuidad);
+    public function store(Request $request)
+    {
+        $this->Validate($request,['producto' => 'required|']);
+        $usuario = User::detalle();
+        $productos = $request->producto;
+        foreach ($productos as $producto) {
+          $productosname[] = $producto;
+        }
 
+        $correo = AdminUser::where('ciudad',$usuario->cuidad)->first();
+        Mail::to($correo->email, $correo->name,$productosname,
+                 $usuario->cedula,$usuario->usuario->name,$usuario->usuario->email)
+         ->send(new Correoboleteria($correo, $productosname,$usuario));
 
+        session()->flash('message', 'Se le ha informado a el Comercial más cercano a su tienda para que pueda informarle sobre los productos que desea adquirir');
+        return redirect('boleteria/productos/add');
 
-
-          /*$productos  = Producto::all();
-          return view('adminlte::usuario.boleteria.add', ['productos' => $productos]);*/
-      }
-
-      public function store(Request $request)
-      {
-
-          $this->Validate($request,['producto' => 'required|']);
-
-          $usuario = Users_detalle::where('user_id',Auth::user()->id)->first();
-
-          $productos = $request->producto;
-          foreach ($productos as $producto) {
-            $productosname[] = $producto;
-          }
-
-          $correos = Correo_notication::where('dependencia_id',1)->where('area_admin_id',2)->get();
-
-          foreach ($correos as $correo) {
-            Mail::to($correo->correo_noti_admin_user->email, $correo->correo_noti_admin_user->name,$productosname,
-                     $usuario->cedula,$usuario->usuario->name,$usuario->usuario->email)
-             ->send(new Correoboleteria($correo, $productosname,$usuario));
-          }
-
-          session()->flash('message', 'Se le ha informado a el Comercial más cercano a su tienda para que pueda informarle sobre los productos que desea adquirir');
-          return redirect('boleteria/productos/add');
-
-      }
+    }
 
 
 }

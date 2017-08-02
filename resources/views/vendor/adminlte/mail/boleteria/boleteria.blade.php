@@ -80,7 +80,7 @@
                       style='PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px'
                       align=left><FONT
                         style='FONT-SIZE: 14px; LINE-HEIGHT: 20px' color=#666666
-                        face='Arial, sans-serif'>Hola: {{$correo->correo_noti_admin_user->name}} <BR><BR>El siguiente usuario desea adquirir boletas:</B>
+                        face='Arial, sans-serif'>Hola: {{$correo->name}} <BR><BR>El siguiente usuario desea adquirir boletas:</B>
 
                         <BR><BR>
                         <TABLE style='BORDER-COLLAPSE: collapse' cellSpacing=0
@@ -134,7 +134,7 @@
 																<TD
                                 style='BORDER-BOTTOM: #bcbcbc 1px solid; PADDING-BOTTOM: 6px; PADDING-TOP: 6px; PADDING-LEFT: 6px; BORDER-LEFT: #bcbcbc 1px solid; PADDING-RIGHT: 6px'
                                 align=center><FONT
-                                style='FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif;'>{{$usuario->usuario_almacen->name}}</FONT></TD>
+                                style='FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif;'>{{$usuario->cuidad}}</FONT></TD>
 
 
 

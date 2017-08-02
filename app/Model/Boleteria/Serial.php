@@ -3,6 +3,8 @@
 namespace App\Model\Boleteria;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\AdminUser;
 
 class Serial extends Model
 {
@@ -36,6 +38,24 @@ class Serial extends Model
   public function serial_asignacion()
   {
      return $this->hasMany('App\Model\Boleteria\Asignacion');
+  }
+
+
+  public static function boletasDisponibles()
+  {
+    $resultado = array();
+    $usuario = User::detalle();
+    $useradmin = AdminUser::where('ciudad',$usuario->cuidad)->first();
+    if ($useradmin == null) {
+       $seriales = Serial::where('estado_actual_id','!=',5)->get();
+    }
+    else {
+       $seriales = Serial::where('admin_user_id', $useradmin->id)->where('estado_actual_id','!=',5)->get();
+    }
+    foreach ($seriales as $serial) {
+      array_push($resultado, $serial->serial_producto->nombre);
+    }
+    return $productos = array_unique($resultado);
   }
 
 

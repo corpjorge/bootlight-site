@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Model\Usuario\Users_detalle;
+use Auth;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -30,12 +33,17 @@ class User extends Authenticatable
 
     public function usuario_rol()
     {
-         return $this->belongsTo('App\Model\Sistema\Rol','role_id');
+        return $this->belongsTo('App\Model\Sistema\Rol','role_id');
     }
 
     public function usuario_detalle()
     {
         return $this->hasMany('App\Model\Usuario\Users_detalle');
+    }
+
+    public static function detalle()
+    {
+        return Users_detalle::where('user_id',Auth::user()->id)->first();
     }
 
     public function usuario_telefono()

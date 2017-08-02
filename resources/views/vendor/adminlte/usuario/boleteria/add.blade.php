@@ -57,11 +57,11 @@
 									<span> Seleccione alguno de los productos que desea adquirir y uno de nuestros asesores se comunicara con usted para que pueda realizar la compra de sus boletas  </span><br><br>
 
 									@foreach($productos as $producto)
-									<label for="{{$producto->nombre}}" style="width: 100%;">
+									<label for="{{$producto}}" style="width: 100%;">
 										 <ul class="todo-list">
 				                <li>
-					                  <input name="producto[]" id="{{$producto->nombre}}" type="checkbox" value="{{$producto->nombre}}">
-					                  <span class="text">{{$producto->nombre}}</span>
+					                  <input name="producto[]" id="{{$producto}}" type="checkbox" value="{{$producto}}">
+					                  <span class="text">{{$producto}}</span>
 				                </li>
 			              </ul>
 									</label>

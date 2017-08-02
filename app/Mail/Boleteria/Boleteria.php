@@ -33,9 +33,9 @@ class Boleteria extends Mailable
     public function build()
     {
       return $this->view('adminlte::mail.boleteria.boleteria')
-                  ->from('seguros@fonsodi.com')
-                  ->with('name','Seguros Fonsodi')
-                  ->to($this->correo->correo_noti_admin_user->email)
-                  ->subject('');
+                  ->from('webmaster@fonsodi.com')
+                  ->with('name','Solicitud de boletas')
+                  ->to($this->correo->email)
+                  ->subject('Solicitud de boletas');
     }
 }
