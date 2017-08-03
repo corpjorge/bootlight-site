@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Boleteria\Serial;
 use App\Model\Boleteria\Asignacion;
 
+use App\AdminUser;
 use Auth;
 
 class CoordinadorController extends Controller
@@ -18,9 +19,9 @@ class CoordinadorController extends Controller
      */
     public function index()
     {
-      if (Auth::guard('admin_user')->user()->rol->id <= 2) {
-        $seriales  = Serial::all()->where('admin_user_id', '=', Auth::guard('admin_user')->user()->id)->where('estado_actual_id', '!=', 5);
-        return view('adminlte::admin_boleteria.coordinador.coordinador', [ 'seriales' => $seriales]);
+      if (Auth::guard('admin_user')->user()->rol->id <= 6) {
+         $useradmins  = AdminUser::all();
+         return view('adminlte::admin_boleteria.coordinador-admin.coordinador', [ 'useradmins' => $useradmins]);
       }else {
         $seriales  = Serial::all()->where('admin_user_id', '=', Auth::guard('admin_user')->user()->id)->where('estado_actual_id', '!=', 5);
         return view('adminlte::admin_boleteria.coordinador.coordinador', [ 'seriales' => $seriales]);
@@ -66,4 +67,14 @@ class CoordinadorController extends Controller
 
         return redirect('admin_boleteria/coordinador');
     }
+
+
+    public function coordinadorshow($id)
+    {
+      $seriales  = Serial::all()->where('admin_user_id', '=', $id)->where('estado_actual_id', '!=', 5);
+      return view('adminlte::admin_boleteria.coordinador-admin.add', [ 'seriales' => $seriales]);
+    }
+
+
+
 }
