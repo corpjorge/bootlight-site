@@ -68,6 +68,7 @@
 			            <tr>
 			              <th>Producto</th>
 			              <th>Serial #</th>
+										<th>Proveedor</th>
 			              <th>Fecha de caducidad</th>
 			              <th>VR/UND</th>
 			            </tr>
@@ -77,7 +78,8 @@
 									@foreach ($venta_detalles as $venta_detalle)
 			            <tr>
 			              <td>{{$venta_detalle->producto->serial_producto->nombre}}</td>
-			              <td>{{$venta_detalle->producto->numero}}</td>
+										<td>{{$venta_detalle->producto->numero}}</td>
+			              <td>{{$venta_detalle->producto->serial_producto->producto_provedor->name}}</td>
 			              <td>{{\Carbon\Carbon::parse($venta_detalle->producto->fecha_caducidad)->format('d-m-Y')}}</td>
 			              <td>${{number_format($venta_detalle->producto->precio_venta)}}</td>
 			            </tr>
