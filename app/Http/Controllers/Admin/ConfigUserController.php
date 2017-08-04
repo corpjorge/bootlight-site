@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\AdminUser;
 use App\Model\Sistema\Rol;
+use App\Model\Usuario\Ciudad;
 
 class ConfigUserController extends Controller
 {
@@ -29,7 +30,8 @@ class ConfigUserController extends Controller
     public function create()
     {
         $roles  = Rol::all();
-        return view('adminlte::admin.user.add',[ 'roles' => $roles]);
+        $cuidades  = Ciudad::all();
+        return view('adminlte::admin.user.add',[ 'cuidades' => $cuidades, 'roles' => $roles]);
     }
 
     /**
@@ -44,6 +46,7 @@ class ConfigUserController extends Controller
             'nombre' => 'required|',
             'email' => 'required|unique:admin_users',
             'rol' => 'required|',
+            'ciudad' => 'required|',
         ]);
 
         $adminUser = new AdminUser;
@@ -51,6 +54,7 @@ class ConfigUserController extends Controller
         $adminUser->email  = $request->email;
         $adminUser->role_id  = $request->rol;
         $adminUser->password  = '';
+        $adminUser->ciudad  = $request->ciudad;
         $adminUser->save();
         session()->flash('message', 'Guardado correctamente');
         return redirect('admin_config/user');

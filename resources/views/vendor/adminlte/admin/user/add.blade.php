@@ -54,6 +54,16 @@
                   <input style="color:#555555" type="text" class="form-control" id="email" name="email" placeholder="Correo electronico">
                 </div>
 
+								<div class="form-group">
+								 <label>Cuidad</label>
+									 <select style="color:#555555" name="cuidad" class="form-control">
+										 	<option></option>
+										 @foreach ($cuidades as $cuidad)
+								 		 	<option style="color:#555555" value="{{$cuidad->id}}">{{$cuidad->name}}</option>
+								 		 @endforeach
+									 </select>
+							 </div>
+
 
 								<div class="form-group">
 								 <label>Rol</label>
