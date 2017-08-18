@@ -5,23 +5,24 @@
 @endsection
 
 @section('main-content')
+
 <section class="content-header">
-    <h1>Item de las Áreas de administrador añadir
-    <small>Configuracion de Areas de administrador</small>
+    <h1>Editar
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
-		<li><a href="{{ url('/admin_config/areas_admin_item')}}">Configuracion</a></li>
-				<li><a href="{{ url('/admin_config/areas_admin_item')}}">Item de Areas de administrador</a></li>
+		<li><a href="{{ url('admin_config/area_item')}}">Configuracion</a></li>
+			  <li><a href="{{ url ('admin_config/area_item')}}">Area item</a></li><!-- ____Lugar ___ -->
         <li class="active"><a href="#">Editar</a></li>
     </ol>
 </section>
+
 <br>
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
-
-			@include('adminlte::admin.areas_admin_item.atras')
+			<!-- Boton atras-->
+			@include('adminlte::admin.area_item.atras')
 
 
 
@@ -29,11 +30,13 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Editar de Item del Area</h3>
+              <h3 class="box-title">Actualizar</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin_config/areas_admin_items/'.$area_item_admins->id)}}" method="post">
+
+						{!! Form::open(['url' => 'admin_config/area_item/'.$area_item->id, 'method' => 'PUT']) !!}
+
 							@if (count($errors) > 0)
 			            <div class="alert alert-danger">
 			                <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -53,22 +56,26 @@
 						 					 </div>
 						  @endif
 
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							{{method_field('PUT')}}
+
               <div class="box-body">
 
+								<div class="form-group">
+									<label for="name">Nombre</label>
+									<input style="color:#555555" type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+								</div>
 
-							<div class="form-group">
-								 <label>Area</label>
+
+								{{-- <div class="form-group">
+								 <label>Usuario</label>
 									 <select style="color:#555555" name="usuario" class="form-control">
-										 	<option value="{{$area_item_admins->area->id}}">{{$area_item_admins->area->name}}</option>
-										 @foreach ($area_admins as $area_admin)
-								 		 	<option style="color:#555555" value="{{$area_admin->id}}">{{$area_admin->name}}</option>
+										 	<option value="{{AAAAAAAAAAAAAAAAAAAA->id}}">{{AAAAAAAAAAAAAAAAAAAA->name}}</option>
+										 @foreach (AAAAAAAAAAAAAAAAAAAA as AAAAAAAAAAAAAAAAAAAA)
+								 		 	<option style="color:#555555" value="{{AAAAAAAAAAAAAAAAAAAA->id}}">{{AAAAAAAAAAAAAAAAAAAA->name}}</option>
 								 		 @endforeach
 									 </select>
-							 </div>
+							 </div> --}}
 
-							 
+
 
 
               </div>
@@ -77,7 +84,9 @@
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
-            </form>
+
+           {!! Form::close() !!}}
+
           </div>
 
 		</div>

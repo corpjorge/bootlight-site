@@ -10,8 +10,8 @@
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
-		<li><a href="{{ url('/admin_config/areas_admin')}}">Configuracion</a></li>
-				<li><a href="{{ url('/admin_config/areas_admin')}}">Areas de administrador</a></li><!-- Lugar -->
+		<li><a href="{{ url('/admin_config/area')}}">Configuracion</a></li>
+				<li><a href="{{ url('/admin_config/area')}}">area</a></li><!-- Lugar -->
         <li class="active"><a href="#">Añadir</a></li>
     </ol>
 </section>
@@ -19,7 +19,7 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
-		@include('adminlte::admin.areas_admin.atras')
+		@include('adminlte::admin.area.atras')
 
 		<div class="">
           <!-- general form elements -->
@@ -29,7 +29,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-						{!! Form::open(['url' => 'admin_config/areas_admin', 'method' => 'post']) !!}
+						{!! Form::open(['url' => 'admin_config/area', 'method' => 'post']) !!}
 
 						<div class="box-body">
 
@@ -51,10 +51,15 @@
 								<input style="color:#555555" type="text" class="form-control" id="name" name="name" placeholder="Nombre">
 							</div>
 
-							<div class="form-group">
-								<label for="descripcion">Descripcion</label>
-								<input style="color:#555555" type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion">
-							</div>
+							{{-- <div class="form-group">
+							 <label>Usuario</label>
+								 <select style="color:#555555" name="usuario" class="form-control">
+										<option value="{{AAAAAAAAAAAAAAAAAAAA->id}}">{{AAAAAAAAAAAAAAAAAAAA->name}}</option>
+									 @foreach (AAAAAAAAAAAAAAAAAAAA as AAAAAAAAAAAAAAAAAAAA)
+										<option style="color:#555555" value="{{AAAAAAAAAAAAAAAAAAAA->id}}">{{AAAAAAAAAAAAAAAAAAAA->name}}</option>
+									 @endforeach
+								 </select>
+						 </div> --}}
 
 
 

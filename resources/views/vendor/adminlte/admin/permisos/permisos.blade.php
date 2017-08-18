@@ -21,7 +21,7 @@
 		<div class="row">
 
 			<div class="row">
-				<a href="{{ url('/admin_config/permisos/add') }}" >
+				<a href="{{ url('/admin_config/permisos/create') }}" >
 					 <div class="col-md-1">
 							 <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
 					 </div>
@@ -56,9 +56,9 @@
 								 @foreach ($permisos as $permiso)
                  <tr>
 									 	 <td>{{$permiso->id}}</td>
-										 <td><a href="{{url('admin_config/user/ver/'.$permiso->permiso_admin_user->id)}}" >{{$permiso->permiso_admin_user->name}}</a></td>
-	                   <td><a href="{{url('admin_config/areas_admin/ver/'.$permiso->permiso_area_admin->id)}}" >{{$permiso->permiso_area_admin->name}}</td>
-										 <td><a href="{{url('admin_config/permisos/ver/'.$permiso->id.'/edit')}}" >
+										 <td><a href="{{url('admin_config/user/'.$permiso->permiso_admin_user->id)}}" >{{$permiso->permiso_admin_user->name}}</a></td>
+	                   <td><a href="{{url('admin_config/areas_admin/'.$permiso->permiso_area_admin->id)}}" >{{$permiso->permiso_area_admin->name}}</td>
+										 <td><a href="{{url('admin_config/permisos/'.$permiso->id.'/edit')}}" >
 											  <i class="fa fa-fw fa-edit"></i>Editar</a>
 										 </td>
 										 <td>{{$permiso->created_at->diffForHumans()}}</td>

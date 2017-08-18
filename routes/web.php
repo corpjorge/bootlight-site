@@ -150,75 +150,18 @@ Route::group(['middleware' => 'adminuser'], function () {
     });
 
     Route::group(['middleware' => 'subgerente'], function () {
-        Route::get('admin_config/user', 'Admin\ConfigUserController@index');
-        Route::get('admin_config/user/add', 'Admin\ConfigUserController@create');
-        Route::post('admin_config/user/add', 'Admin\ConfigUserController@store');
-        Route::get('admin_config/user/ver/{id}', 'Admin\ConfigUserController@show');
-        Route::get('admin_config/user/ver/{id}/edit', 'Admin\ConfigUserController@edit');
-        Route::put('admin_config/user/{id}', 'Admin\ConfigUserController@update');
+      Route::resource('admin_config/user', 'Admin\ConfigUserController',['except' => ['destroy']]);
+      Route::resource('admin_config/permisos', 'Admin\ConfigPermisosController',['except' => ['destroy']]);
+      Route::resource('admin_config/area', 'Admin\ConfigAreasController',['except' => ['destroy']]);
+      Route::resource('admin_config/area_item', 'Admin\ConfigAreasItemsController',['except' => ['destroy']]);
+      Route::resource('admin_config/area_admin', 'Admin\ConfigAreasAdminController',['except' => ['destroy']]);
+      Route::resource('admin_config/areas_admin_items', 'Admin\ConfigAreasAdminItemController',['except' => ['destroy']]);
+      Route::resource('admin_config/menu_user', 'Admin\ConfigMenuController',['except' => ['destroy']]);
+      Route::resource('admin_config/menu_user_sub', 'Admin\ConfigSubMenuController',['except' => ['destroy']]);
+      Route::resource('admin_config/menu_admin', 'Admin\ConfigMenuAdminController',['except' => ['destroy']]);
+      Route::resource('admin_config/menu_admin_sub', 'Admin\ConfigSubMenuAdminController',['except' => ['destroy']]);
 
-        Route::get('admin_config/permisos', 'Admin\ConfigPermisosController@index');
-        Route::get('admin_config/permisos/add', 'Admin\ConfigPermisosController@create');
-        Route::post('admin_config/permisos/add', 'Admin\ConfigPermisosController@store');
-        Route::get('admin_config/permisos/ver/{id}', 'Admin\ConfigPermisosController@show');
-        Route::get('admin_config/permisos/ver/{id}/edit', 'Admin\ConfigPermisosController@edit');
-        Route::put('admin_config/permisos/{id}', 'Admin\ConfigPermisosController@update');
 
-        Route::get('admin_config/areas', 'Admin\ConfigAreasController@index');
-        Route::get('admin_config/areas/add', 'Admin\ConfigAreasController@create');
-        Route::post('admin_config/areas/add', 'Admin\ConfigAreasController@store');
-        Route::get('admin_config/areas/ver/{id}', 'Admin\ConfigAreasController@show');
-        Route::get('admin_config/areas/ver/{id}/edit', 'Admin\ConfigAreasController@edit');
-        Route::put('admin_config/areas/{id}', 'Admin\ConfigAreasController@update');
-
-        Route::get('admin_config/areas_items', 'Admin\ConfigAreasItemsController@index');
-        Route::get('admin_config/areas_items/add', 'Admin\ConfigAreasItemsController@create');
-        Route::post('admin_config/areas_items/add', 'Admin\ConfigAreasItemsController@store');
-        Route::get('admin_config/areas_items/ver/{id}', 'Admin\ConfigAreasItemsController@show');
-        Route::get('admin_config/areas_items/ver/{id}/edit', 'Admin\ConfigAreasItemsController@edit');
-        Route::put('admin_config/areas_items/{id}', 'Admin\ConfigAreasItemsController@update');
-
-        Route::get('admin_config/areas_admin', 'Admin\ConfigAreasAdminController@index');
-        Route::get('admin_config/areas_admin/add', 'Admin\ConfigAreasAdminController@create');
-        Route::post('admin_config/areas_admin/add', 'Admin\ConfigAreasAdminController@store');
-        Route::get('admin_config/areas_admin/ver/{id}', 'Admin\ConfigAreasAdminController@show');
-        Route::get('admin_config/areas_admin/ver/{id}/edit', 'Admin\ConfigAreasAdminController@edit');
-        Route::put('admin_config/areas_admin/{id}', 'Admin\ConfigAreasAdminController@update');
-
-        Route::get('admin_config/areas_admin_items', 'Admin\ConfigAreasAdminItemController@index');
-        Route::get('admin_config/areas_admin_items/add', 'Admin\ConfigAreasAdminItemController@create');
-        Route::post('admin_config/areas_admin_items/add', 'Admin\ConfigAreasAdminItemController@store');
-        Route::get('admin_config/areas_admin_items/ver/{id}', 'Admin\ConfigAreasAdminItemController@show');
-        Route::get('admin_config/areas_admin_items/ver/{id}/edit', 'Admin\ConfigAreasAdminItemController@edit');
-        Route::put('admin_config/areas_admin_items/{id}', 'Admin\ConfigAreasAdminItemController@update');
-
-        Route::get('admin_config/menu', 'Admin\ConfigMenuController@index');
-        Route::get('admin_config/menu/add', 'Admin\ConfigMenuController@create');
-        Route::post('admin_config/menu/add', 'Admin\ConfigMenuController@store');
-        Route::get('admin_config/menu/ver/{id}', 'Admin\ConfigMenuController@show');
-        Route::get('admin_config/menu/ver/{id}/edit', 'Admin\ConfigMenuController@edit');
-        Route::put('admin_config/menu/{id}', 'Admin\ConfigMenuController@update');
-
-        Route::get('admin_config/sub_menu', 'Admin\ConfigSubMenuController@index');
-        Route::get('admin_config/sub_menu/add', 'Admin\ConfigSubMenuController@create');
-        Route::post('admin_config/sub_menu/add', 'Admin\ConfigSubMenuController@store');
-        Route::get('admin_config/sub_menu/ver/{id}', 'Admin\ConfigSubMenuController@show');
-        Route::get('admin_config/sub_menu/ver/{id}/edit', 'Admin\ConfigSubMenuController@edit');
-        Route::put('admin_config/sub_menu/{id}', 'Admin\ConfigSubMenuController@update');
-
-        Route::get('admin_config/menu_admin', 'Admin\ConfigMenuAdminController@index');
-        Route::get('admin_config/menu_admin/add', 'Admin\ConfigMenuAdminController@create');
-        Route::post('admin_config/menu_admin/add', 'Admin\ConfigMenuAdminController@store');
-        Route::get('admin_config/menu_admin/ver/{id}', 'Admin\ConfigMenuAdminController@show');
-        Route::get('admin_config/menu_admin/ver/{id}/edit', 'Admin\ConfigMenuAdminController@edit');
-        Route::put('admin_config/menu_admin/{id}', 'Admin\ConfigMenuAdminController@update');
-
-        Route::get('admin_config/sub_menu_admin', 'Admin\ConfigSubMenuAdminController@index');
-        Route::get('admin_config/sub_menu_admin/add', 'Admin\ConfigSubMenuAdminController@create');
-        Route::post('admin_config/sub_menu_admin/add', 'Admin\ConfigSubMenuAdminController@store');
-        Route::get('admin_config/sub_menu_admin/ver/{id}', 'Admin\ConfigSubMenuAdminController@show');
-        Route::get('admin_config/sub_menu_admin/ver/{id}/edit', 'Admin\ConfigSubMenuAdminController@edit');
-        Route::put('admin_config/sub_menu_admin/{id}', 'Admin\ConfigSubMenuAdminController@update');
     });
 });
 

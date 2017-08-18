@@ -16,7 +16,7 @@ class ConfigAreasAdminController extends Controller
     public function index()
     {
       $area_admins  = Area_admin::all();
-      return view('adminlte::admin.areas_admin.areas', [ 'area_admins' => $area_admins]);
+      return view('adminlte::admin.area_admin.area_admin', [ 'area_admins' => $area_admins]);
     }
 
     /**

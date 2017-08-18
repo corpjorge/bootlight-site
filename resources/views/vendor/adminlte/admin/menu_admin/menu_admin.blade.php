@@ -6,13 +6,12 @@
 
 @section('main-content')
 <section class="content-header">
-    <h1>Áreas administrador
-    <small>Configuracion de Areas de administrador</small>
+    <h1>AAAAAAAAAAAAAAAAAAAA
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
 		<li><a href="{{ url('/admin_config/areas_admin')}}">Configuracion</a></li>
-        <li class="active"><a href="#">Areas de administrador</a></li>
+        <li class="active"><a href="#">AAAAAAAAAAAAAAAAAAAA</a></li>
     </ol>
 </section>
 <br>
@@ -21,7 +20,7 @@
 		<div class="row">
 
 			<div class="row">
-				<a href="{{ url('/admin_config/areas_admin/add') }}" >
+				<a href="{{ url('/admin_config/AAAAAAAAAAAAAAAAAAAA/create') }}" >
 					 <div class="col-md-1">
 							 <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
 					 </div>
@@ -38,7 +37,7 @@
 
 		<div class="box">
              <div class="box-header">
-               <h3 class="box-title">Areas de administrador</h3>
+               <h3 class="box-title">AAAAAAAAAAAAAAAAAAAA</h3>
              </div>
              <!-- /.box-header -->
              <div class="box-body">
@@ -47,19 +46,18 @@
                  <tr>
 									 <th>#</th>
                    <th>Nombre</th>
-									 <th>Editar</th>
-									 <th>Fecha</th>
+
                  </tr>
                  </thead>
                  <tbody>
-								 @foreach ($area_admins as $area_admin)
+								 @foreach ($AAAAAAAAAAAAAAAAAAAA as $AAAAAAAAAAAAAAAAAAAA)
                  <tr>
-										 <td>{{$area_admin->id}}</td>
-	                   <td><a href="{{url('admin_config/areas_admin/ver/'.$area_admin->id)}}" >{{$area_admin->name}}</td>
-										 <td><a href="{{url('admin_config/areas_admin/ver/'.$area_admin->id.'/edit')}}" >
+										 <td>{{$AAAAAAAAAAAAAAAAAAAA->id}}</td>
+	                   <td><a href="{{url('admin_config/AAAAAAAAAAAAAAAAAAAA/'.AAAAAAAAAAAAAAAAAAAA->id)}}" >{{AAAAAAAAAAAAAAAAAAAA->name}}</td>
+										 <td><a href="{{url('admin_config/AAAAAAAAAAAAAAAAAAAA/'.AAAAAAAAAAAAAAAAAAAA->id.'/edit')}}" >
 											  <i class="fa fa-fw fa-edit"></i>Editar</a>
 										 </td>
-										 <td>{{$area_admin->created_at->diffForHumans()}}</td>
+										 <td>{{AAAAAAAAAAAAAAAAAAAA->created_at->diffForHumans()}}</td>
 								 </tr>
 								 @endforeach
 

@@ -24,13 +24,13 @@
 							 <img class="img-circle" src="{{ asset('/img/avatar0.png') }}" alt="User Avatar">
 						 </div>
 						 <!-- /.widget-user-image -->
-						 <h3 class="widget-user-username">{{$adminUser->name}}</h3>
+						 <h3 class="widget-user-username">{{$area_item->name}}</h3>
 						 <br>
 					 </div>
 					 <div class="box-footer no-padding">
 						 <ul class="nav nav-stacked">
-							 <li><a>Correo<span class="pull-right">{{$adminUser->email}}</span></a></li>
-							 <li><a>Rol<span class="pull-right">{{$adminUser->rol->name}}</span></a></li>
+							 {{-- <li><a>AAAAAAAAAAAAAAAAAAAA<span class="pull-right">{{AAAAAAAAAAAAAAAAAAAA->AAAAAAAAAAAAAAAAAAAA}}</span></a></li>
+							 <li><a>AAAAAAAAAAAAAAAAAAAA<span class="pull-right">{{AAAAAAAAAAAAAAAAAAAA->AAAAAAAAAAAAAAAAAAAA}}</span></a></li> --}}
 						 </ul>
 					 </div>
 				 </div>

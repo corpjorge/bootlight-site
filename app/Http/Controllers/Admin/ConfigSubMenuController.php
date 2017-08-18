@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Sistema\Menu_user_sub;
 
 class ConfigSubMenuController extends Controller
 {
@@ -14,7 +15,8 @@ class ConfigSubMenuController extends Controller
      */
     public function index()
     {
-        //
+      $menu_user_subs  = Menu_user_sub::all();
+      return view('adminlte::admin.menu_user_sub.menu_user_sub', [ 'menu_user_subs' => $menu_user_subs]);
     }
 
     /**

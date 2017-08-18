@@ -27,6 +27,7 @@ class LoginController extends Controller
 
 
       $url = "http://190.145.4.62/WebServices/WSlogin.asmx/Logeo?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pClave=".$request->password."&pTipoUsuario=2";
+      $url = str_replace(" ", "%20", $url);
       $response_xml_data = file_get_contents($url);
       $xml = simplexml_load_string($response_xml_data);
 

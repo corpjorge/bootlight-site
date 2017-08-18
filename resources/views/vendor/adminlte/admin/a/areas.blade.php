@@ -6,13 +6,12 @@
 
 @section('main-content')
 <section class="content-header">
-    <h1>Item de las Áreas de administrador
-    <small>Configuracion de Areas de administrador</small>
+    <h1>AAAAAAAAAAAAAAAAAAAA
     </h1>
     <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</li>
-		<li><a href="{{ url('/admin_config/areas_admin_item')}}">Configuracion</a></li>
-        <li class="active"><a href="#">Item de Areas de administrador</a></li>
+		<li><a href="{{ url('/admin_config/areas_admin')}}">Configuracion</a></li>
+        <li class="active"><a href="#">AAAAAAAAAAAAAAAAAAAA</a></li>
     </ol>
 </section>
 <br>
@@ -21,7 +20,7 @@
 		<div class="row">
 
 			<div class="row">
-				<a href="{{ url('/admin_config/areas_admin_items/add') }}" >
+				<a href="{{ url('/admin_config/AAAAAAAAAAAAAAAAAAAA/create') }}" >
 					 <div class="col-md-1">
 							 <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
 					 </div>
@@ -38,7 +37,7 @@
 
 		<div class="box">
              <div class="box-header">
-               <h3 class="box-title">Item de Areas del administrador</h3>
+               <h3 class="box-title">AAAAAAAAAAAAAAAAAAAA</h3>
              </div>
              <!-- /.box-header -->
              <div class="box-body">
@@ -46,22 +45,19 @@
                  <thead>
                  <tr>
 									 <th>#</th>
-									 <th>Item</th>
-                   <th>Area</th>
-									 <th>Editar</th>
-									 <th>Fecha</th>
+                   <th>Nombre</th>
+
                  </tr>
                  </thead>
                  <tbody>
-								 @foreach ($area_item_admins as $area_item_admin)
+								 @foreach ($AAAAAAAAAAAAAAAAAAAA as $AAAAAAAAAAAAAAAAAAAA)
                  <tr>
-										 <td>{{$area_item_admin->id}}</td>
-										 <td><a href="{{url('admin_config/areas_admin_items/ver/'.$area_item_admin->id)}}" >{{$area_item_admin->name}}</td>
-	                   <td><a href="{{url('admin_config/areas_admin/ver/'.$area_item_admin->area->id)}}" >{{$area_item_admin->area->name}}</td>
-										 <td><a href="{{url('admin_config/areas_admin_items/ver/'.$area_item_admin->id.'/edit')}}" >
+										 <td>{{$AAAAAAAAAAAAAAAAAAAA->id}}</td>
+	                   <td><a href="{{url('admin_config/AAAAAAAAAAAAAAAAAAAA/'.AAAAAAAAAAAAAAAAAAAA->id)}}" >{{AAAAAAAAAAAAAAAAAAAA->name}}</td>
+										 <td><a href="{{url('admin_config/AAAAAAAAAAAAAAAAAAAA/'.AAAAAAAAAAAAAAAAAAAA->id.'/edit')}}" >
 											  <i class="fa fa-fw fa-edit"></i>Editar</a>
 										 </td>
-										 <td>{{$area_item_admin->created_at->diffForHumans()}}</td>
+										 <td>{{AAAAAAAAAAAAAAAAAAAA->created_at->diffForHumans()}}</td>
 								 </tr>
 								 @endforeach
 

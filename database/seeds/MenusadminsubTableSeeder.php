@@ -192,7 +192,7 @@ class MenusadminsubTableSeeder extends Seeder
         $user->orden="3";
         $user->areas_item_admin_id="17";
         $user->icono="";
-        $user->ruta="admin_config/areas";
+        $user->ruta="admin_config/area";
         $user->estado_id="1";
         $user->estilo=" ";
         $user->role_id="2";
@@ -203,7 +203,7 @@ class MenusadminsubTableSeeder extends Seeder
         $user->orden="4";
         $user->areas_item_admin_id="18";
         $user->icono="";
-        $user->ruta="admin_config/areas_items";
+        $user->ruta="admin_config/area_item";
         $user->estado_id="1";
         $user->estilo=" ";
         $user->role_id="2";
@@ -236,7 +236,7 @@ class MenusadminsubTableSeeder extends Seeder
         $user->orden="7";
         $user->areas_item_admin_id="21";
         $user->icono="";
-        $user->ruta="admin_config/menu";
+        $user->ruta="admin_config/menu_user";
         $user->estado_id="1";
         $user->estilo=" ";
         $user->role_id="2";
@@ -247,7 +247,7 @@ class MenusadminsubTableSeeder extends Seeder
         $user->orden="8";
         $user->areas_item_admin_id="22";
         $user->icono="";
-        $user->ruta="admin_config/sub_menu";
+        $user->ruta="admin_config/menu_user_sub";
         $user->estado_id="1";
         $user->estilo=" ";
         $user->role_id="2";
@@ -269,7 +269,7 @@ class MenusadminsubTableSeeder extends Seeder
         $user->orden="10";
         $user->areas_item_admin_id="24";
         $user->icono="";
-        $user->ruta="admin_config/sub_menu_admin";
+        $user->ruta="admin_config/menu_admin_sub";
         $user->estado_id="1";
         $user->estilo=" ";
         $user->role_id="2";

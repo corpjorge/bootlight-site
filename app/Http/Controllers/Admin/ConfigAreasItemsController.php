@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Sistema\Area_item;
 
 class ConfigAreasItemsController extends Controller
 {
@@ -14,7 +15,8 @@ class ConfigAreasItemsController extends Controller
      */
     public function index()
     {
-        //
+      $area_items  = Area_item::all();
+      return view('adminlte::admin.area_item.area_item', [ 'area_items' => $area_items]);
     }
 
     /**

@@ -30,7 +30,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin_config/user/add') }}" method="post">
+            <form role="form" action="{{ url('admin_config/user/') }}" method="post">
 							@if (count($errors) > 0)
 			            <div class="alert alert-danger">
 			                <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -55,11 +55,11 @@
                 </div>
 
 								<div class="form-group">
-								 <label>Cuidad</label>
-									 <select style="color:#555555" name="cuidad" class="form-control">
+								 <label>ciudad</label>
+									 <select style="color:#555555" name="ciudad" class="form-control">
 										 	<option></option>
-										 @foreach ($cuidades as $cuidad)
-								 		 	<option style="color:#555555" value="{{$cuidad->id}}">{{$cuidad->name}}</option>
+										 @foreach ($ciudades as $ciudad)
+								 		 	<option style="color:#555555" value="{{$ciudad->id}}">{{$ciudad->name}}</option>
 								 		 @endforeach
 									 </select>
 							 </div>

@@ -30,8 +30,8 @@ class ConfigUserController extends Controller
     public function create()
     {
         $roles  = Rol::all();
-        $cuidades  = Ciudad::all();
-        return view('adminlte::admin.user.add',[ 'cuidades' => $cuidades, 'roles' => $roles]);
+        $ciudades  = Ciudad::all();
+        return view('adminlte::admin.user.add',[ 'ciudades' => $ciudades, 'roles' => $roles]);
     }
 
     /**
@@ -82,7 +82,8 @@ class ConfigUserController extends Controller
     {
       $adminUser  = AdminUser::find($id);
       $roles  = Rol::all();
-      return view('adminlte::admin.user.update', compact('adminUser'),[ 'roles' => $roles] );
+      $ciudades  = Ciudad::all();
+      return view('adminlte::admin.user.update', compact('adminUser'),[ 'ciudades' => $ciudades, 'roles' => $roles] );
     }
 
     /**
@@ -106,7 +107,7 @@ class ConfigUserController extends Controller
       $adminUser->role_id  = $request->rol;
       $adminUser->save();
       session()->flash('message', 'Actualizado correctamente');
-      return redirect('admin_config/user/ver/'.$id.'/edit');
+      return redirect('admin_config/user/'.$id.'/edit');
 
     }
 

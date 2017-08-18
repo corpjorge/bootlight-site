@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Sistema\Menu_admin;
 
 class ConfigMenuAdminController extends Controller
 {
@@ -14,7 +15,8 @@ class ConfigMenuAdminController extends Controller
      */
     public function index()
     {
-        //
+      $menu_admins  = Menu_admin::all();
+      return view('adminlte::admin.menu_admin.menu_admin', [ 'menu_admins' => $menu_admins]);
     }
 
     /**

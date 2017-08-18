@@ -100,7 +100,7 @@ class ConfigPermisosController extends Controller
       $permiso->area_admin_id  = $request->area;
       $permiso->save();
       session()->flash('message', 'Actualizado correctamente');
-      return redirect('admin_config/permisos/ver/'.$id.'/edit');
+      return redirect('admin_config/permisos/'.$id.'/edit');
     }
 
     /**

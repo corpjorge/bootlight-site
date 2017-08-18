@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Sistema\Menu_user;
 
 class ConfigMenuController extends Controller
 {
@@ -14,7 +15,8 @@ class ConfigMenuController extends Controller
      */
     public function index()
     {
-        //
+      $menu_users  = Menu_user::all();
+      return view('adminlte::admin.menu_user.menu_user', [ 'menu_users' => $menu_users]);
     }
 
     /**

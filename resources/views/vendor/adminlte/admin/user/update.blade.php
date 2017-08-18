@@ -66,6 +66,16 @@
                   <input style="color:#555555"  value="{{$adminUser->email}}" type="text" class="form-control" id="email" name="email" placeholder="correo">
                 </div>
 
+								<div class="form-group">
+								 <label>ciudad</label>
+									 <select style="color:#555555" name="ciudad" class="form-control">
+										 <option value="{{$adminUser->ciudad}}">{{$adminUser->ciudad}}</option>
+										 @foreach ($ciudades as $ciudad)
+								 		 	<option style="color:#555555" value="{{$ciudad->id}}">{{$ciudad->name}}</option>
+								 		 @endforeach
+									 </select>
+							 </div>
+
 
 								<div class="form-group">
 								 <label>Rol</label>
