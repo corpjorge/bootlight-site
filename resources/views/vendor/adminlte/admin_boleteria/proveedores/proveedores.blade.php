@@ -48,6 +48,7 @@
                  <tr>
 									 <th>Codigo</th>
 									 <th>Nombre</th>
+									 <th>linea</th>
                    <th>Editar</th>
 									 <th>Fecha</th>
                  </tr>
@@ -57,6 +58,15 @@
                  <tr>
 	                   <td>{{$proveedor->codigo}}</td>
 										 <td><a href="{{url('admin_boleteria/proveedores/ver/'.$proveedor->id)}}" >{{$proveedor->name}}</a></td>
+										 <td>
+											@if($proveedor->linea == 1)
+												Servicio
+											@else
+												Consumo proveedores
+											@endif
+
+
+										 </td>
 										 <td><a href="{{url('admin_boleteria/proveedores/ver/'.$proveedor->id.'/edit')}}" >
 											  <i class="fa fa-fw fa-edit"></i>Editar</a>
 										 </td>

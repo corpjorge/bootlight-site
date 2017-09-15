@@ -33,7 +33,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Actualizar proveedor</h3>
+              <h3 class="box-title">Actualizar proveedor {{$proveedor->name}}</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -61,24 +61,17 @@
 							{{method_field('PUT')}}
               <div class="box-body">
 								<div class="form-group">
-								 <label>Tipo Documento</label>
-									 <select style="color:#555555" name="linea" class="form-control">
-										 	<option style="color:#555555" value="{{$proveedor->proverdor_linea->id}}">{{$proveedor->proverdor_linea->name}}</option>
-										 @foreach ($lineas as $linea)
-								 		 	<option style="color:#555555" value="{{$linea->id}}">{{$linea->name}}</option>
-								 		 @endforeach
-									 </select>
-							 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Codigo</label>
-                  <input style="color:#555555" type="number" class="form-control" id="exampleInputPassword1" name="codigo" value="{{$proveedor->codigo}}" placeholder="Documento">
-                </div>
+								 <label>
+                      <input type="radio" name="estados_id" id="estados_id" value="1" checked=""> Activado
+                 </label><br>
+								 <label>
+                      <input type="radio" name="estados_id" id="estados_id" value="2" > Desactivado
+                 </label>
 
-								<div class="form-group">
-                  <label for="exampleInputPassword1">Nombre</label>
-                  <input style="color:#555555" type="text" class="form-control" id="exampleInputPassword1" name="nombre" value="{{$proveedor->name}}" placeholder="Nombre">
-                </div>
+							 </div>
               </div>
+
+
               <!-- /.box-body -->
 
               <div class="box-footer">

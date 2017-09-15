@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Boleteria\Proveedor;
 use App\Model\Boleteria\Linea;
+
 use Validator;
+use DB;
+use Carbon\Carbon;
 
 class ProveedorController extends Controller
 {
@@ -17,8 +20,63 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedores  = Proveedor::all();
+        $proveedores  = Proveedor::where('estados_id',1)->get();
         return view('adminlte::admin_boleteria.proveedores.proveedores',[ 'proveedores' => $proveedores]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function actualizar()
+    {
+      $fecha_created_at = Carbon::now();
+
+      //servicios
+      $url_servicios = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineasservicios&pColumnas=cod_linea_servicio,nombre&pCondicion=&pOrden=nombre";
+      $response_servicios = file_get_contents($url_servicios);
+      $servicios = simplexml_load_string($response_servicios);
+
+      //Líneas administradas por cartera
+      $url_cartera = "http://190.145.4.61/WebServicesDemo/WSCredito.asmx/ListaDestinacionCredito?pCod_linea_Credito=8";
+      $response_cartera = file_get_contents($url_cartera);
+      $cartera_lineas = simplexml_load_string($response_cartera);
+
+      $proveedores  = Proveedor::all();
+
+      foreach ($servicios as $servicio) {
+        $proveedores  = Proveedor::where('name',$servicio->descripcion)->first();
+        if ($proveedores == null) {
+
+          DB::table('proveedores')->insert(
+              [
+                'codigo' =>$servicio->idconsecutivo,
+                'name' =>  $servicio->descripcion,
+                'linea' => 1,
+                'created_at' =>  $fecha_created_at,
+              ]
+          );
+        }
+      }
+
+      foreach ($cartera_lineas as $cartera) {
+        $proveedores  = Proveedor::where('name',$cartera->descripcion)->first();
+        if ($proveedores == null) {
+          DB::table('proveedores')->insert(
+              [
+                'codigo' => $cartera->cod_destino,
+                'name' =>  $cartera->descripcion,
+                'linea' =>  8,
+                'created_at' =>  $fecha_created_at,
+              ]
+          );
+        }
+      }
+
+      session()->flash('message', 'Listado actualizado');
+      return redirect('admin_boleteria/proveedores/add');
+
     }
 
 
@@ -29,18 +87,10 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        $url_lineas = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineascredito&pColumnas=cod_linea_credito,nombre&pCondicion=estado=1&pOrden=cod_linea_credito";
-        $response_lineas = file_get_contents($url_lineas);
-        $lineasWS = simplexml_load_string($response_lineas);
-
-        $url_proveedor = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=destinacion&pColumnas=cod_destino,descripcion&pCondicion=&pOrden=cod_destino";
-        $response_proveedor = file_get_contents($url_proveedor);
-        $proveedorWS = simplexml_load_string($response_proveedor);
-
-        $lineas  = Linea::all();
-        return view('adminlte::admin_boleteria.proveedores.add', ['lineas' => $lineas, 'lineasWS' => $lineasWS, 'proveedorWS' => $proveedorWS]);
-
+      $proveedores  = Proveedor::all();
+      return view('adminlte::admin_boleteria.proveedores.add', ['proveedores' => $proveedores]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,6 +100,7 @@ class ProveedorController extends Controller
      */
     public function linea(Request $request)
     {
+      /*
         $this->Validate($request,[
             'codigo' => 'required|unique:lineas',
         ]);
@@ -64,6 +115,7 @@ class ProveedorController extends Controller
         $linea->save();
         session()->flash('message1', 'Guardado correctamente');
         return redirect('admin_boleteria/proveedores/add');
+        */
 
     }
 
@@ -76,7 +128,21 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
 
+      $this->Validate($request,[
+          'activar' => 'required',
 
+      ]);
+
+      for ($i=0; $i < count($request->activar); $i++) {
+        DB::table('proveedores')
+            ->where('id', $request->activar[$i])
+            ->update(['estados_id' => 1]);
+      }
+
+      session()->flash('message', 'Listado actualizado');
+      return redirect('admin_boleteria/proveedores');
+
+        /*
         $this->Validate($request,[
             'codigo' => 'required|unique:proveedores',
             'linea' => 'required|',
@@ -94,6 +160,8 @@ class ProveedorController extends Controller
         $proveedor->save();
         session()->flash('message', 'Guardado correctamente');
         return redirect('admin_boleteria/proveedores');
+
+        */
 
     }
 
@@ -131,7 +199,18 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->Validate($request,[
+          'estados_id' => 'required|',
+        ]);
+
         $proveedor = Proveedor::find($id);
+        $proveedor->estados_id = $request->estados_id;
+        $proveedor->save();
+        session()->flash('message', 'Actualizado correctamente');
+        return redirect('admin_boleteria/proveedores');
+
+        /*
 
         $this->Validate($request,[
           'codigo' => 'required|',
@@ -145,6 +224,9 @@ class ProveedorController extends Controller
         $proveedor->save();
         session()->flash('message', 'Actualizado correctamente');
         return redirect('admin_boleteria/proveedores/ver/'.$id.'/edit');
+
+
+        */
     }
 
     /**
@@ -163,11 +245,5 @@ class ProveedorController extends Controller
       */
 
     }
-
-
-
-
-
-
 
 }

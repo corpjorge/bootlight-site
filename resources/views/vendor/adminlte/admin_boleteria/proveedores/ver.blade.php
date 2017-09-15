@@ -30,9 +30,12 @@
 					 </div>
 					 <div class="box-footer no-padding">
 						 <ul class="nav nav-stacked">
-							 <li><a>Linea: <span class="pull-right">{{$proveedor->proverdor_linea->name}}</span></a></li>
-							 <li><a>Dirección <span class="pull-right badge bg-red">No disponible</span></a></li>
-							 <li><a>Teléfono <span class="pull-right badge bg-red">No disponible</span></a></li>
+							 <li><a>Linea: <span class="pull-right">
+							 @if($proveedor->linea == 1)
+								 Servicio
+							 @else
+								 Consumo proveedores
+							 @endif</span></a></li>
 						 </ul>
 					 </div>
 				 </div>
