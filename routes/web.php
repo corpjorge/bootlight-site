@@ -94,7 +94,7 @@ Route::group(['middleware' => 'adminuser'], function () {
     });
 
     Route::group(['namespace' => 'Admin_boleteria'], function () {
-        Route::group(['middleware' => 'gerente'], function () {
+        Route::group(['middleware' => 'jefe'], function () {
             Route::get('admin_boleteria/inventario', 'InformeController@inventario');
             Route::get('admin_boleteria/inventario/excel/seriales', 'InformeController@serialesexcel');
             Route::get('admin_boleteria/inventario/excel/ventas', 'InformeController@ventasesexcel');

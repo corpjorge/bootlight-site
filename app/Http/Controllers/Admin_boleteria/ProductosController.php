@@ -29,7 +29,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        $proveedores  = Proveedor::all();
+        $proveedores  = Proveedor::where('estados_id',1)->get();
         return view('adminlte::admin_boleteria.productos.add',[ 'proveedores' => $proveedores]);
     }
 

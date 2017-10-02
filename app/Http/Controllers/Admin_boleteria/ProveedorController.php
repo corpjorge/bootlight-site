@@ -33,7 +33,7 @@ class ProveedorController extends Controller
     {
       $fecha_created_at = Carbon::now();
 
-      //servicios
+      //servicios url
       $url_servicios = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=lineasservicios&pColumnas=cod_linea_servicio,nombre&pCondicion=&pOrden=nombre";
       $response_servicios = file_get_contents($url_servicios);
       $servicios = simplexml_load_string($response_servicios);

@@ -45,11 +45,6 @@
               <div class="box-body">
 
 								<div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input style="color:#555555" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto">
-                </div>
-
-								<div class="form-group">
 								 <label>Proveedor</label>
 									 <select style="color:#555555" name="proveedor" class="form-control">
 										 	<option></option>
@@ -57,6 +52,12 @@
 								 		 	<option style="color:#555555" value="{{$proveedor->id}}">{{$proveedor->name}}</option>
 								 		 @endforeach
 									 </select>
+							 </div>
+
+
+							 <div class="form-group">
+								 <label for="nombre">Nombre</label>
+								 <input style="color:#555555" type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto">
 							 </div>
 
 

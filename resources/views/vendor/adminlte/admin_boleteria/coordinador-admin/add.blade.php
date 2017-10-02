@@ -52,6 +52,9 @@
 									 <th>Serial</th>
 									 <th>Precio Venta</th>
 									 <th>Estado</th>
+									 {{-- @if (usuarioLogin() == 1) --}}
+									 	<th>Aprobación</th>
+									 {{-- @endif --}}
                  </tr>
                  </thead>
                  <tbody>
@@ -66,6 +69,25 @@
 										 <td>{{$serial->numero}}</td>
 										 <td>$ {{$serial->precio_venta}}</td>
 										 <td><span class="label label-{{$serial->serial_estado->estilo}}">{{$serial->serial_estado->tipo}}</span></td>
+										 <td>
+											 @if ($serial->admin_user_id == Auth::guard('admin_user')->user()->id)
+												 <form action="{{ url('admin_boleteria/coordinador/aprobar/'.$serial->id)}}" method="post" style="display:inline;">
+													 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+													 {{method_field('PUT')}}
+													 <button type='submit' style="border: none; background: none; color:#3c8dbc;"><i class="fa fa-fw fa-check"></i>Aprobar</button>
+												 </form>
+												 <form action="{{ url('admin_boleteria/coordinador/negar/'.$serial->id)}}"   method="post" style="display:inline;">
+													 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+													 {{method_field('PUT')}}
+													 <button type='submit' style="border: none; background: none; color: #bc3c3c;"><i class="fa fa-fw fa-close"></i>Negar</button>
+												 </form>
+												@endif
+											</td>
+
+
+
+
+
 
 
 								 </tr>
