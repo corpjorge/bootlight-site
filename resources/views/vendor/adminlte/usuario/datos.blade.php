@@ -29,11 +29,11 @@
 			<h5 class="widget-user-desc" style="text-transform: capitalize;">{{$users_detalles->usuario->usuario_rol->name}}</h5>
 		</div>
 		<div class="widget-user-image">
-			@if($users_detalles->usuario->avatar == '')
+			{{-- @if($users_detalles->usuario->avatar == '')
 			<img class="img-circle" src="{{ asset('/img/avatar5.png') }}" alt="User Avatar">
 			@else
 			<img class="img-circle" src="{{ $users_detalles->usuario->avatar }}" alt="User Avatar">
-			@endif
+			@endif --}}
 		</div>
 		<div class="box-footer">
 			<div class="row">
@@ -54,21 +54,21 @@
             <div class="box-body">
 							<div class="col-md-4">
 							  <strong><i class="fa fa-user margin-r-5"></i> Personales </strong>
-								<p class="text-muted"><b>Correo:<a href="mailto:{{$users_detalles->usuario->email}}">  {{$users_detalles->usuario->email}}</a></b>  </p>
-								<p class="text-muted"><b>{{$users_detalles->usuario_documento->tipo}}: {{$users_detalles->cedula}}</b>  </p>
+								<p class="text-muted"><b>Cedula: {{$users_detalles->cedula}}</b>  </p>
 								<p class="text-muted"><b>Fecha de vinculación: {{$users_detalles->fecha_vinculacion}} </b></p>
 								<p class="text-muted"><b>Fecha de nacimiento: {{$users_detalles->fecha_nacimiento}}</b></p>
-								<p class="text-muted"><b>Genero: {{$users_detalles->usuario_genero->tipo}} </b></p>
+								<p class="text-muted"><b>Genero: {{$users_detalles->genero}} </b></p>
 								<p class="text-muted"><b>Estado civil: {{$users_detalles->usuario_estado_civil->tipo}} </b></p>
 	              <hr>
 						  </div>
               <strong><i class="fa fa-map-marker margin-r-5"></i> Ubicación</strong>
 
-              <p class="text-muted"><b>Almacén: {{$users_detalles->usuario_almacen->name}} </b>  </p>
-							<p class="text-muted"><b>Ciudad: {{$users_detalles->usuario_ciudad->name}}</b>  </p>
+              <p class="text-muted"><b>Almacén: {{$users_detalles->almacen}} </b>  </p>
+							<p class="text-muted"><b>Ciudad: {{$users_detalles->cuidad}}</b>  </p>
 
               <hr>
-              <strong><i class="fa fa-file-text-o margin-r-5"></i>Correo: </strong>
+              <strong><i class="fa fa-envelope margin-r-5"></i>Correo:<a href="mailto:{{$users_detalles->usuario->email}}">  {{$users_detalles->usuario->email}}</a> </strong>
+
               <p> </p>
 
 							</div>

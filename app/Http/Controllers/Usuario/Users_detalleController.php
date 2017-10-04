@@ -34,6 +34,18 @@ class Users_detalleController extends Controller
 
         }
 
+        /**
+         * Show the application dashboard.
+         *
+         * @return Response
+         */
+         public function datosUsuario($id)
+         {
+             $users_detalles = Users_detalle::where('user_id',$id)->first();
+
+             return view('adminlte::usuario.datos', compact('users_detalles'));
+         }
+
         public function help()
         {
           return view('adminlte::usuario.help.help');
