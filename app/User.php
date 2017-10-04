@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function usuario_telefono()
     {
-        return $this->hasMany('App\Model\Usuario\telefono', 'user_id');
+        return $this->hasMany('App\Model\Usuario\Telefono', 'user_id');
     }
 
     public function usuario_ventas_boletas()
