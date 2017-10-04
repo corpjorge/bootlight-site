@@ -19,7 +19,7 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 
-			<form role="form" action="{{ url('/admin_boleteria/vender/add/') }}" method="get">
+			{{-- <form role="form" action="{{ url('/admin_boleteria/vender/add/') }}" method="get">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="row">
 			        <div class="col-md-3 col-sm-6 col-xs-12">
@@ -38,8 +38,24 @@
 		 				 		@endif
 			        </div>
 						 </div>
+			</form> --}}
+
+			<div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <a href="{{ url('admin_boleteria/vender/add')}}" class="info-box-icon bg-aqua" style="border: none;" ><i class="fa fa-cart-plus"></i></a>
+
+        </div>
+			 </div>
 			</form>
 			<br>
+
+			@if(session()->has('message'))
+			 <div class="alert alert-success alert-dismissible">
+								 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								 <h4><i class="icon fa fa-check"></i> Correcto!</h4>
+								 {{session()->get('message')}}
+							 </div>
+			@endif
 
 
 		<div class="box">

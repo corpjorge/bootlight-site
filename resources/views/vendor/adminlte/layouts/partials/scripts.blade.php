@@ -275,3 +275,78 @@ $(function () {
 });
 </script>
 @endif
+
+
+<script>
+$(document).ready(function()
+{
+  if ($("#venderBoleta").length) {
+
+    $(".serialID").click(function () {
+
+  		var totalBoletas =  parseInt($("#totalBoletas").val());
+      var infoValor = parseInt($(this).attr('info-Valor'));
+  		if( $(this).is(':checked') ){
+        resultado = totalBoletas+infoValor;
+        $("#totalBoletas").val(resultado);
+      } else {
+        resultado = totalBoletas-infoValor;
+        $("#totalBoletas").val(resultado)
+      }
+  	});
+
+
+
+    $("#cedulaBoletas").change(function(e){
+
+      e.preventDefault();
+
+      data="";
+      cedulaEnvio = $("#cedulaBoletas").val();
+      url = "asociado/"+cedulaEnvio;
+
+     $("#cargaAsociado").show();
+
+      $.get(url, function(infoAsociado){
+
+        if(infoAsociado.asociado == "No encontrado"){
+
+        //  $('#codigo').prop("type", "text");
+          $('#codigo').prop("name", "error");
+          $('.codigo').val(infoAsociado.asociado);
+          $('#nombre').val(infoAsociado.asociado);
+          $("#cargaAsociado").hide();
+          $("#venderBoleta").prop('disabled', true);
+
+        }else{
+          //$('#codigo').prop("type", "number");
+          $('#codigo').prop("name", "codigo");
+          $('.codigo').val(infoAsociado.codigo);
+          $('#nombre').val(infoAsociado.nombre);
+          $('#idAsociado').val(infoAsociado.id)
+          $("#cargaAsociado").hide();
+          $("#venderBoleta").prop('disabled', false);
+        }
+
+
+
+
+      });
+
+    });
+
+
+
+
+
+
+
+
+  }
+
+});
+
+
+
+
+</script>

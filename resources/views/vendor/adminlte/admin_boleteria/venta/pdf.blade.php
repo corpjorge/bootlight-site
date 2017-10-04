@@ -56,7 +56,8 @@
 			        <div class="col-sm-4 invoice-col">
 			          <b>Comercial:  </b>  {{$venta->venta_admin->name}}<br>
 			          <br>
-			          <b>Referencia:</b> {{$venta->referencia}}<br>
+                <b>Referencia:</b> {{$venta->referencia}}<br>
+			          <b>Radicado:</b> {{$venta->radicado}}<br>
 			          <b>Fecha primer pago:</b> {{\Carbon\Carbon::parse($venta->fecha_primer_pago)->format('d-m-Y')}}<br>
                 <b>Transferencia solidaria:</b> ${{number_format($ganancia) }}<br>
 

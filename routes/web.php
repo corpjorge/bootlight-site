@@ -74,6 +74,7 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::get('datos_admin/{id}', 'Admin\AdminController@ver');
     Route::get('admin/{id}', 'Admin\Users_detalleController@datos');
     Route::get('admin_help', 'Admin\AdminController@help');
+    Route::post('admin_help', 'Admin\AdminController@help');
 
     Route::group(['middleware' => 'coordinador'], function () {
         Route::get('admin_evento', 'Evento\EventoController@indexadmin');
@@ -139,8 +140,13 @@ Route::group(['middleware' => 'adminuser'], function () {
             Route::put('admin_boleteria/coordinador/negar/{id}', 'CoordinadorController@negar');
 
             Route::get('admin_boleteria/vender', 'VenderController@index');
-            Route::get('admin_boleteria/vender/add', 'VenderController@create');
-            Route::post('admin_boleteria/vender/add', 'VenderController@store');
+            //Route::get('admin_boleteria/vender/add', 'VenderController@create');
+            Route::get('admin_boleteria/vender/add', 'VenderController@vender');
+            Route::get('admin_boleteria/vender/add/{id}', 'VenderController@venderProducto');
+            //Route::post('admin_boleteria/vender/add', 'VenderController@store');
+            Route::get('admin_boleteria/vender/add/asociado/{cedula}', 'VenderController@asociadoCedula');
+            Route::post('admin_boleteria/vender/servicio/{id}', 'VenderController@servicio');
+            Route::post('admin_boleteria/vender/credito/{id}', 'VenderController@credito');
             Route::get('admin_boleteria/vender/ver/{id}', 'VenderController@show');
             Route::get('admin_boleteria/vender/ver/pdf/{id}', 'VenderController@pdfadmin');
         });
