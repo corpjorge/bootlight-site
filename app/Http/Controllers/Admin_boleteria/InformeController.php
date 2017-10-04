@@ -151,8 +151,8 @@ class InformeController extends Controller
             session()->flash('error', 'Cedula no se encuentra');
             return redirect()->back();
         } else {
-            $ventas = Venta::where('user_id', $user->id)->paginate(15);
-            return view('adminlte::admin_boleteria.informe.cedula', compact('user'), ['ventas' => $ventas]);
+          $ventas = Venta::where('user_id', $user->user_id)->paginate(15);
+          return view('adminlte::admin_boleteria.informe.cedula', compact('user'), ['ventas' => $ventas]);
         }
     }
 
