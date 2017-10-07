@@ -71,7 +71,7 @@
 									 <select style="color:#555555" name="ciudad" class="form-control">
 										 <option value="{{$adminUser->ciudad}}">{{$adminUser->ciudad}}</option>
 										 @foreach ($ciudades as $ciudad)
-								 		 	<option style="color:#555555" value="{{$ciudad->id}}">{{$ciudad->name}}</option>
+								 		 	<option style="color:#555555" value="{{$ciudad->name}}">{{$ciudad->name}}</option>
 								 		 @endforeach
 									 </select>
 							 </div>

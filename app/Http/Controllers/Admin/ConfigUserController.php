@@ -99,11 +99,13 @@ class ConfigUserController extends Controller
           'nombre' => 'required|',
           'email' => 'required|',
           'rol' => 'required|',
+          'ciudad' => 'required|',
       ]);
 
       $adminUser = AdminUser::find($id);
       $adminUser->name = $request->nombre;
       $adminUser->email  = $request->email;
+      $adminUser->ciudad  = $request->ciudad;
       $adminUser->role_id  = $request->rol;
       $adminUser->save();
       session()->flash('message', 'Actualizado correctamente');
