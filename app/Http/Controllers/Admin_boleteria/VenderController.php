@@ -281,7 +281,7 @@ class VenderController extends Controller
 
        $servicio = simplexml_load_string($servicio);
 
-       if ($servicio->rpta == "true") {
+       if ($servicio->esCorrecto == "true") {
 
          $referencia = str_random(6).'-'.$request->cedula;
 
