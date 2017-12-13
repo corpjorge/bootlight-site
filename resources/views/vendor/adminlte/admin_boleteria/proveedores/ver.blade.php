@@ -38,6 +38,9 @@
 							 @endif</span></a></li>
 						 </ul>
 					 </div>
+					 <div class="box-footer no-padding">
+						 <ul class="nav nav-stacked"> <li><a>NIT: <span class="pull-right"> {{$proveedor->nit}}</span></a></li> </ul>
+					 </div>
 				 </div>
 				 <!-- /.widget-user -->
 			 </div>

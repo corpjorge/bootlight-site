@@ -57,9 +57,29 @@
 						 					 </div>
 						  @endif
 
+						  @if(session()->has('error'))
+						 	 <div class="alert alert-danger alert-dismissible">
+						 						 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						 						 <h4><i class="icon fa fa-check"></i> Error!</h4>
+						 						 {{session()->get('error')}}
+						 					 </div>
+						  @endif
+
+
+
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							{{method_field('PUT')}}
               <div class="box-body">
+              	<div class="form-group">
+                  <label for="nit">NIT</label>
+                  <input style="color:#555555"  value="{{$proveedor->nit}}" type="text" class="form-control" name="nit" placeholder="Nit" id="nit">
+                </div>
+
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input style="color:#555555"  value="" type="text" class="form-control" placeholder="Buscar" id="nombre" disabled>
+                </div>
+
 								<div class="form-group">
 								 <label>
                       <input type="radio" name="estados_id" id="estados_id" value="1" checked=""> Activado
@@ -89,4 +109,6 @@
 
 		</div>
 	</div>
+
+
 @endsection

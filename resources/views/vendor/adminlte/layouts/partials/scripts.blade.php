@@ -335,18 +335,46 @@ $(document).ready(function()
 
     });
 
-
-
-
-
-
+ 
 
 
   }
 
 });
 
+ 
+</script>
 
 
 
+<script>
+$(document).ready(function()
+{
+  if ($("#nit").length) {
+
+    $("#nit").change(function(e){
+
+      e.preventDefault();
+     
+      nit = $("#nit").val();
+      url = "nit/"+nit;     
+
+     $("#cargaAsociado").show();
+
+      $.get(url, function(infoNit){
+
+        if(infoNit.estado == "false"){
+          $('#nombre').val("No existe"); 
+        }else{
+          $('#nombre').val(infoNit.razon_social);           
+        }        
+
+      });
+
+    });
+
+ }
+
+});
+ 
 </script>

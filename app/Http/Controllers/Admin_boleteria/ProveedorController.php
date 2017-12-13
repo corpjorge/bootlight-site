@@ -190,6 +190,25 @@ class ProveedorController extends Controller
       return view('adminlte::admin_boleteria.proveedores.update', compact('proveedor'), ['lineas' => $lineas] );
     }
 
+    public function nit($id, $nit)
+    {     
+  
+       $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$nit."&pTipo=Identificacion";
+        $response_xml_datos = file_get_contents($url_datos);
+        $xml_datos = simplexml_load_string($response_xml_datos);    
+
+        if ($xml_datos->result == 'false') {          
+          return response()->json(["estado" => 'false']);
+        } 
+        else
+        {
+          //razon_social
+          return response()->json($xml_datos);
+        } 
+ 
+
+    }    
+
     /**
      * Update the specified resource in storage.
      *
@@ -202,15 +221,17 @@ class ProveedorController extends Controller
 
         $this->Validate($request,[
           'estados_id' => 'required|',
-        ]);
+        ]);        
 
         $proveedor = Proveedor::find($id);
+        $proveedor->nit = $request->nit;
         $proveedor->estados_id = $request->estados_id;
         $proveedor->save();
+        
         session()->flash('message', 'Actualizado correctamente');
         return redirect('admin_boleteria/proveedores');
 
-        /*
+        /**********
 
         $this->Validate($request,[
           'codigo' => 'required|',

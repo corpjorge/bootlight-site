@@ -30,6 +30,7 @@
 
 
  @foreach ($productos as $producto)
+  @if($producto->producto_provedor->nit) 
 	 <div class="col-lg-2 col-xs-6">
 		 <div class="small-box bg-aqua">
 			 <center>
@@ -55,7 +56,9 @@
 			@endif
 			</div>
 		</div>
-	@endforeach
+
+  @endif
+@endforeach
 
 
 

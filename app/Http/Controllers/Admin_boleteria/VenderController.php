@@ -372,18 +372,19 @@ class VenderController extends Controller
 
       $beneficio = $serieTotalPublico-$serieTotalValor;
 
-       $urlCredito = "http://190.145.4.61/WebServicesDemo/WSAppFinancial.asmx/GrabarCredito?pEntidad=FONSODI&pCod_Persona=".$request->codigo."&pMontoSoli=".$serieTotalValor."&pPlazo=".$request->cuotas."&pTipoCredito=8&pPeriodicidad=1&pDestino=".$producto->producto_provedor->codigo."&pFormaPago=2&pEmpresa=1&pCod_Oficina=1&pObservacion=&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico;
+       $urlCredito = "http://190.145.4.61/WebServicesDemo/WSAppFinancial.asmx/GrabarCredito?pEntidad=FONSODI&pCod_Persona=".$request->codigo."&pMontoSoli=".$serieTotalValor."&pPlazo=".$request->cuotas."&pTipoCredito=8&pPeriodicidad=1&pDestino=".$producto->producto_provedor->codigo."&pFormaPago=2&pEmpresa=1&pCod_Oficina=1&pObservacion=&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico."&pIdentProveedor=".$producto->producto_provedor->nit;
 
        try {
          $credito = file_get_contents($urlCredito);
        } catch (Exception $e) {
          session()->flash('message', 'No se procesó la compra');
          return redirect('admin_boleteria/vender/add/'.$idProducto);
-       }
+       } 
 
        $credito = simplexml_load_string($credito);
 
-       if ($credito->rpta == "true") {
+
+       if ($credito->esCorrecto == "true") {
 
          $referencia = str_random(6).'-'.$request->cedula;
 
@@ -395,7 +396,7 @@ class VenderController extends Controller
          $venta->admin_user_id = Auth::guard('admin_user')->user()->id;
          $venta->cuota = $request->cuotas;
          $venta->referencia = $referencia;
-         $venta->radicado = $credito->valorRpta;
+         $venta->radicado = $credito->numero_radicacion;//numero de radicacion
          $venta->save();
          $idventa = $venta->id;
 
@@ -436,7 +437,7 @@ class VenderController extends Controller
          return redirect('admin_boleteria/vender/add/'.$idProducto);
        }
 
-
+ 
     }
 
     /**

@@ -110,6 +110,7 @@ Route::group(['middleware' => 'adminuser'], function () {
             Route::put('admin_boleteria/proveedores/{id}', 'ProveedorController@update');
             Route::get('admin_boleteria/proveedores/ver/{id}/edit', 'ProveedorController@edit');
             Route::get('admin_boleteria/proveedores/actualizar', 'ProveedorController@actualizar');
+            Route::get('admin_boleteria/proveedores/ver/{id}/nit/{nit}', 'ProveedorController@nit');
 
             Route::get('admin_boleteria/productos', 'ProductosController@index');
             Route::get('admin_boleteria/productos/add', 'ProductosController@create');
