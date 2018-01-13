@@ -270,7 +270,7 @@ class VenderController extends Controller
 
       $beneficio = $serieTotalPublico-$serieTotalValor;
 
-      $urlServicio ="http://190.145.4.61/WebServicesDemo/WSCredito.asmx/CrearServicioDesembolso?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pCod_linea_servicio=".$producto->producto_provedor->codigo."&pValorTotal=".$serieTotalValor."&pNumeroCuotas=".$request->cuotas."&pPeriodicidad=1&pForma_pago=2&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico;
+      $urlServicio ="http://190.145.4.62/WebServices/WSCredito.asmx/CrearServicioDesembolso?pEntidad=FONSODI&pIdentificacion=".$request->cedula."&pCod_linea_servicio=".$producto->producto_provedor->codigo."&pValorTotal=".$serieTotalValor."&pNumeroCuotas=".$request->cuotas."&pPeriodicidad=1&pForma_pago=2&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico;
 
       try {
          $servicio = file_get_contents($urlServicio);
@@ -372,7 +372,7 @@ class VenderController extends Controller
 
       $beneficio = $serieTotalPublico-$serieTotalValor;
 
-       $urlCredito = "http://190.145.4.61/WebServicesDemo/WSAppFinancial.asmx/GrabarCredito?pEntidad=FONSODI&pCod_Persona=".$request->codigo."&pMontoSoli=".$serieTotalValor."&pPlazo=".$request->cuotas."&pTipoCredito=8&pPeriodicidad=1&pDestino=".$producto->producto_provedor->codigo."&pFormaPago=2&pEmpresa=1&pCod_Oficina=1&pObservacion=&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico."&pIdentProveedor=".$producto->producto_provedor->nit;
+       $urlCredito = "http://190.145.4.62/WebServices/WSAppFinancial.asmx/GrabarCredito?pEntidad=FONSODI&pCod_Persona=".$request->codigo."&pMontoSoli=".$serieTotalValor."&pPlazo=".$request->cuotas."&pTipoCredito=8&pPeriodicidad=1&pDestino=".$producto->producto_provedor->codigo."&pFormaPago=2&pEmpresa=1&pCod_Oficina=1&pObservacion=&pVr_compra=".$serieTotalCompra."&pVr_beneficio=".$beneficio."&pVr_Mercado=".$serieTotalPublico."&pIdentProveedor=".$producto->producto_provedor->nit;
 
        try {
          $credito = file_get_contents($urlCredito);

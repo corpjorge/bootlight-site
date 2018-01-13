@@ -39,7 +39,7 @@ class ProveedorController extends Controller
       $servicios = simplexml_load_string($response_servicios);
 
       //Líneas administradas por cartera
-      $url_cartera = "http://190.145.4.61/WebServicesDemo/WSCredito.asmx/ListaDestinacionCredito?pCod_linea_Credito=8";
+      $url_cartera = "http://190.145.4.62/WebServices/WSCredito.asmx/ListaDestinacionCredito?pCod_linea_Credito=8";
       $response_cartera = file_get_contents($url_cartera);
       $cartera_lineas = simplexml_load_string($response_cartera);
 
