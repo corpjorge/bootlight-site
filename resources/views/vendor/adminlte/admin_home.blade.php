@@ -31,6 +31,7 @@
 	@foreach ($menu_admins as $menu_admin)
 			@if ($menu_admin->estado->id == '1' )
 				@if ($adminpermiso->permiso_area_admin->id == $menu_admin->id )
+				@if(Auth::guard('admin_user')->user()->id == $adminpermiso->admin_user_id)
 					<div class="col-lg-3 col-xs-6">
 						<div class="small-box {{$menu_admin->estilo}}">
 							<div class="inner">
@@ -43,6 +44,7 @@
 							<a href="{{ url($menu_admin->ruta) }}"class="small-box-footer">Ingresar <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
+				@endif	
 				@endif
 			@endif
 	@endforeach

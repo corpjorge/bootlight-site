@@ -59,6 +59,7 @@ function current_page($url = '/'){
             @foreach ($menu_admins as $menu_admin)
               @if ($menu_admin->estado->id == '1' )
                @if ($adminpermiso->permiso_area_admin->id == $menu_admin->id )
+               @if(Auth::guard('admin_user')->user()->id == $adminpermiso->admin_user_id)
                <li class="treeview
                  <?php
                    foreach ($menu_admin_subs as $menu_admin_sub)
@@ -83,6 +84,7 @@ function current_page($url = '/'){
                       @endforeach
                     </ul>
                 </li>
+                @endif
                 @endif
               @endif
             @endforeach
