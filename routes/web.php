@@ -128,7 +128,8 @@ Route::group(['middleware' => 'adminuser'], function () {
             Route::get('admin_boleteria/seriales/ver/{id}/edit', 'SerialController@edit');
 
             Route::get('admin_boleteria/asignacion', 'AsignarController@index');
-            Route::get('admin_boleteria/asignacion/add', 'AsignarController@create');
+            //Route::get('admin_boleteria/asignacion/add/', 'AsignarController@create');
+            Route::get('admin_boleteria/asignacion/add/{id}', 'AsignarController@create');
             Route::post('admin_boleteria/asignacion/add', 'AsignarController@store');
             Route::get('admin_boleteria/asignacion/ver/{id}', 'AsignarController@show');
             Route::get('admin_boleteria/asignacion/ver/{id}/edit', 'AsignarController@edit');
@@ -138,7 +139,9 @@ Route::group(['middleware' => 'adminuser'], function () {
         });
         Route::group(['middleware' => 'coordinador'], function () {
             Route::get('admin_boleteria/coordinador', 'CoordinadorController@index');
-            Route::put('admin_boleteria/coordinador/aprobar/{id}', 'CoordinadorController@aprobar');
+            //Route::put('admin_boleteria/coordinador/aprobar/{id}', 'CoordinadorController@aprobar');
+            Route::put('admin_boleteria/coordinador/aprobar/', 'CoordinadorController@aprobar');
+            Route::get('admin_boleteria/coordinador/aprobarTodos/', 'CoordinadorController@aprobarTodos');
             Route::put('admin_boleteria/coordinador/negar/{id}', 'CoordinadorController@negar');
 
             Route::get('admin_boleteria/vender', 'VenderController@index');

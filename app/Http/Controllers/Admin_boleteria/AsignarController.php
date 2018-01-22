@@ -22,7 +22,8 @@ class AsignarController extends Controller
     public function index()
     {
         $seriales  = Serial::all()->where('estado_actual_id', '!=', 1)->where('admin_user_id', '!=', '')->where('estado_actual_id', '!=', 5);
-        return view('adminlte::admin_boleteria.asignacion.asignacion', ['seriales' => $seriales]);
+        $productos  = Producto::all();
+        return view('adminlte::admin_boleteria.asignacion.asignacion', ['seriales' => $seriales, 'productos' => $productos]);
     }
 
     /**
@@ -30,12 +31,16 @@ class AsignarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        /*
         $seriales  = Serial::all()->where('admin_user_id', '=', '')->where('estado_actual_id', '!=', 1)->where('estado_actual_id', '!=', 5);
         $productos  = Producto::all();
+        */
+        $seriales  = Serial::all()->where('admin_user_id', '=', '')->where('estado_actual_id', '!=', 1)->where('estado_actual_id', '!=', 5)->where('producto_id',$id);
+        $producto  = Producto::find($id);
         $admin_usuarios  = AdminUser::all();
-        return view('adminlte::admin_boleteria.asignacion.add', [ 'seriales' => $seriales, 'productos' => $productos, 'admin_usuarios' => $admin_usuarios]);
+        return view('adminlte::admin_boleteria.asignacion.add', compact('producto'),[ 'seriales' => $seriales, 'admin_usuarios' => $admin_usuarios]);
     }
 
     /**

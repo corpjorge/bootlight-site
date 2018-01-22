@@ -37,6 +37,7 @@
              </div>
              <!-- /.box-header -->
              <div class="box-body">
+             	{!! Form::open(['url' => 'admin_boleteria/coordinador/aprobar', 'method' => 'PUT']) !!}
                <table id="example" class="table table-bordered table-striped">
                  <thead>
                  <tr>
@@ -60,23 +61,42 @@
 										 <td>{{$serial->numero}}</td>
 										 <td><span class="label label-{{$serial->serial_estado->estilo}}">{{$serial->serial_estado->tipo}}</span></td>
 										 <td>
-											 <form action="{{ url('admin_boleteria/coordinador/aprobar/'.$serial->id)}}" method="post" style="display:inline;">
-											 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-				 							 {{method_field('PUT')}}
-											 <button type='submit' style="border: none; background: none; color:#3c8dbc;"><i class="fa fa-fw fa-check"></i>Aprobar</button>
-										   </form>
+										 	
+										 	{{--
+											 @if ($serial->admin_user_id == Auth::guard('admin_user')->user()->id)
+												 <form action="{{ url('admin_boleteria/coordinador/aprobar/'.$serial->id)}}" method="post" style="display:inline;">
+													 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+													 {{method_field('PUT')}}
+													 <button type='submit' style="border: none; background: none; color:#3c8dbc;"><i class="fa fa-fw fa-check"></i>Aprobar</button>
+												 </form>
+												 <form action="{{ url('admin_boleteria/coordinador/negar/'.$serial->id)}}"   method="post" style="display:inline;">
+													 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+													 {{method_field('PUT')}}
+													 <button type='submit' style="border: none; background: none; color: #bc3c3c;"><i class="fa fa-fw fa-close"></i>Negar</button>
+												 </form>
+												@endif
+											--}}
 
-											 <form action="{{ url('admin_boleteria/coordinador/negar/'.$serial->id)}}"   method="post" style="display:inline;">
-											 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-				 							 {{method_field('PUT')}}
-											 <button type='submit' style="border: none; background: none; color: #bc3c3c;"><i class="fa fa-fw fa-close"></i>Negar</button>
-											 </form>
+											@if($serial->estado_actual_id == 3)	
+												<div class="form-group">
+								                  <div class="checkbox">
+								                    <label>
+								                      <input type="checkbox" name="serial[]" value="{{$serial->id}}">
+								                      Seleccionar
+								                    </label>
+								                  </div> 
+								                </div>
+								            @else
+								                Aprobado
+							                @endif
 
-
-								 </tr>
+										  </td>
 								 @endforeach
+                 <button type="submit" class="btn btn-primary" style="position: relative; left: 80%; margin-right: 7px;">Aprobar Seleccionados</button>
+						<a href="{{ url('admin_boleteria/coordinador/aprobarTodos')}}" class="btn btn-danger" style="position: relative; left: 80%;">Aprobar todo</a>
                  </tfoot>
                </table>
+               {!! Form::close() !!}
              </div>
              <!-- /.box-body -->
            </div>

@@ -64,13 +64,13 @@
 								     <input style="color:#555555"  type="number" class="form-control" id="Input1" name="venta" placeholder="$ Precio venta la unidad">
 							 </div>
 
-						@foreach ($productos as $producto)
+						{{--@foreach ($productos as $producto)--}}
 							<div class="panel panel-default">
 							  <div class="panel-heading">
-							    <h3 class="panel-title">{{$producto->nombre}}</h3>
+							    <h3 class="panel-title">{{$producto->nombre}}</h3> 
 							  </div>
 								@foreach ($seriales as $serial)
-									@if($serial->serial_producto->nombre == $producto->nombre )
+									{{--@if($serial->serial_producto->nombre == $producto->nombre )--}}
 									 <label style="padding: 3px;" for="{{$serial->numero}}">
 											 <ul class="todo-list">
 												 <li>
@@ -79,10 +79,10 @@
 												 </li>
 											 </ul>
 									   </label>
-								  @endif
+								 {{-- @endif--}}
 								 @endforeach
 							</div>
-						 @endforeach
+						{{-- @endforeach--}}
 
 					 <div class="box-footer">
 						 <button type="submit" class="btn btn-primary">Guardar</button>

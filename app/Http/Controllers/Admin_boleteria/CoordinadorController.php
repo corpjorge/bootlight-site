@@ -33,19 +33,48 @@ class CoordinadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function aprobar($id)
+    public function aprobar(Request $request)
     {
-        $serial = Serial::where('admin_user_id', '=', Auth::guard('admin_user')->user()->id)->where('id', $id)->first();
+        
+        
+        for ($i=0; $i < count($request->serial); $i++) { 
+       
+        $serial = Serial::where('admin_user_id', '=', Auth::guard('admin_user')->user()->id)->where('id', $request->serial[$i])->first();
         $serial->estado_actual_id = 1;
         $serial->save();
 
         $asignacion = new Asignacion();
         $asignacion->admin_user_id = Auth::guard('admin_user')->user()->id;
-        $asignacion->serial_id = $serial->id;
+        $asignacion->serial_id = $request->serial[$i];
         $asignacion->estado_id = 1;
         $asignacion->save();
+        }
+      
+        
 
         return redirect('admin_boleteria/coordinador');
+         
+    }
+
+    public function aprobarTodos()
+    {
+                
+        $seriales = Serial::where('admin_user_id', '=', Auth::guard('admin_user')->user()->id)->where('estado_actual_id',3)->get();
+
+        foreach ($seriales as $serial) { 
+            $serial->estado_actual_id = 1;
+            $serial->save();
+
+            $asignacion = new Asignacion();
+            $asignacion->admin_user_id = Auth::guard('admin_user')->user()->id;
+            $asignacion->serial_id = $serial->id;
+            $asignacion->estado_id = 1;
+            $asignacion->save();
+ 
+        }
+              
+        return redirect('admin_boleteria/coordinador');
+        
     }
 
     /**

@@ -17,16 +17,45 @@
 </section>
 <br>
 
-	<div class="container-fluid spark-screen">
-		<div class="row">
-
-			<div class="row">
+{{--
+<div class="row">
 				<a href="{{ url('/admin_boleteria/asignacion/add') }}" >
 					 <div class="col-md-1">
 							 <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
 					 </div>
 				</a>
 			</div><br>
+--}}
+
+<div class="container-fluid spark-screen">
+		<div class="row">
+	@foreach ($productos as $producto)
+		  @if($producto->producto_provedor->nit) 
+			 <div class="col-lg-2 col-xs-6">
+				 <div class="small-box bg-aqua">
+					 <center>
+					 <div class="inner">  <br>
+						 <p>{{$producto->nombre}}</p>
+							 
+					  </div>
+					</center>
+					 
+						<a href="{{ url('/admin_boleteria/asignacion/add/'.$producto->id) }}" class="small-box-footer">
+							Entrar <i class="fa fa-arrow-circle-right"></i>
+						</a> 
+				 
+					 
+					</div>
+				</div>
+
+		  @endif
+		@endforeach
+</div>
+</div>
+	<div class="container-fluid spark-screen">
+		<div class="row">
+
+			
 
 		@if(session()->has('message'))
 		 <div class="alert alert-success alert-dismissible">
@@ -35,6 +64,8 @@
 							 {{session()->get('message')}}
 						 </div>
 		@endif
+
+	
 
 		<div class="box">
              <div class="box-header">
