@@ -51,6 +51,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('boleteria/ver/pdf/{id}', 'Usuario\BoleteriaController@imp');
         Route::get('boleteria/productos/add', 'Usuario\BoleteriaController@create');
         Route::post('boleteria/productos/add', 'Usuario\BoleteriaController@store');
+        
+        Route::get('solicitud/productos', 'SolicitudProducto\SolicitudController@index');
+        Route::get('solicitud/solicitar', 'SolicitudProducto\SolicitudController@create');
+        Route::post('solicitud/solicitar', 'SolicitudProducto\SolicitudController@store'); 
+        Route::post('solicitud/productos/codigo/{id}', 'SolicitudProducto\SolicitudController@codigo');
+
     });
 
     Route::get('seguros', 'Seguro\SolicitudController@segurosvista');
@@ -93,6 +99,20 @@ Route::group(['middleware' => 'adminuser'], function () {
         Route::get('admin_servicios/pqrs/ver/{id}', 'Servicio\PqrsController@show');
         Route::get('admin_servicios/pqrs/descarga/{id}', 'Servicio\PqrsController@descarga');
         Route::put('admin_servicios/pqrs/{id}', 'Servicio\PqrsController@update');
+
+        Route::get('solicitudes/solicitados', 'SolicitudProducto\SolicitudController@solicitudes');
+        Route::get('solicitudes/productos', 'SolicitudProducto\ProductoController@index');
+        Route::get('solicitudes/productos/add', 'SolicitudProducto\ProductoController@create');
+        Route::get('solicitudes/productos/actualizar', 'SolicitudProducto\ProductoController@actualizar');
+        Route::get('solicitudes/solicitados/{id}', 'SolicitudProducto\SolicitudController@solicitudesShow');
+        Route::post('solicitudes/productos/add', 'SolicitudProducto\ProductoController@store');
+        Route::get('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@edit');
+        Route::post('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@update');
+        Route::post('solicitudes/solicitados/aprobar', 'SolicitudProducto\SolicitudController@aprobar');
+        Route::get('solicitudes/solicitados-excel', 'SolicitudProducto\SolicitudController@excel');
+        Route::get('solicitudes/solicitados-descarga/{archivo}', 'SolicitudProducto\SolicitudController@descarga');
+
+
     });
 
     Route::group(['namespace' => 'Admin_boleteria'], function () {
@@ -127,8 +147,7 @@ Route::group(['middleware' => 'adminuser'], function () {
             Route::put('admin_boleteria/seriales/{id}', 'SerialController@update');
             Route::get('admin_boleteria/seriales/ver/{id}/edit', 'SerialController@edit');
 
-            Route::get('admin_boleteria/asignacion', 'AsignarController@index');
-            //Route::get('admin_boleteria/asignacion/add/', 'AsignarController@create');
+            Route::get('admin_boleteria/asignacion', 'AsignarController@index');            
             Route::get('admin_boleteria/asignacion/add/{id}', 'AsignarController@create');
             Route::post('admin_boleteria/asignacion/add', 'AsignarController@store');
             Route::get('admin_boleteria/asignacion/ver/{id}', 'AsignarController@show');
