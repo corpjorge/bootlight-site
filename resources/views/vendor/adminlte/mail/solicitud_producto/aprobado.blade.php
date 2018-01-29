@@ -80,7 +80,7 @@
                       style='PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px'
                       align=left><FONT
                         style='FONT-SIZE: 14px; LINE-HEIGHT: 20px' color=#666666
-                        face='Arial, sans-serif'>Hola:  <BR><BR>Solicitud Realizada:</B>
+                        face='Arial, sans-serif'>Hola:  <BR><BR>Estimado Asociado su solicitud ha sido aprobada, por favor ingrese a través del siguiente link a la oficina virtual y realice la aceptación ingresando el código de seguridad enviado en este correo</B>
 
                         <BR><BR>
                         <TABLE style='BORDER-COLLAPSE: collapse' cellSpacing=0

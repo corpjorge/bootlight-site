@@ -102,11 +102,11 @@ class SolicitudController extends Controller
         $dato->observacion  = 'Pendiente por revisión';
         $dato->save();
 
-        $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+        $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);
-        $email = 'john.moreno@fyclsingenieria.com';
-        Mail::send(new Solicitud($email,$dato));
+        //$email = 'john.moreno@fyclsingenieria.com';
+        Mail::send(new Solicitud($xml_datos->email,$dato));
 
          
         session()->flash('message', 'Guardado correctamente');
@@ -132,7 +132,7 @@ class SolicitudController extends Controller
       }
       else{
         $rows = p_solicitud::where('estados_id',$id)->orderBy('id', 'desc')->paginate(30);
-        return view('adminlte::solicitud_producto.solicitud.show', [ 'rows' => $rows]);
+        return view('adminlte::solicitud_producto.solicitud.show', compact('id'), [ 'rows' => $rows]);
       } 
     }
 
@@ -169,6 +169,41 @@ class SolicitudController extends Controller
     public function excel()
     {
         $solicitudes = p_solicitud::where('estados_id',6)->get();
+
+        foreach ($solicitudes as $solicitud) {
+            $result[] = $tabla = [
+                                    'Asociado' => $solicitud->user->name, 
+                                    'Producto' => $solicitud->producto->name, 
+                                    'cod_asociado' => $solicitud->cod_asociado,
+                                    'cedula' => $solicitud->cedula,
+                                    'celular' => $solicitud->celular,
+                                    'monto' => $solicitud->monto,
+                                    'cuotas' => $solicitud->cuotas,
+                                    'observacion' => $solicitud->observacion
+                                ];
+        }
+
+        if (empty($result)) {
+            session()->flash('error', 'Resultado vacíos');
+            return redirect()->back();
+        }
+
+        Excel::create(
+            'solicitudes',
+            function ($excel) use ($result) {
+                $excel->sheet(
+                    'solicitudes',
+                    function ($sheet) use ($result) {
+                        $sheet->fromArray($result);
+                    }
+                );
+            }
+        )->export('xls');
+    }
+
+    public function excelEstados(Request $request, $id)
+    {
+        $solicitudes = p_solicitud::where('estados_id',$id)->where('created_at',$request->fecha)->get();
 
         foreach ($solicitudes as $solicitud) {
             $result[] = $tabla = [
@@ -263,16 +298,16 @@ class SolicitudController extends Controller
         $row->save(); 
 
 
-        $url_datos = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+        $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);
-        $email = 'john.moreno@fyclsingenieria.com';
+        //$email = 'john.moreno@fyclsingenieria.com';
 
         if ($request->Aprobar) {                               
-            Mail::send(new Aprobado($email,$row,$request->codigo));
+            Mail::send(new Aprobado($xml_datos->email,$row,$request->codigo));
         }
         if ($request->Negar) {        
-             Mail::send(new Negado($email,$row));
+             Mail::send(new Negado($xml_datos->email,$row));
         }
 
         session()->flash('message', 'Guardado correctamente');

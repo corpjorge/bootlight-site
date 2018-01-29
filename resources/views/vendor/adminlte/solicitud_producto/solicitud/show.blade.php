@@ -17,26 +17,41 @@
 </section>
 <br>
 
-
-<section class="content container-fluid">
-
-      <a class="btn btn-app" href="{{ url('solicitudes/solicitados')}}">
+ <a class="btn btn-app" href="{{ url('solicitudes/solicitados')}}">
         <i class="fa fa-arrow-left"></i> Atras
       </a>
 
+<section class="content container-fluid">
+
+     
+
+
+
+{!! Form::open(['url' => 'solicitudes/solicitados-excelEstado/'.$id, 'method' => 'post']) !!}
+ <div class="col-xs-2" style="position: relative; left: 84%;">
+    <div class="input-group input-group-sm">
+      <input type="date" class="form-control" name="fecha">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-info btn-flat"><i aria-hidden="true" class="fa fa-download"></i></button>
+          </span>
+    </div>
+ </div>
+ {!! Form::close() !!} <br><br>
+
+
       @if(session()->has('message'))
-                     <div class="alert alert-success alert-dismissible">
-                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                               <h4><i class="icon fa fa-check"></i> Correcto!</h4>
-                               {{session()->get('message')}}
-                             </div>
-                    @endif
+       <div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h4><i class="icon fa fa-check"></i> Correcto!</h4>
+                 {{session()->get('message')}}
+               </div>
+      @endif
  
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Actividades</h3> <a href=""><i class="fa fa-refresh"></i></a>
+              <h3 class="box-title">Actividades </h3> <a href=""><i class="fa fa-refresh"></i></a>
 
 
             </div>

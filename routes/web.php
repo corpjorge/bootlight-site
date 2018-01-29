@@ -110,6 +110,7 @@ Route::group(['middleware' => 'adminuser'], function () {
         Route::post('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@update');
         Route::post('solicitudes/solicitados/aprobar', 'SolicitudProducto\SolicitudController@aprobar');
         Route::get('solicitudes/solicitados-excel', 'SolicitudProducto\SolicitudController@excel');
+        Route::post('solicitudes/solicitados-excelEstado/{id}', 'SolicitudProducto\SolicitudController@excelEstados');
         Route::get('solicitudes/solicitados-descarga/{archivo}', 'SolicitudProducto\SolicitudController@descarga');
 
 
