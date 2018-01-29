@@ -80,7 +80,7 @@
                       style='PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px'
                       align=left><FONT
                         style='FONT-SIZE: 14px; LINE-HEIGHT: 20px' color=#666666
-                        face='Arial, sans-serif'>Hola: {{$correo->name}} <BR><BR>El siguiente usuario desea adquirir boletas:</B>
+                        face='Arial, sans-serif'>Hola: <BR><BR>El siguiente usuario desea adquirir boletas:</B>
 
                         <BR><BR>
                         <TABLE style='BORDER-COLLAPSE: collapse' cellSpacing=0
@@ -143,8 +143,12 @@
                                 align=center><FONT
                                 style='FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif;'>
 																@foreach($productosname as $productos)
-																	{{$productos}}<br>
+																	{{$productos}}<br> 
 																@endforeach
+                                @foreach($cantidad as $cantidad)
+                                  {{$cantidad}}<br> 
+                                @endforeach
+                                
 															 </FONT></TD>
 
 															</TR></TBODY></TABLE><BR><BR><BR><BR>

@@ -11,18 +11,19 @@ class Boleteria extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $correo,$productosname,$usuario;
+    public $correo,$productosname,$usuario,$cantidad;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($correo,$productosname,$usuario)
+    public function __construct($correo,$productosname,$usuario,$cantidad)
     {
           $this->correo = $correo;
           $this->productosname = $productosname;
           $this->usuario = $usuario;
+          $this->cantidad = $cantidad;
     }
 
     /**
@@ -35,7 +36,7 @@ class Boleteria extends Mailable
       return $this->view('adminlte::mail.boleteria.boleteria')
                   ->from('webmaster@fonsodi.com')
                   ->with('name','Solicitud de boletas')
-                  ->to($this->correo->email)
+                  ->to($this->correo)
                   ->subject('Solicitud de boletas');
     }
 }

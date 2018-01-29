@@ -53,8 +53,8 @@
 			          <br>
 								<b>Referencia:</b> {{$venta->referencia}}<br>
 			          <b>Radicado:</b> {{$venta->radicado}}<br>
-								<b>Fecha primer pago:</b>{{\Carbon\Carbon::parse($venta->fecha_primer_pago)->format('d-m-Y')}}<br>
-								<b style="color: #ff4949;" >Transferencia solidaria:</b> <b style="color: #3c8dbc;">${{number_format($ganancia) }}</b><br>
+								<b>Fecha:</b>{{\Carbon\Carbon::parse($venta->fecha_primer_pago)->format('d-m-Y')}}<br>
+								{{--<b style="color: #ff4949;" >Transferencia solidaria:</b> <b style="color: #3c8dbc;">${{number_format($ganancia) }}</b><br>--}}
 
 
 			        </div>

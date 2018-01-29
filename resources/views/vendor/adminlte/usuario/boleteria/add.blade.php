@@ -61,7 +61,8 @@
 										 <ul class="todo-list">
 				                <li>
 					                  <input name="producto[]" id="{{$producto}}" type="checkbox" value="{{$producto}}">
-					                  <span class="text">{{$producto}}</span>
+					                  <span class="text">{{$producto}}</span> 
+					                  <input name="productoCANT[]" id="{{$producto}}" type="number" value="{{$producto}}" style="width: 80px" placeholder="Cantidad" min="1">
 				                </li>
 			              </ul>
 									</label>

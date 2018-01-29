@@ -93,12 +93,22 @@ class BoleteriaController extends Controller
         $productos = $request->producto;
         foreach ($productos as $producto) {
           $productosname[] = $producto;
+          
         }
-
-        $correo = AdminUser::where('ciudad',$usuario->cuidad)->first();
-        Mail::to($correo->email, $correo->name,$productosname,
-                 $usuario->cedula,$usuario->usuario->name,$usuario->usuario->email)
-         ->send(new Correoboleteria($correo, $productosname,$usuario));
+        $productoCANT = $request->productoCANT;
+        foreach ($productoCANT as $productoCAN) {
+          $cantidad[] = $productoCAN;
+        }
+         
+          //$correo = AdminUser::where('ciudad','LIKE','%'.$usuario->cuidad.'%')->first();
+          
+        $correo = "atencionasociados@fonsodi.com";
+        //$correo = "corpjorge@hotmail.com";
+        /*  Mail::to($correo, 'atencionasociados@fonsodi.com',$productosname,
+                 $usuario->cedula,$usuario->usuario->name,$usuario->usuario->email) 
+          ->send(new Correoboleteria($correo, $productosname,$usuario));
+          */
+          Mail::send(new Correoboleteria($correo, $productosname,$usuario,$cantidad));
 
         session()->flash('message', 'Se le ha informado a el Comercial más cercano a su tienda para que pueda informarle sobre los productos que desea adquirir');
         return redirect('boleteria/productos/add');
