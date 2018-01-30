@@ -104,10 +104,10 @@ class SolicitudController extends Controller
 
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
-        $xml_datos = simplexml_load_string($response_xml_datos);
-        //$email = 'john.moreno@fyclsingenieria.com';
-        Mail::send(new Solicitud($xml_datos->email,$dato));
-
+        $xml_datos = simplexml_load_string($response_xml_datos);  
+        $email = (string)$xml_datos->email; 
+        //$email = 'freddym_2@hotmail.com';
+        Mail::send(new Solicitud($email,$dato));
          
         session()->flash('message', 'Guardado correctamente');
         return redirect('solicitud/productos'); 
@@ -302,12 +302,13 @@ class SolicitudController extends Controller
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);
         //$email = 'john.moreno@fyclsingenieria.com';
+        $email = (string)$xml_datos->email; 
 
         if ($request->Aprobar) {                               
-            Mail::send(new Aprobado($xml_datos->email,$row,$request->codigo));
+            Mail::send(new Aprobado($email,$row,$request->codigo));
         }
         if ($request->Negar) {        
-             Mail::send(new Negado($xml_datos->email,$row));
+             Mail::send(new Negado($email,$row));
         }
 
         session()->flash('message', 'Guardado correctamente');
