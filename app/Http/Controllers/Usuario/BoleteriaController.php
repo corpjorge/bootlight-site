@@ -92,8 +92,7 @@ class BoleteriaController extends Controller
         $usuario = User::detalle();
         $productos = $request->producto;
         foreach ($productos as $producto) {
-          $productosname[] = $producto;
-          
+          $productosname[] = $producto;          
         }
         $productoCANT = $request->productoCANT;
         foreach ($productoCANT as $productoCAN) {
@@ -102,7 +101,7 @@ class BoleteriaController extends Controller
          
           //$correo = AdminUser::where('ciudad','LIKE','%'.$usuario->cuidad.'%')->first();
           
-        $correo = "atencionasociados@fonsodi.com";
+        $correo = "administrativa@fonsodi.com";
         //$correo = "corpjorge@hotmail.com";
         /*  Mail::to($correo, 'atencionasociados@fonsodi.com',$productosname,
                  $usuario->cedula,$usuario->usuario->name,$usuario->usuario->email) 
