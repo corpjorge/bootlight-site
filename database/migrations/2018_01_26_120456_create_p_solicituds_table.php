@@ -28,6 +28,7 @@ class CreatePSolicitudsTable extends Migration
             $table->string('cuotas')->nullable();
             $table->string('taza')->nullable();
             $table->string('codigo')->nullable();
+            $table->string('obs', '670')->nullable();
             $table->string('observacion', '670')->nullable();
             $table->string('img')->nullable();
             $table->timestamps();

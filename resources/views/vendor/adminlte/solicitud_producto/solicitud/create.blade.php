@@ -51,7 +51,7 @@
                     <div class="box-body">                      
                       <div class="form-group">
                         <label>Productos</label>
-                        <select class="form-control" name="producto" required>
+                        <select class="form-control" name="producto" id="producto_solicitud" required>
                           <option value="">Seleccionar</option>  
                           @foreach( $rows as $key)
                             <option value="{{$key->id}}">{{$key->name}}</option>             
@@ -61,7 +61,7 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">Valor del Monto</label>
                         <input style="color: black;" type="number" class="form-control" id="monto" name="monto" placeholder="$ 10000" min="1" max="1000000" required>
-                      </div>
+                      </div>                      
                       <div class="form-group">
                         <label for="exampleInputEmail1">Meses</label>
                         <input style="color: black;" type="number" class="form-control" id="cuota" name="cuota" placeholder="6" min="1" max="6" required>
@@ -69,6 +69,10 @@
                       <div class="form-group">
                         <label>Numero de Celular</label>
                         <input name="celular" class="form-control" pattern="[0-9]{10}" required="" type="tel" title="10 Dígitos" oninvalid="setCustomValidity('Ingrese un número de celular correcto')" oninput="setCustomValidity('')">
+                      </div>
+                      <div class="form-group">
+                        <label>Observaciones</label>
+                        <input style="color: black;" name="text" class="form-control" name="observaciones">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputFile">Adjuntar desprendible de pago </label>
@@ -133,6 +137,8 @@
                   </form>
                 </div></div>
 
+
+ 
  
 	</div>
 @endsection

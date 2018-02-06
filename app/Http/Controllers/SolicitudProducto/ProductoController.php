@@ -133,7 +133,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto  = p_producto::find($id);
+        return view('adminlte::solicitud_producto.producto.edit', compact('producto')); 
     }
 
     /**
@@ -145,7 +146,23 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->Validate($request,[
+            'cuota_min' => 'required|',
+            'cuota_max' => 'required|',
+            'monto_min' => 'required|',
+            'monto_max' => 'required|',            
+        ]);
+
+        $dato = p_producto::find($id);   
+        $dato->cuota_min  = $request->cuota_min;    
+        $dato->cuota_max  = $request->cuota_max;    
+        $dato->monto_min  = $request->monto_min;    
+        $dato->monto_max  = $request->monto_max;    
+        $dato->url  = $request->url;    
+        $dato->save();
+
+        session()->flash('message', 'Guardado correctamente');
+        return redirect('solicitudes/productos/'.$id.'/edit'); 
     }
 
     /**

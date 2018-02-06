@@ -55,7 +55,7 @@ class SolicitudController extends Controller
           return view('adminlte::solicitud_producto.solicitud.negado');            
         }
         else{
-          $rows = p_producto::where('estados_id',1)->get();
+          $rows = p_producto::where('estados_id',1)->where('cuota_min','!=',0)->get();
           return view('adminlte::solicitud_producto.solicitud.create', compact('usuario'),[ 'rows' => $rows]);
         }
     }
@@ -99,6 +99,7 @@ class SolicitudController extends Controller
         $dato->taza  = 0;
         $dato->codigo  = str_random(7);
         $dato->img  = $nombre.'.'.$fileType;      
+        $dato->obs  = $request->observaciones;
         $dato->observacion  = 'Pendiente por revisión';
         $dato->save();
 
@@ -106,7 +107,7 @@ class SolicitudController extends Controller
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);  
         $email = (string)$xml_datos->email; 
-        //$email = 'freddym_2@hotmail.com';
+        $email = 'corpjorge@hotmail.com';
         Mail::send(new Solicitud($email,$dato));
          
         session()->flash('message', 'Guardado correctamente');

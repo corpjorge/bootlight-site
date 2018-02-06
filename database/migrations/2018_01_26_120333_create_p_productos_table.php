@@ -21,6 +21,11 @@ class CreatePProductosTable extends Migration
             $table->integer('estados_id')->unsigned()->nullable();
             $table->foreign('estados_id')->references('id')->on('estados');
             $table->integer('linea');
+            $table->integer('cuota_min')->nullable();
+            $table->integer('cuota_max')->nullable();
+            $table->integer('monto_min')->nullable();
+            $table->integer('monto_max')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

@@ -80,7 +80,7 @@
                       style='PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px'
                       align=left><FONT
                         style='FONT-SIZE: 14px; LINE-HEIGHT: 20px' color=#666666
-                        face='Arial, sans-serif'>Hola:  <BR><BR>Estimado asociado su solicitud ha sido negada, si desea mayor información por favor comuníquese al número celular 312XXXXXXX</B>
+                        face='Arial, sans-serif'>Hola:  <BR><BR>Estimado asociado su solicitud por el momento no ha sido aprobada, ya que no cumple con las condiciones para la aprobación inmediata.  Muy pronto nuestros coordinadores comerciales se comunicaran con usted para asesorarle con su solicitud o si desea mayor información por favor comuníquese al número celular 312XXXXXXX</B>
 
                         <BR><BR>
                         <TABLE style='BORDER-COLLAPSE: collapse' cellSpacing=0

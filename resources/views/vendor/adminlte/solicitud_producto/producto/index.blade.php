@@ -48,7 +48,8 @@
                  <tr>
 									 <th>Codigo</th>
 									 <th>Nombre</th>
-									 <th>linea</th>                   
+									 <th>linea</th> 
+									 <th>Editar</th>									                   
 									 <th>Fecha</th>
                  </tr>
                  </thead>
@@ -66,6 +67,7 @@
 
 										 </td>										
 										
+										 <td><a href="{{ url('solicitudes/productos/'.$producto->id.'/edit')}}"><i class="fa fa-edit"></i></a></td>
 										 <td>{{$producto->created_at->diffForHumans()}}</td>
 								 </tr>
 								 @endforeach

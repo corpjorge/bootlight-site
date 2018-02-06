@@ -80,7 +80,7 @@
                       style='PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px'
                       align=left><FONT
                         style='FONT-SIZE: 14px; LINE-HEIGHT: 20px' color=#666666
-                        face='Arial, sans-serif'>Hola:   <BR><BR>Estimado Asociado su solicitud ha sido recibida y se encuentra en este momento siendo gestionada, en unas horas recibirá la respuesta vía correo electrónico</B>
+                        face='Arial, sans-serif'>Hola:   <BR><BR>Estimado Asociado su solicitud ha sido recibida y se encuentra en este momento siendo gestionada, en 3 horas recibirá la respuesta vía correo electrónico, recuerde que podrá también hacer seguimiento a sus solicitudes por medio de este módulo en su oficina virtual.</B>
 
                         <BR><BR>
                         <TABLE style='BORDER-COLLAPSE: collapse' cellSpacing=0
