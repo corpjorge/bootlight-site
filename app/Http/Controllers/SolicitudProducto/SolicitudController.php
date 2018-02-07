@@ -107,7 +107,7 @@ class SolicitudController extends Controller
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);  
         $email = (string)$xml_datos->email; 
-        $email = 'corpjorge@hotmail.com';
+        //$email = 'corpjorge@hotmail.com';
         Mail::send(new Solicitud($email,$dato));
          
         session()->flash('message', 'Guardado correctamente');

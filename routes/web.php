@@ -104,7 +104,7 @@ Route::group(['middleware' => 'adminuser'], function () {
         Route::get('solicitudes/productos', 'SolicitudProducto\ProductoController@index');
         Route::get('solicitudes/productos/add', 'SolicitudProducto\ProductoController@create');
         Route::get('solicitudes/productos/{id}/edit', 'SolicitudProducto\ProductoController@edit');
-        Route::post('solicitudes/productos/{id}', 'SolicitudProducto\ProductoController@update');
+        Route::post('solicitudes/productos/update/{id}', 'SolicitudProducto\ProductoController@update');
         Route::get('solicitudes/productos/actualizar', 'SolicitudProducto\ProductoController@actualizar');
         Route::get('solicitudes/solicitados/{id}', 'SolicitudProducto\SolicitudController@solicitudesShow');
         Route::post('solicitudes/productos/add', 'SolicitudProducto\ProductoController@store');

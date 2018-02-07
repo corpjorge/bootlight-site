@@ -26,7 +26,7 @@
                   </div>
                   <!-- /.box-header -->
                   <!-- form start -->
-                  <form role="form" action="{{ url('solicitudes/productos/'.$producto->id) }}" method="post">
+                  <form role="form" action="{{ url('solicitudes/productos/update/'.$producto->id) }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           
                     @if (count($errors) > 0)

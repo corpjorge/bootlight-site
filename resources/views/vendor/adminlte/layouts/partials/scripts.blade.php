@@ -387,12 +387,14 @@ $(document).ready(function()
   @foreach($rows as $key)
    valorProducto = {{$key->id}};
     if(valorProducto == producto){
-      $("#monto").attr("min", "{{$key->cuota_min}}");
-      $("#monto").attr("max", "{{$key->cuota_max}}");
-      $("#monto").attr("placeholder", "maximo $ {{$key->cuota_max}}");
-      $("#cuota").attr("min", "{{$key->monto_min}}");
-      $("#cuota").attr("max", "{{$key->monto_max}}");
-      $("#cuota").attr("placeholder", "maximo {{$key->monto_max}} Meses");
+
+      $("#monto").attr("min", "{{$key->monto_min}}");
+      $("#monto").attr("max", "{{$key->monto_max}}");
+      $("#monto").attr("placeholder", "maximo {{$key->monto_max}} Meses");
+      $("#cuota").attr("min", "{{$key->cuota_min}}");
+      $("#cuota").attr("max", "{{$key->cuota_max}}");
+      $("#cuota").attr("placeholder", "maximo $ {{$key->cuota_max}}");
+
    }
     
   @endforeach
