@@ -9,6 +9,7 @@ use App\Model\solicitudProducto\p_producto;
 use App\Model\solicitudProducto\p_solicitud;
 
 use App\User;
+use App\AdminUser;
 use auth;
 use Validator;
 use DB;
@@ -134,7 +135,8 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $producto  = p_producto::find($id);
-        return view('adminlte::solicitud_producto.producto.edit', compact('producto')); 
+        $user = AdminUser::where('ciudad',$producto->id)->first();   
+        return view('adminlte::solicitud_producto.producto.edit', compact('producto', 'user')); 
     }
 
     /**
@@ -151,6 +153,8 @@ class ProductoController extends Controller
             'cuota_max' => 'required|',
             'monto_min' => 'required|',
             'monto_max' => 'required|',            
+            'correo' => 'required|', 
+            'tipo' => 'required|',            
         ]);
 
         $dato = p_producto::find($id);   
@@ -158,9 +162,29 @@ class ProductoController extends Controller
         $dato->cuota_max  = $request->cuota_max;    
         $dato->monto_min  = $request->monto_min;    
         $dato->monto_max  = $request->monto_max;    
+        $dato->tipo  = $request->tipo;    
         $dato->url  = $request->url;    
         $dato->save();
 
+        echo $request->nombre;
+
+        $user = AdminUser::where('ciudad',$id)->first(); 
+
+        if ($user) {  
+         $user->email = $request->correo;
+         $user->save();
+        }
+        else{
+     
+          $nuevoUser = new AdminUser();
+          $nuevoUser->name = $request->nombre;
+          $nuevoUser->email = $request->correo;
+          $nuevoUser->password = '-';
+          $nuevoUser->ciudad = $id;
+          $nuevoUser->role_id = 8;
+          $nuevoUser->save();
+        }
+  
         session()->flash('message', 'Guardado correctamente');
         return redirect('solicitudes/productos/'.$id.'/edit'); 
     }

@@ -394,6 +394,14 @@ $(document).ready(function()
       $("#cuota").attr("min", "{{$key->cuota_min}}");
       $("#cuota").attr("max", "{{$key->cuota_max}}");
       $("#cuota").attr("placeholder", "maximo $ {{$key->cuota_max}}");
+      @if($key->url != NULL)
+      $('#idurl').show();
+      $("#urllink").text('{{$key->url}}');
+      $("#urllink").attr("href", "{{$key->url}}"); 
+      @else
+      $('#idurl').hide();
+        
+      @endif
 
    }
     

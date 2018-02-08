@@ -74,6 +74,9 @@
                         <label>Observaciones</label>
                         <input style="color: black;" name="text" class="form-control" name="observaciones">
                       </div>
+                      <div id="idurl" class="form-group" style="display: none;">                       
+                        Estimado asociado si desea conocer las características del producto a solicitar ingrese a: <a id="urllink" target="_blank">Clic Aquí</a>
+                      </div>
                       <div class="form-group">
                         <label for="exampleInputFile">Adjuntar desprendible de pago </label>
                         <input name="file" type="file" id="file" accept="image/*,application/pdf" required>

@@ -52,6 +52,7 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">Nombre</label>
                         <input style="color: black;" type="text" class="form-control" value="{{$producto->name}}" disabled>
+                        <input style="color: black;" type="hidden" class="form-control" value="{{$producto->name}}" name="nombre">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Meses Minimo</label>
@@ -74,8 +75,28 @@
                       </div>
 
                       <div class="form-group">
+                        <label>Tipo</label>
+                        <select class="form-control" name="tipo" id="producto_solicitud" required>
+                          <option value="value="{{$producto->tipo}}" ">Seleccionar</option> 
+                          <option value="1">Credito</option> 
+                          <option value="2">Servicio</option> 
+                           
+                             
+                        </select>
+                      </div>
+
+                      <div class="form-group">
                         <label for="exampleInputEmail1">URL</label>
                         <input style="color: black;" type="text" class="form-control" name="url" value="{{$producto->url}}">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Correo</label>
+                        @if($user)
+                        <input style="color: black;" type="email" class="form-control" name="correo" value="{{$user->email}}">
+                        @else
+                        <input style="color: black;" type="email" class="form-control" name="correo" >                        
+                        @endif
                       </div>
  
 

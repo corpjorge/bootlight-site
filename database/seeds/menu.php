@@ -96,6 +96,12 @@ class menu extends Seeder
         $Area_item->descripcion='';
         $Area_item->save();
 
+        $Area_item = new Area_item_admin();
+        $Area_item->area_admin_id=8;
+        $Area_item->name='Desembolso';
+        $Area_item->descripcion='';
+        $Area_item->save();
+
         $Menu_admin = new Menu_admin();
         $Menu_admin->orden=8;
         $Menu_admin->area_admin_id=8;
@@ -125,6 +131,17 @@ class menu extends Seeder
         $Menu_users_sub->estado_id=1;
         $Menu_users_sub->estilo='';
         $Menu_users_sub->role_id=7;
+        $Menu_users_sub->save();
+
+        $Menu_users_sub = new Menu_admin_sub();
+        $Menu_users_sub->menu_admin_id=8;
+        $Menu_users_sub->orden=3;
+        $Menu_users_sub->areas_item_admin_id=27;
+        $Menu_users_sub->icono='';
+        $Menu_users_sub->ruta='solicitudes/desembolso';
+        $Menu_users_sub->estado_id=1;
+        $Menu_users_sub->estilo='';
+        $Menu_users_sub->role_id=8;
         $Menu_users_sub->save();
 
 

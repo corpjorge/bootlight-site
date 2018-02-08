@@ -25,6 +25,7 @@ class CreatePProductosTable extends Migration
             $table->integer('cuota_max')->nullable();
             $table->integer('monto_min')->nullable();
             $table->integer('monto_max')->nullable();
+            $table->integer('tipo')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });

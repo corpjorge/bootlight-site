@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('solicitud/solicitar', 'SolicitudProducto\SolicitudController@create');
         Route::post('solicitud/solicitar', 'SolicitudProducto\SolicitudController@store'); 
         Route::post('solicitud/productos/codigo/{id}', 'SolicitudProducto\SolicitudController@codigo');
+        Route::get('solicitud/comprobante/{id}', 'SolicitudProducto\SolicitudController@show');        
 
     });
 
@@ -82,6 +83,7 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::get('admin_help', 'Admin\AdminController@help');
     Route::post('admin_help', 'Admin\AdminController@help');
     Route::get('datos_usuario/{id}', 'Usuario\Users_detalleController@datosUsuario');
+
 
     Route::group(['middleware' => 'coordinador'], function () {
         Route::get('admin_evento', 'Evento\EventoController@indexadmin');
@@ -117,6 +119,10 @@ Route::group(['middleware' => 'adminuser'], function () {
 
 
     });
+
+    Route::get('solicitudes/desembolso', 'SolicitudProducto\SolicitudController@desembolso');
+    Route::get('solicitudes/desembolso/{id}', 'SolicitudProducto\SolicitudController@desembolsar');
+    Route::post('solicitudes/desembolso/{id}', 'SolicitudProducto\SolicitudController@udpateDesembolsar');
 
     Route::group(['namespace' => 'Admin_boleteria'], function () {
         Route::group(['middleware' => 'jefe'], function () {

@@ -74,6 +74,7 @@
 							<th>Meses</th>
 							<th>Fecha</th>
 							<th>Estado</th>							
+							<th>Comprobante</th>							
 							<th>Observacion</th>							
 							<th> </th>							
 						</tr>
@@ -95,6 +96,13 @@
 								<span class="label label-{{$key->estado->estilo}}">Entregado</span>
 								@endif
 	
+							</td>
+							<td>
+								@if($key->estado->id == 6)
+								 <a href="{{url('solicitud/comprobante/'.$key->id)}}">Ver</a>
+								@else
+								- 
+								@endif
 							</td>
 							<td>{{$key->observacion}}</td>
 							<th>

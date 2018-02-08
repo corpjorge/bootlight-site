@@ -10,6 +10,7 @@ use App\Model\solicitudProducto\p_solicitud;
 use App\Mail\SolicitudProducto\Solicitud;
 use App\Mail\SolicitudProducto\Negado;
 use App\Mail\SolicitudProducto\Aprobado;
+use App\Mail\SolicitudProducto\Desembolsar;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\User;
@@ -253,8 +254,10 @@ class SolicitudController extends Controller
      */
     public function show($id)
     {
-        //
+      $row = p_solicitud::find($id);
+      return view('adminlte::solicitud_producto.solicitud.comprobante', compact('row'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -327,4 +330,52 @@ class SolicitudController extends Controller
     {
         //
     }
+
+    public function desembolso()
+    {
+      $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',1)->get();
+      return view('adminlte::solicitud_producto.solicitud.proveedor.desembolso', ['rows' => $rows ]);
+    }
+
+    public function desembolsar($id)
+    {
+      $row = p_solicitud::find($id);
+      return view('adminlte::solicitud_producto.solicitud.proveedor.desembolsar', ['row' => $row ]);
+    }
+
+    public function udpateDesembolsar(Request $request, $id)
+    {
+        $this->Validate($request,[           
+            'cedula' => 'required|',
+            'codigo' => 'required|',
+            'monto' => 'required|', 
+            'observaciones' => 'required|',  
+        ]);         
+        
+        $row = p_solicitud::find($id);
+        $row->estados_id = 5;
+        $row->monto = $request->monto;
+        $row->observacion = $request->observaciones;
+        $row->save(); 
+
+        $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
+        $response_xml_datos = file_get_contents($url_datos);
+        $xml_datos = simplexml_load_string($response_xml_datos);        
+        //$email = (string)$xml_datos->email; 
+        $email = 'corpjorge@hotmail.com';
+
+        if ($row->producto->tipo == 1) {
+           $mensaje = "Estimado Asociado el desembolso de su solicitud ha sido realizado, en un máximo de 24 horas tendrá los recursos transferidos a su cuenta, si desea recibir mayor información se puede comunicar al número de celular 312XXXXXXX";
+        }
+        else{
+          $mensaje = 'Estimado Asociado su solicitud de consumo fue aprobada exitosamente';
+        }       
+
+        Mail::send(new Desembolsar($email,$row,$mensaje)); 
+
+        session()->flash('message', 'Guardado correctamente');
+        return redirect('solicitudes/desembolso');
+         
+    }
+
 }
