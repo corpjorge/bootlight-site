@@ -84,7 +84,8 @@
                       </div>
                       <div class="checkbox">
                         <label>
-                          <a data-toggle="modal" data-target="#myModal">Ver términos y condiciones </a>
+                          <a href="{{ asset('CONDICIONES Y RESTRICCIONES OFICINA VIRTUAL.pdf')}}" target="_blank">Ver términos y condiciones </a>
+                        <!--  <a data-toggle="modal" data-target="#myModal">Ver términos y condiciones </a>-->
                         </label>
                       </div>
                       <div class="checkbox">
@@ -93,16 +94,17 @@
                         </label>
                       </div>
                     </div>
-
+<!--
                    <div id="myModal" class="modal fade" role="dialog">
                      <div class="modal-dialog">
 
-                       <!-- Modal content-->
+                 
                        <div class="modal-content">
                          <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                            <h4 class="modal-title">Tenga presente que:</h4>
                          </div>
+
                          <div class="modal-body">
                            <p>* FONSODI se reserva los derechos para borrar o eliminar sin previo aviso la información que se incluya.
 														 <br>
@@ -126,13 +128,13 @@
 														<br>
 														De acuerdo con la Ley Estatutaria 1581 de 2.012 de Protección de Datos y con el Decreto 1377 de 2.013, se informa al usuario que los datos consignados en el presente formulario serán incorporados en una base de datos responsabilidad de FONDO DE EMPLEADOS DE SODIMAC COLOMBIA FONSODI, siendo tratados con la finalidad de mantener contacto con los asociados o potenciales Asociados, a fin de ofrecer y gestionar los servicios ofrecidos directamente por FONSODI o a través de los convenios comerciales que buscar brindar tarifas beneficiosas para el Asociado y su grupo familiar. Usted puede ejercitar los derechos de acceso, corrección, supresión, revocación o reclamo por infracción sobre los datos, mediante escrito dirigido a FONDO DE EMPLEADOS DE SODIMAC COLOMBIA FONSODI a la dirección de correo electrónico protecciondedatos@fonsodi.com indicando en el asunto el derecho que desea ejercitar, o mediante correo ordinario remitido a Cra. 28 Bis No. 49a - 07. El usuario declara haber leído la cláusula anterior y estar conforme con la misma.
 														</p>
-                         </div>
+                         </div> 
                          <div class="modal-footer">
                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                          </div>
                        </div>
                      </div>
-                   </div>
+                   </div>-->
 
                     <div class="box-footer">
                       <button type="submit" class="btn btn-primary">Guardar</button>
