@@ -209,17 +209,25 @@ class SolicitudController extends Controller
 
         foreach ($solicitudes as $solicitud) {
             $result[] = $tabla = [
+                                    'cedula' => $solicitud->cedula,
+                                    'monto' => $solicitud->monto,
+                                    'cuotas' => $solicitud->cuotas,
+                                    'linea' => $solicitud->producto->codigo,
+                                    'periodicidad' => '1',
+                                    'tipo_pago' => '1',
+                                    'nit' => $solicitud->producto->nit,
+                                    /*
                                     'Asociado' => $solicitud->user->name, 
                                     'Producto' => $solicitud->producto->name, 
                                     'cod_asociado' => $solicitud->cod_asociado,
-                                    'cedula' => $solicitud->cedula,
                                     'celular' => $solicitud->celular,
-                                    'monto' => $solicitud->monto,
-                                    'cuotas' => $solicitud->cuotas,
                                     'observacion' => $solicitud->observacion
-                                ];
-        }
+                                    */
+                                ];                               
 
+        }
+        
+ 
         if (empty($result)) {
             session()->flash('error', 'Resultado vacíos');
             return redirect()->back();
@@ -235,7 +243,7 @@ class SolicitudController extends Controller
                     }
                 );
             }
-        )->export('xls');
+        )->export('xls'); 
     }
 
 

@@ -54,6 +54,12 @@
                         <input style="color: black;" type="text" class="form-control" value="{{$producto->name}}" disabled>
                         <input style="color: black;" type="hidden" class="form-control" value="{{$producto->name}}" name="nombre">
                       </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nit</label>
+                        <input style="color: black;" type="number" class="form-control" name="nit"  min="1"  value="{{$producto->nit}}" required>
+                      </div>
+
                       <div class="form-group">
                         <label for="exampleInputEmail1">Meses Minimo</label>
                         <input style="color: black;" type="number" class="form-control" name="cuota_min"  min="1"  value="{{$producto->cuota_min}}" required>

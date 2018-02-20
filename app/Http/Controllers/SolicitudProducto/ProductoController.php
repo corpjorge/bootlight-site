@@ -39,7 +39,7 @@ class ProductoController extends Controller
       $servicios = simplexml_load_string($response_servicios);
 
       //Líneas administradas por cartera
-      $url_cartera = "http://190.145.4.62/WebServices/WSCredito.asmx/ListaDestinacionCredito?pCod_linea_Credito=8";
+      $url_cartera = "http://190.145.4.62/WebServices/WSEstadoCuenta.asmx/PoblarListaDesplegable?pTabla=LINEASCREDITO&pColumnas=COD_LINEA_CREDITO,NOMBRE&pCondicion=ESTADO=1&pOrden=NOMBRE";
       $response_cartera = file_get_contents($url_cartera);
       $cartera_lineas = simplexml_load_string($response_cartera);
 
@@ -65,9 +65,9 @@ class ProductoController extends Controller
         if ($p_productos == null) {
           DB::table('p_productos')->insert(
               [
-                'codigo' => $cartera->cod_destino,
+                'codigo' => $cartera->idconsecutivo,
                 'name' =>  $cartera->descripcion,
-                'linea' =>  8,
+                'linea' =>  0,
                 'created_at' =>  $fecha_created_at,
               ]
           );
@@ -149,6 +149,7 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $this->Validate($request,[
+            'nit' => 'required|',
             'cuota_min' => 'required|',
             'cuota_max' => 'required|',
             'monto_min' => 'required|',
@@ -158,6 +159,7 @@ class ProductoController extends Controller
         ]);
 
         $dato = p_producto::find($id);   
+        $dato->nit  = $request->nit;    
         $dato->cuota_min  = $request->cuota_min;    
         $dato->cuota_max  = $request->cuota_max;    
         $dato->monto_min  = $request->monto_min;    
@@ -166,7 +168,7 @@ class ProductoController extends Controller
         $dato->url  = $request->url;    
         $dato->save();
 
-        echo $request->nombre;
+        $request->nombre;
 
         $user = AdminUser::where('ciudad',$id)->first(); 
 
