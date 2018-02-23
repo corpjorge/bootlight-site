@@ -31,6 +31,11 @@ class CreatePSolicitudsTable extends Migration
             $table->string('obs', '670')->nullable();
             $table->string('observacion', '670')->nullable();
             $table->string('img')->nullable();
+            $table->date('pendiente')->nullable();
+            $table->date('aprobado')->nullable();
+            $table->date('negado')->nullable();
+            $table->date('desembolsado ')->nullable();
+            $table->date('vendido')->nullable();       
             $table->timestamps();
         });
     }

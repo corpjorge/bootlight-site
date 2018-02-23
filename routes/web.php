@@ -84,6 +84,7 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::post('admin_help', 'Admin\AdminController@help');
     Route::get('datos_usuario/{id}', 'Usuario\Users_detalleController@datosUsuario');
 
+    Route::get('solicitud/comprobante-adm/{id}', 'SolicitudProducto\SolicitudController@show');
 
     Route::group(['middleware' => 'coordinador'], function () {
         Route::get('admin_evento', 'Evento\EventoController@indexadmin');
@@ -115,6 +116,7 @@ Route::group(['middleware' => 'adminuser'], function () {
         Route::post('solicitudes/solicitados/aprobar', 'SolicitudProducto\SolicitudController@aprobar');
         Route::get('solicitudes/solicitados-excel', 'SolicitudProducto\SolicitudController@excel');
         Route::post('solicitudes/solicitados-excelEstado/{id}', 'SolicitudProducto\SolicitudController@excelEstados');
+        Route::post('solicitudes/solicitados-excelEstadoOtro', 'SolicitudProducto\SolicitudController@excelEstadosOtro');
         Route::get('solicitudes/solicitados-descarga/{archivo}', 'SolicitudProducto\SolicitudController@descarga');
 
 

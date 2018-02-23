@@ -16,6 +16,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use auth;
 use Mail;
+use Carbon\Carbon;
 
 class SolicitudController extends Controller
 {
@@ -102,13 +103,14 @@ class SolicitudController extends Controller
         $dato->img  = $nombre.'.'.$fileType;      
         $dato->obs  = $request->observaciones;
         $dato->observacion  = 'Pendiente por revisión';
+        $dato->pendiente  = Carbon::now();
         $dato->save();
 
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);  
-        $email = (string)$xml_datos->email; 
-        //$email = 'corpjorge@hotmail.com';
+        //$email = (string)$xml_datos->email; 
+        $email = 'corpjorge@hotmail.com';
         Mail::send(new Solicitud($email,$dato));
          
         session()->flash('message', 'Guardado correctamente');
@@ -143,6 +145,7 @@ class SolicitudController extends Controller
       $row = p_solicitud::find($id);     
       if ($row->codigo == $request->codigo) {
         $row->estados_id = 6;
+        $row->desembolsado  = Carbon::now();
         $row->save();
         session()->flash('message', 'Guardado correctamente');
         return redirect('solicitud/productos');
@@ -171,6 +174,76 @@ class SolicitudController extends Controller
     public function excel()
     {
         $solicitudes = p_solicitud::where('estados_id',6)->get();
+        $creditos = array();
+        $servicios = array();
+
+        foreach ($solicitudes as $solicitud) {
+          
+
+          if ($solicitud->producto->tipo  == 1) {
+                $creditos[] = $tabla = [
+                                        'cedula' => $solicitud->cedula,
+                                        'monto' => $solicitud->monto,
+                                        'cuotas' => $solicitud->cuotas,
+                                        'Fecha Primer Pago' => 'dd/MM/yyyy',
+                                        'linea' => $solicitud->producto->codigo,
+                                        'periodicidad' => '1',
+                                        'Destino' => '',
+                                        'tipo_pago' => '1',
+                                        'nit' => $solicitud->producto->nit,
+                                      ];
+          }else{
+                $servicios[] = $tabla = [
+                                    'Fecha de Solicitud' => $solicitud->created_at,
+                                    'cedula' => $solicitud->cedula,
+                                    'Plan' => '(Opcional)',
+                                    'Num poliza' => '(Opcional)',
+                                    'Fecha inicial vigencia' => '',
+                                    'Fecha final vigencia' => '',
+                                    'monto' => $solicitud->monto,
+                                    'Fecha primera cuota' => '',
+                                    'cuotas' => $solicitud->cuotas,
+                                    'Vr Cuota' => '',
+                                    'Periodicidad' => '1',
+                                    'Forma de pago' => '1',
+                                    'Identificación titular' => '(Opcional)',
+                                    'Nombre titular' => '(Opcional)',
+                                    'Código Empresa' => '(Obligatorio si es Pago Nomina)',
+                                    'Código Destinación' => '',
+ 
+                                  ];
+
+          }         
+
+        }
+/*
+        if (empty($result)) {
+            session()->flash('error', 'Resultado vacíos');
+            return redirect()->back();
+        }
+*/ 
+        Excel::create(
+            'solicitudes',
+            function ($excel) use ($creditos, $servicios) {
+                $excel->sheet(
+                    'Creditos',
+                    function ($sheet) use ($creditos) {
+                        $sheet->fromArray($creditos);
+                    }
+                );
+                $excel->sheet(
+                    'Servicios',
+                    function ($sheet) use ($servicios) {
+                        $sheet->fromArray($servicios);
+                    }
+                );
+            }
+        )->export('xls'); 
+    }
+
+    public function excelEstados(Request $request, $id)
+    {
+        $solicitudes = p_solicitud::where('estados_id',$id)->where('created_at',$request->fecha)->get();
 
         foreach ($solicitudes as $solicitud) {
             $result[] = $tabla = [
@@ -182,9 +255,11 @@ class SolicitudController extends Controller
                                     'monto' => $solicitud->monto,
                                     'cuotas' => $solicitud->cuotas,
                                     'observacion' => $solicitud->observacion
-                                ];
-        }
+                                ];                               
 
+        }
+        
+ 
         if (empty($result)) {
             session()->flash('error', 'Resultado vacíos');
             return redirect()->back();
@@ -200,29 +275,23 @@ class SolicitudController extends Controller
                     }
                 );
             }
-        )->export('xls');
+        )->export('xls'); 
     }
 
-    public function excelEstados(Request $request, $id)
+    public function excelEstadosOtro(Request $request)
     {
-        $solicitudes = p_solicitud::where('estados_id',$id)->where('created_at',$request->fecha)->get();
+        $solicitudes = p_solicitud::where($request->estado,$request->fecha)->get();
 
         foreach ($solicitudes as $solicitud) {
             $result[] = $tabla = [
-                                    'cedula' => $solicitud->cedula,
-                                    'monto' => $solicitud->monto,
-                                    'cuotas' => $solicitud->cuotas,
-                                    'linea' => $solicitud->producto->codigo,
-                                    'periodicidad' => '1',
-                                    'tipo_pago' => '1',
-                                    'nit' => $solicitud->producto->nit,
-                                    /*
                                     'Asociado' => $solicitud->user->name, 
                                     'Producto' => $solicitud->producto->name, 
                                     'cod_asociado' => $solicitud->cod_asociado,
+                                    'cedula' => $solicitud->cedula,
                                     'celular' => $solicitud->celular,
+                                    'monto' => $solicitud->monto,
+                                    'cuotas' => $solicitud->cuotas,
                                     'observacion' => $solicitud->observacion
-                                    */
                                 ];                               
 
         }
@@ -299,10 +368,12 @@ class SolicitudController extends Controller
         
         $row = p_solicitud::find($id);        
         if ($request->Aprobar) {
-            $row->estados_id = 1;   
+            $row->estados_id = 1; 
+            $row->aprobado  = Carbon::now();  
         }
         if ($request->Negar) {
              $row->estados_id = 2;
+             $row->negado  = Carbon::now();
         }
         $row->monto = $request->monto;
         $row->cuotas = $request->cuota;
@@ -313,8 +384,10 @@ class SolicitudController extends Controller
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);
-        //$email = 'john.moreno@fyclsingenieria.com';
-        $email = (string)$xml_datos->email; 
+        
+        //$email = (string)$xml_datos->email; 
+        $email = 'corpjorge@hotmail.com';
+
 
         if ($request->Aprobar) {                               
             Mail::send(new Aprobado($email,$row,$request->codigo));
@@ -341,7 +414,7 @@ class SolicitudController extends Controller
 
     public function desembolso()
     {
-      $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',1)->get();
+      $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',6)->get();
       return view('adminlte::solicitud_producto.solicitud.proveedor.desembolso', ['rows' => $rows ]);
     }
 
@@ -364,6 +437,7 @@ class SolicitudController extends Controller
         $row->estados_id = 5;
         $row->monto = $request->monto;
         $row->observacion = $request->observaciones;
+        $row->vendido  = Carbon::now();
         $row->save(); 
 
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";

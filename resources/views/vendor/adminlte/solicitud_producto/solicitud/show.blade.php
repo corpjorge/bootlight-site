@@ -68,6 +68,7 @@
                   <th>monto</th>
                   <th>cuotas</th>                  
                   <th>Obs</th>
+                  <th>Comprobante</th>
                   <th>Adju</th>
                   <th></th>
                 </tr>
@@ -82,6 +83,13 @@
                   <td>{{$key->monto}}</td>                  
                   <td>{{$key->cuotas}}</td>  
                   <td>{{$key->observacion}}</td>                                      
+                  <td>
+                    @if($key->estado->id == 5)
+                     <a href="{{url('solicitud/comprobante-adm/'.$key->id)}}">Ver</a>
+                    @else
+                    - 
+                    @endif
+                  </td>                                      
                   <td>
                     <a href="{{url('solicitudes/solicitados-descarga/'.$key->img)}}" ><i class="fa fa-download" aria-hidden="true"></i></a>
                                                        

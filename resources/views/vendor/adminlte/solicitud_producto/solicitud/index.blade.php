@@ -98,7 +98,7 @@
 	
 							</td>
 							<td>
-								@if($key->estado->id == 6)
+								@if($key->estado->id == 5)
 								 <a href="{{url('solicitud/comprobante/'.$key->id)}}">Ver</a>
 								@else
 								- 

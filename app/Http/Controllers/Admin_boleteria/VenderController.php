@@ -275,7 +275,7 @@ class VenderController extends Controller
       try {
          $servicio = file_get_contents($urlServicio);
        } catch (Exception $e) {
-         session()->flash('message', 'No se procesó la compra');
+         session()->flash('message', 'No se procesó el el Servicio: '.$urlServicio);
          return redirect('admin_boleteria/vender/add/'.$idProducto);
        }
 
@@ -330,7 +330,7 @@ class VenderController extends Controller
          return redirect('admin_boleteria/vender');
 
        }else {
-         session()->flash('message', 'No se procesó la compra');
+         session()->flash('message', 'No se procesó el Servicio: '.$urlServicio );
          return redirect('admin_boleteria/vender/add/'.$idProducto);
        }
 
@@ -377,7 +377,7 @@ class VenderController extends Controller
        try {
          $credito = file_get_contents($urlCredito);
        } catch (Exception $e) {
-         session()->flash('message', 'No se procesó la compra');
+         session()->flash('message', 'No se procesó el Credito: '.$urlCredito);
          return redirect('admin_boleteria/vender/add/'.$idProducto);
        } 
 
@@ -433,7 +433,7 @@ class VenderController extends Controller
          return redirect('admin_boleteria/vender');
 
        }else {
-         session()->flash('message', 'No se procesó la compra');
+         session()->flash('message', 'No se procesó el Credito: '.$urlCredito);
          return redirect('admin_boleteria/vender/add/'.$idProducto);
        }
 

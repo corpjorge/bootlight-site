@@ -92,11 +92,26 @@
                     </div>
                   </div>
             </a>
-
+{{--
             <a href="{{ url('solicitudes/solicitados/6')}}">
                   <div class="col-sm-6 col-xs-12">
                     <div class="info-box">
                       <span class="info-box-icon bg-aqua"><i class="fa fa-"></i>{{$desembolsados}}</span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Desembolsar</span>
+                        <p>Ingresar</p>
+                        <small style="font-weight: 300; font-size: 15px; color: #777">Confirmados Por el cliente</small>
+                      </div>
+                    </div>
+                  </div>
+            </a>
+--}}
+
+ 
+            <a href="{{ url('solicitudes/solicitados-excel')}}">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-aqua"><i class="fa fa-download"></i></span>
                       <div class="info-box-content">
                         <span class="info-box-text">Desembolsar</span>
                         <p>Ingresar</p>
@@ -125,6 +140,41 @@
         </div>
         <!-- /.box-body -->
       </div>
+
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="fa fa-tag"></i> Descargar</h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+
+            <div class="col-sm-3 col-xs-12">
+               <form role="form" action="{{ url('solicitudes/solicitados-excelEstadoOtro') }}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">  
+                    <div class="box-body">                      
+                      <div class="form-group">
+                        <label>Estadp</label>
+                        <select class="form-control" name="estado" required>
+                          <option value="">Seleccionar</option>                        
+                          <option value="pendiente">Pendiente</option>
+                          <option value="aprobado">Aprobado</option>
+                          <option value="negado">Negado</option>
+                          <option value="desembolsado">Desembolsado</option>
+                          <option value="vendido">Vendido</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Fecha</label>
+                        <input style="color: black;" type="date" class="form-control" name="fecha" required>
+                      </div>
+                    </div>
+                    <div class="box-footer">
+                      <button type="submit" class="btn btn-primary">Descargar</button>
+                    </div>
+            </div>
+          </div>
+          </div>
+          </div>
 
 </section>
 
