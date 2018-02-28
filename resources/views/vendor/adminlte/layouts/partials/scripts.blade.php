@@ -390,10 +390,10 @@ $(document).ready(function()
 
       $("#monto").attr("min", "{{$key->monto_min}}");
       $("#monto").attr("max", "{{$key->monto_max}}");
-      $("#monto").attr("placeholder", "maximo {{$key->monto_max}} Meses");
+      $("#monto").attr("placeholder", "maximo $ {{$key->monto_max}}");
       $("#cuota").attr("min", "{{$key->cuota_min}}");
       $("#cuota").attr("max", "{{$key->cuota_max}}");
-      $("#cuota").attr("placeholder", "maximo $ {{$key->cuota_max}}");
+      $("#cuota").attr("placeholder", " Maximo {{$key->cuota_max}} Meses");
       @if($key->url != NULL)
       $('#idurl').show();
       $("#urllink").text('{{$key->url}}');

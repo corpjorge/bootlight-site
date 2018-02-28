@@ -30,7 +30,7 @@
 {!! Form::open(['url' => 'solicitudes/solicitados-excelEstado/'.$id, 'method' => 'post']) !!}
  <div class="col-xs-2" style="position: relative; left: 84%;">
     <div class="input-group input-group-sm">
-      <input type="date" class="form-control" name="fecha">
+      {{--<input type="date" class="form-control" name="fecha">--}}
           <span class="input-group-btn">
             <button type="submit" class="btn btn-info btn-flat"><i aria-hidden="true" class="fa fa-download"></i></button>
           </span>

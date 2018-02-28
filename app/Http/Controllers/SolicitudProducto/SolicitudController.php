@@ -109,8 +109,8 @@ class SolicitudController extends Controller
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);  
-        //$email = (string)$xml_datos->email; 
-        $email = 'corpjorge@hotmail.com';
+        $email = (string)$xml_datos->email; 
+        //$email = 'corpjorge@hotmail.com';
         Mail::send(new Solicitud($email,$dato));
          
         session()->flash('message', 'Guardado correctamente');
@@ -119,13 +119,17 @@ class SolicitudController extends Controller
 
     public function solicitudes()
     {
+      if (Auth::guard('admin_user')->user()->rol->id == 8) {
+        $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',6)->get();
+        return view('adminlte::solicitud_producto.solicitud.proveedor.desembolso', ['rows' => $rows ]);
+      }else{
         $pendientes = p_solicitud::where('estados_id',3)->count();
         $aprobado = p_solicitud::where('estados_id',1)->count();
         $negados = p_solicitud::where('estados_id',2)->count();
         $desembolsados = p_solicitud::where('estados_id',6)->count();
         $vendidos = p_solicitud::where('estados_id',5)->count();
         return view('adminlte::solicitud_producto.solicitud.solicitudes', compact('pendientes','aprobado','negados','desembolsados','vendidos')); 
-         
+      }        
     }
 
     public function solicitudesShow($id)
@@ -243,9 +247,10 @@ class SolicitudController extends Controller
 
     public function excelEstados(Request $request, $id)
     {
-        $solicitudes = p_solicitud::where('estados_id',$id)->where('created_at',$request->fecha)->get();
+        $solicitudes = p_solicitud::where('estados_id',$id)->get();
 
         foreach ($solicitudes as $solicitud) {
+
             $result[] = $tabla = [
                                     'Asociado' => $solicitud->user->name, 
                                     'Producto' => $solicitud->producto->name, 
@@ -258,13 +263,12 @@ class SolicitudController extends Controller
                                 ];                               
 
         }
-        
  
         if (empty($result)) {
             session()->flash('error', 'Resultado vacíos');
             return redirect()->back();
         }
-
+ 
         Excel::create(
             'solicitudes',
             function ($excel) use ($result) {
@@ -276,6 +280,7 @@ class SolicitudController extends Controller
                 );
             }
         )->export('xls'); 
+         
     }
 
     public function excelEstadosOtro(Request $request)
@@ -385,8 +390,8 @@ class SolicitudController extends Controller
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);
         
-        //$email = (string)$xml_datos->email; 
-        $email = 'corpjorge@hotmail.com';
+        $email = (string)$xml_datos->email; 
+        //$email = 'corpjorge@hotmail.com';
 
 
         if ($request->Aprobar) {                               
@@ -414,7 +419,12 @@ class SolicitudController extends Controller
 
     public function desembolso()
     {
-      $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',6)->get();
+      if (Auth::guard('admin_user')->user()->rol->id == 8) {
+         $rows = p_solicitud::where('p_productos_id',Auth::guard('admin_user')->user()->ciudad)->where('estados_id',3)->get(); 
+      }else{
+         $rows = p_solicitud::where('estados_id',6)->get();         
+      }
+      
       return view('adminlte::solicitud_producto.solicitud.proveedor.desembolso', ['rows' => $rows ]);
     }
 
@@ -443,8 +453,8 @@ class SolicitudController extends Controller
         $url_datos = "http://190.145.4.61/WebServicesDemo/WSEstadoCuenta.asmx/ConsultarDatoBasicosPersona?pEntidad=FONSODI&pIdentificador=".$request->cedula."&pTipo=Identificacion";
         $response_xml_datos = file_get_contents($url_datos);
         $xml_datos = simplexml_load_string($response_xml_datos);        
-        //$email = (string)$xml_datos->email; 
-        $email = 'corpjorge@hotmail.com';
+        $email = (string)$xml_datos->email; 
+        //$email = 'corpjorge@hotmail.com';
 
         if ($row->producto->tipo == 1) {
            $mensaje = "Estimado Asociado el desembolso de su solicitud ha sido realizado, en un máximo de 24 horas tendrá los recursos transferidos a su cuenta, si desea recibir mayor información se puede comunicar al número de celular 312XXXXXXX";

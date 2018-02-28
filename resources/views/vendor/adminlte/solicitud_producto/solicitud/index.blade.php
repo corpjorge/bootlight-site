@@ -24,7 +24,7 @@
 						<div class="col-lg-3 col-xs-6" >
 							<div class="small-box bg-teal " style="padding: 11px">
 								<div class="inner">
-									<h4>Solicita un Productos</h4>
+									<h4>Solicita un Producto</h4>
 									<p>Clic aquí</p>
 								</div>
 								<div class="icon">

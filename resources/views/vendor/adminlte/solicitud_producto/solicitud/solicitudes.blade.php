@@ -113,9 +113,22 @@
                     <div class="info-box">
                       <span class="info-box-icon bg-aqua"><i class="fa fa-download"></i></span>
                       <div class="info-box-content">
-                        <span class="info-box-text">Desembolsar</span>
+                        <span class="info-box-text">Desembolsar (Excel)</span>
                         <p>Ingresar</p>
                         <small style="font-weight: 300; font-size: 15px; color: #777">Confirmados Por el cliente</small>
+                      </div>
+                    </div>
+                  </div>
+            </a>
+
+            <a href="{{ url('solicitudes/desembolso')}}">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-aqua"><i class="fa fa-"></i>{{$desembolsados}}</span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Desembolsar</span>
+                        <p>Ingresar</p>
+                        <small style="font-weight: 300; font-size: 15px; color: #777">Listos para ser desembolsados</small>
                       </div>
                     </div>
                   </div>
@@ -153,7 +166,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">  
                     <div class="box-body">                      
                       <div class="form-group">
-                        <label>Estadp</label>
+                        <label>Estado</label>
                         <select class="form-control" name="estado" required>
                           <option value="">Seleccionar</option>                        
                           <option value="pendiente">Pendiente</option>

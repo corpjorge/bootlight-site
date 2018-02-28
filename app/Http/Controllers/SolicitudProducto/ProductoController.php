@@ -154,7 +154,7 @@ class ProductoController extends Controller
             'cuota_max' => 'required|',
             'monto_min' => 'required|',
             'monto_max' => 'required|',            
-            'correo' => 'required|', 
+            //'correo' => 'required|', 
             'tipo' => 'required|',            
         ]);
 
@@ -168,23 +168,23 @@ class ProductoController extends Controller
         $dato->url  = $request->url;    
         $dato->save();
 
-        $request->nombre;
+        if ($request->correo) {
+        
+          $user = AdminUser::where('ciudad',$id)->first(); 
 
-        $user = AdminUser::where('ciudad',$id)->first(); 
-
-        if ($user) {  
-         $user->email = $request->correo;
-         $user->save();
-        }
-        else{
-     
-          $nuevoUser = new AdminUser();
-          $nuevoUser->name = $request->nombre;
-          $nuevoUser->email = $request->correo;
-          $nuevoUser->password = '-';
-          $nuevoUser->ciudad = $id;
-          $nuevoUser->role_id = 8;
-          $nuevoUser->save();
+          if ($user) {  
+           $user->email = $request->correo;
+           $user->save();
+          }
+          else{     
+            $nuevoUser = new AdminUser();
+            $nuevoUser->name = $request->nombre;
+            $nuevoUser->email = $request->correo;
+            $nuevoUser->password = '-';
+            $nuevoUser->ciudad = $id;
+            $nuevoUser->role_id = 8;
+            $nuevoUser->save();
+          }
         }
   
         session()->flash('message', 'Guardado correctamente');

@@ -60,9 +60,9 @@
 										 <td>{{$producto->name}}</td>
 										 <td>
 											@if($producto->linea == 1)
-												Servicio
+												Credito
 											@else
-												Consumo proveedores
+												Servicio
 											@endif
 
 										 </td>										

@@ -109,10 +109,9 @@ Route::group(['middleware' => 'adminuser'], function () {
         Route::get('solicitudes/productos/{id}/edit', 'SolicitudProducto\ProductoController@edit');
         Route::post('solicitudes/productos/update/{id}', 'SolicitudProducto\ProductoController@update');
         Route::get('solicitudes/productos/actualizar', 'SolicitudProducto\ProductoController@actualizar');
-        Route::get('solicitudes/solicitados/{id}', 'SolicitudProducto\SolicitudController@solicitudesShow');
+        
         Route::post('solicitudes/productos/add', 'SolicitudProducto\ProductoController@store');
-        Route::get('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@edit');
-        Route::post('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@update');
+        
         Route::post('solicitudes/solicitados/aprobar', 'SolicitudProducto\SolicitudController@aprobar');
         Route::get('solicitudes/solicitados-excel', 'SolicitudProducto\SolicitudController@excel');
         Route::post('solicitudes/solicitados-excelEstado/{id}', 'SolicitudProducto\SolicitudController@excelEstados');
@@ -121,6 +120,10 @@ Route::group(['middleware' => 'adminuser'], function () {
 
 
     });
+
+    Route::get('solicitudes/solicitados/{id}', 'SolicitudProducto\SolicitudController@solicitudesShow');
+    Route::get('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@edit');
+    Route::post('solicitudes/solicitados/ver/{id}', 'SolicitudProducto\SolicitudController@update');
 
     Route::get('solicitudes/desembolso', 'SolicitudProducto\SolicitudController@desembolso');
     Route::get('solicitudes/desembolso/{id}', 'SolicitudProducto\SolicitudController@desembolsar');

@@ -45,7 +45,7 @@
 			        <div class="col-sm-4 invoice-col">
 			        
 			          <br>				
-							
+						<strong>Fecha:</strong> {{$row->vendido}}<br>	
 			      
 
 			        </div>
@@ -69,8 +69,7 @@
 			              <td>{{$row->producto->name}}</td>
 			              <td>{{$row->monto}}</td>
 			              <td>{{$row->cuotas}}</td>
-			            </tr>
-						 
+			            </tr>						 
 			            </tbody>
 			          </table>
 			        </div>
@@ -93,13 +92,15 @@
 			      <!-- /.row -->
 
 			      <!-- this row will not appear when printing -->
+			      <div class="box-footer">
+                      <a href='javascript:window.print(); void 0;' class="btn btn-primary" name="Aprobar" value="Aprobar">Imprimir</a>                   
+                  </div>
 
 			    </section>
 			    <!-- /.content -->
 			    <div class="clearfix"></div>
 
-
-
+ 
 
 
 
