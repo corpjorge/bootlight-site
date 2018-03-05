@@ -34,7 +34,7 @@ class CreatePSolicitudsTable extends Migration
             $table->date('pendiente')->nullable();
             $table->date('aprobado')->nullable();
             $table->date('negado')->nullable();
-            $table->date('desembolsado ')->nullable();
+            $table->date('desembolsado')->nullable();
             $table->date('vendido')->nullable();       
             $table->timestamps();
         });
